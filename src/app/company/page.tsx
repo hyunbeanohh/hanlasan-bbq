@@ -27,10 +27,10 @@ export default function CompanyPage() {
       <ProcessSteps />
 
       {/* Page-level CTA */}
-      <section className="py-16 bg-brand-soft">
+      <section className="py-16 bg-surface">
         <div className="mx-auto max-w-2xl px-4 sm:px-6 text-center">
-          <h2 className="text-2xl font-bold text-ink mb-3">지금 문의해보세요</h2>
-          <p className="text-ink-soft mb-8">
+          <h2 className="text-2xl font-bold text-fg mb-3">지금 문의해보세요</h2>
+          <p className="text-fg-soft mb-8">
             어떤 자리든 한라산출장바베큐가 함께합니다. 먼저 연락주세요.
           </p>
           <div className="flex flex-wrap justify-center gap-4">

@@ -23,13 +23,13 @@ const TEAM_MEMBERS = [
 
 export default function ChefTeam() {
   return (
-    <section className="py-20 md:py-24 bg-warm-100">
+    <section className="py-20 md:py-24 bg-surface-2">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <p className="text-brand text-xs font-semibold uppercase tracking-widest mb-3">
             OUR TEAM
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-ink mb-3">
+          <h2 className="text-3xl md:text-4xl font-bold text-fg mb-3">
             전문 셰프 팀
           </h2>
           <div className="w-10 h-0.5 bg-brand mx-auto" aria-hidden="true" />
@@ -39,17 +39,17 @@ export default function ChefTeam() {
           {TEAM_MEMBERS.map((member) => (
             <div
               key={member.id}
-              className="bg-cream rounded-2xl overflow-hidden border border-warm-100 hover:shadow-md transition-shadow text-center"
+              className="bg-surface rounded-2xl overflow-hidden border border-border hover:border-border-strong transition-colors text-center"
             >
               {/* Photo placeholder */}
-              <div className="aspect-[4/3] bg-gradient-to-br from-warm-200 via-warm-100 to-warm-50 flex flex-col items-center justify-center gap-2">
+              <div className="aspect-[4/3] bg-gradient-to-br from-surface-3 via-surface-2 to-surface flex flex-col items-center justify-center gap-2">
                 <span className="text-6xl" aria-hidden="true">{member.emoji}</span>
-                <p className="text-muted text-xs">사진 준비중</p>
+                <p className="text-fg-muted text-xs">사진 준비중</p>
               </div>
               {/* Info */}
               <div className="p-5">
-                <h3 className="font-bold text-ink text-lg mb-1">{member.name}</h3>
-                <p className="text-muted text-sm">{member.role}</p>
+                <h3 className="font-bold text-fg text-lg mb-1">{member.name}</h3>
+                <p className="text-fg-muted text-sm">{member.role}</p>
               </div>
             </div>
           ))}
