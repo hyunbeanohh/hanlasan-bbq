@@ -13,6 +13,17 @@ export const metadata: Metadata = {
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
+  keywords: ['출장바베큐', '제주출장바베큐', '한라산출장바베큐', '제주 케이터링', '제주 바베큐 출장', '기업 케이터링', '단체 회식 출장'],
+  verification: {
+    ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && {
+      google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    }),
+    other: {
+      ...(process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION && {
+        'naver-site-verification': process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION,
+      }),
+    },
+  },
 };
 
 export default function RootLayout({
