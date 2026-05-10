@@ -9,7 +9,7 @@ const NAV_LINKS = [
   { href: '/company', label: '회사소개' },
   { href: '/menu', label: '메뉴소개' },
   { href: '/gallery', label: '행사갤러리' },
-  { href: '/#contact', label: '예약문의' },
+  { href: '/inquiry', label: '예약 문의' },
 ];
 
 export default function Header() {

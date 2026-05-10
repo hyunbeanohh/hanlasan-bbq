@@ -44,7 +44,7 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#contact" className="hover:text-brand transition-colors">
+                  <Link href="/inquiry" className="hover:text-brand transition-colors">
                     예약문의
                   </Link>
                 </li>
@@ -66,7 +66,7 @@ export default function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#contact" className="hover:text-brand transition-colors">
+                  <Link href="/inquiry" className="hover:text-brand transition-colors">
                     예약문의
                   </Link>
                 </li>
