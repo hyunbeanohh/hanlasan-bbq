@@ -5,6 +5,7 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import MobileCTABar from '@/components/layout/MobileCTABar';
 import LocalBusinessJsonLd from '@/components/seo/LocalBusinessJsonLd';
+import NaverAnalytics from '@/components/analytics/NaverAnalytics';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.canonicalOriginDisplay),
@@ -46,6 +47,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <MobileCTABar />
+        <NaverAnalytics accountId={process.env.NEXT_PUBLIC_NAVER_ANALYTICS_ID ?? ''} />
       </body>
     </html>
   );
