@@ -17,9 +17,8 @@ function fromB64(b64: string): Uint8Array {
 
 async function importKey(keyB64: string): Promise<CryptoKey> {
   const raw = fromB64(keyB64);
-  // Derive a 32-byte AES key via SHA-256 so any-length key material is accepted
-  const hashBuf = await crypto.subtle.digest('SHA-256', raw.buffer as ArrayBuffer);
-  return crypto.subtle.importKey('raw', hashBuf, { name: 'AES-GCM' }, false, ['encrypt', 'decrypt']);
+  if (raw.length !== 32) throw new Error('PII_KEY must be 32 bytes (base64)');
+  return crypto.subtle.importKey('raw', raw.buffer as ArrayBuffer, { name: 'AES-GCM' }, false, ['encrypt', 'decrypt']);
 }
 
 export async function encryptPII(plaintext: string, keyB64: string): Promise<string> {

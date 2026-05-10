@@ -1,7 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { encryptPII, decryptPII, generateKey } from '../crypto';
 
-const TEST_KEY = 'YWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWE=';
+// 32 bytes of 0x61 ('a') base64-encoded
+const TEST_KEY = 'YWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWE=';
 
 describe('crypto', () => {
   it('encrypts and decrypts a string round-trip', async () => {
@@ -25,7 +26,7 @@ describe('crypto', () => {
 
   it('throws on wrong key', async () => {
     const cipher = await encryptPII('hello', TEST_KEY);
-    const otherKey = 'YmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmI=';
+    const otherKey = 'YmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmJiYmI=';
     await expect(decryptPII(cipher, otherKey)).rejects.toThrow();
   });
 
