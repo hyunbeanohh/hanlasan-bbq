@@ -20,7 +20,7 @@ function formatShortDate(iso: string): string {
 
 export default function GalleryCard({ post }: GalleryCardProps) {
   return (
-    <article className="group rounded-xl overflow-hidden bg-white border border-warm-100 hover:shadow-lg transition-shadow flex flex-col">
+    <article className="group rounded-2xl overflow-hidden bg-surface border border-border hover:border-border-strong transition-colors flex flex-col">
       {/* Thumbnail */}
       <a
         href={post.originalUrl}
@@ -39,12 +39,12 @@ export default function GalleryCard({ post }: GalleryCardProps) {
             unoptimized
           />
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-warm-200 via-warm-100 to-warm-50 flex items-center justify-center">
-            <span className="text-muted text-xs">사진 준비중</span>
+          <div className="absolute inset-0 bg-surface-3 flex items-center justify-center">
+            <span className="text-fg-muted text-xs">사진 준비중</span>
           </div>
         )}
         {/* Date stamp */}
-        <span className="absolute top-3 left-3 bg-ink/70 text-white text-xs font-medium px-2 py-1 rounded">
+        <span className="absolute top-3 left-3 bg-bg/80 text-fg-soft text-xs font-medium px-2 py-1 rounded">
           {formatShortDate(post.publishedAt)}
         </span>
       </a>
@@ -53,15 +53,15 @@ export default function GalleryCard({ post }: GalleryCardProps) {
       <div className="p-5 flex flex-col flex-1">
         <time
           dateTime={post.publishedAt}
-          className="text-xs text-muted mb-2 block"
+          className="text-xs text-fg-muted mb-2 block"
         >
           {formatDate(post.publishedAt)}
         </time>
-        <h3 className="font-bold text-ink text-base mb-2 line-clamp-2 flex-1">
+        <h3 className="font-bold text-fg text-base mb-2 line-clamp-2 flex-1">
           {post.title}
         </h3>
         {post.summary && (
-          <p className="text-muted text-sm leading-relaxed mb-4 line-clamp-2">
+          <p className="text-fg-muted text-sm leading-relaxed mb-4 line-clamp-2">
             {post.summary}
           </p>
         )}

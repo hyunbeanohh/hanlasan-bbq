@@ -23,23 +23,23 @@ export default async function GalleryPage() {
     <>
       <BreadcrumbJsonLd items={[{ name: '홈', path: '/' }, { name: '갤러리', path: '/gallery' }]} />
 
-      {/* Page hero — light warm gradient */}
-      <section className="bg-warm-100 py-16 md:py-20">
+      {/* Page hero — dark */}
+      <section className="bg-surface-2 py-16 md:py-20 border-b border-border">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <p className="text-brand font-semibold text-xs uppercase tracking-widest mb-3">
             EVENT GALLERY
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold text-ink mb-4 leading-tight">
-            현장 갤러리
+          <h1 className="text-4xl md:text-5xl font-bold text-fg mb-4 leading-tight">
+            행사 갤러리
           </h1>
-          <p className="text-ink-soft text-lg max-w-2xl">
+          <p className="text-fg-soft text-lg max-w-2xl">
             실제 행사 사진과 후기. 네이버 블로그에서 자동 동기화됩니다.
           </p>
         </div>
       </section>
 
       {/* Gallery section */}
-      <section className="py-16 md:py-20 bg-cream">
+      <section className="py-16 md:py-20 bg-bg">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           {/* Category filter chips — visual only; "전체" active */}
           <div className="flex flex-wrap gap-2 mb-10" aria-label="카테고리 필터">
@@ -50,7 +50,7 @@ export default async function GalleryPage() {
                   'px-4 py-2 rounded-full text-sm font-semibold',
                   chip === '전체'
                     ? 'bg-brand text-white'
-                    : 'bg-cream text-ink-soft border border-warm-100',
+                    : 'bg-surface text-fg-soft border border-border',
                 ].join(' ')}
               >
                 {chip}
@@ -59,7 +59,7 @@ export default async function GalleryPage() {
           </div>
 
           {posts.length === 0 ? (
-            <div className="text-center py-24 text-muted">
+            <div className="text-center py-24 text-fg-muted">
               <p className="text-4xl mb-4" aria-hidden="true">📷</p>
               <p className="text-lg mb-4">아직 등록된 글이 없습니다. 곧 첫 사진을 만나보실 수 있어요.</p>
               <a
@@ -91,16 +91,16 @@ export default async function GalleryPage() {
         </div>
       </section>
 
-      {/* Bottom CTA card */}
-      <section className="py-12 bg-warm-100">
+      {/* Bottom CTA banner — orange */}
+      <section className="py-14 bg-brand">
         <div className="mx-auto max-w-2xl px-4 sm:px-6 text-center">
-          <p className="text-ink font-bold text-lg mb-2">더 많은 사진은 네이버 블로그에서</p>
-          <p className="text-muted text-sm mb-6">행사 후기와 현장 사진을 블로그에서 더 많이 만나보세요.</p>
+          <p className="text-white font-bold text-xl mb-2">지금 바로 행사 예약하세요</p>
+          <p className="text-white/80 text-sm mb-6">행사 규모·장소·날짜를 알려주시면 맞춤 제안을 드립니다.</p>
           <a
             href={NAVER.blogHomeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[#03C75A] text-white font-semibold rounded-full h-12 px-8 hover:bg-[#02a84c] transition-colors"
+            className="inline-flex items-center gap-2 bg-white text-brand font-semibold rounded-full h-12 px-8 hover:bg-fg-soft transition-colors"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

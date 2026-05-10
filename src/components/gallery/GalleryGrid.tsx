@@ -8,7 +8,7 @@ interface GalleryGridProps {
 export default function GalleryGrid({ posts }: GalleryGridProps) {
   if (posts.length === 0) {
     return (
-      <div className="text-center py-24 text-muted">
+      <div className="text-center py-24 text-fg-muted">
         <p className="text-4xl mb-4" aria-hidden="true">📷</p>
         <p className="text-lg">갤러리를 준비 중입니다. 곧 업데이트됩니다.</p>
       </div>
