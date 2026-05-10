@@ -14,7 +14,7 @@ export default function MenuCategoryTabs() {
 
   return (
     <div>
-      {/* Tab bar */}
+      {/* Pill tab bar */}
       <div
         className="flex gap-2 flex-wrap mb-10"
         role="tablist"
@@ -29,10 +29,10 @@ export default function MenuCategoryTabs() {
             aria-controls={`tabpanel-${cat.id}`}
             onClick={() => setActiveCategory(cat.id)}
             className={[
-              'px-5 py-2.5 rounded-full text-sm font-semibold transition-colors duration-150',
+              'px-5 py-2 rounded-full text-sm font-semibold transition-colors duration-150',
               activeCategory === cat.id
-                ? 'bg-brand text-white'
-                : 'bg-white text-ink border border-warm-100 hover:border-brand hover:text-brand',
+                ? 'bg-brand text-white shadow-sm'
+                : 'bg-cream text-ink-soft border border-warm-100 hover:border-brand hover:text-brand',
             ].join(' ')}
           >
             {cat.name}
@@ -40,7 +40,7 @@ export default function MenuCategoryTabs() {
         ))}
       </div>
 
-      {/* Menu grid */}
+      {/* Menu list */}
       <div
         role="tabpanel"
         id={`tabpanel-${activeCategory}`}
@@ -50,7 +50,7 @@ export default function MenuCategoryTabs() {
         }
       >
         {filteredItems.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="flex flex-col gap-6">
             {filteredItems.map((item) => (
               <MenuCard key={item.id} item={item} />
             ))}
