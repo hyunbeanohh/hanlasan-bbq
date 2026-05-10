@@ -1,0 +1,7 @@
+PII_KEY=base64-encoded-32-bytes-here
+RESEND_API_KEY=re_xxxxx
+TURNSTILE_SECRET=0x0000000000000000000000000000000000000000
+SESSION_SECRET=base64-encoded-32-bytes-here
+ACCESS_TEAM_DOMAIN=yourteam.cloudflareaccess.com
+ACCESS_AUD=replace-with-application-aud
+CRON_SECRET=replace-with-random-32-char-string

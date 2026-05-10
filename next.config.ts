@@ -1,4 +1,7 @@
 import type { NextConfig } from 'next';
+import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare';
+
+initOpenNextCloudflareForDev();
 
 const config: NextConfig = {
   trailingSlash: false,
@@ -12,6 +15,10 @@ const config: NextConfig = {
     ],
   },
   async headers() {
+    const isDev = process.env.NODE_ENV !== 'production';
+    const scriptSrc = isDev
+      ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://wcs.naver.net https://challenges.cloudflare.com"
+      : "script-src 'self' 'unsafe-inline' https://wcs.naver.net https://challenges.cloudflare.com";
     return [
       {
         source: '/:path*',
@@ -24,11 +31,11 @@ const config: NextConfig = {
             value: [
               "default-src 'self'",
               "img-src 'self' data: https://*.pstatic.net https://*.naver.net https://wcs.naver.net https://images.unsplash.com",
-              "script-src 'self' 'unsafe-inline' https://wcs.naver.net",
+              scriptSrc,
               "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net",
               "font-src 'self' https://cdn.jsdelivr.net data:",
-              "connect-src 'self' https://rss.blog.naver.com https://vitals.vercel-insights.com https://wcs.naver.net",
-              "frame-src https://map.naver.com https://m.map.naver.com",
+              "connect-src 'self' https://rss.blog.naver.com https://vitals.vercel-insights.com https://wcs.naver.net https://challenges.cloudflare.com",
+              "frame-src https://map.naver.com https://m.map.naver.com https://challenges.cloudflare.com",
               "base-uri 'self'",
               "form-action 'self'",
             ].join('; '),

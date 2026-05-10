@@ -9,7 +9,12 @@
     "lint": "eslint .",
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "preview": "opennextjs-cloudflare build && wrangler pages dev .open-next/dist",
+    "deploy": "opennextjs-cloudflare build && wrangler pages deploy .open-next/dist",
+    "db:generate": "wrangler d1 execute hanlasan-bbq --local --file=migrations/0001_init.sql",
+    "db:generate:remote": "wrangler d1 execute hanlasan-bbq --remote --file=migrations/0001_init.sql",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv ./cloudflare-env.d.ts"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
@@ -17,9 +22,13 @@
     "next": "16.2.6",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "rss-parser": "^3.13.0"
+    "resend": "^6.12.3",
+    "rss-parser": "^3.13.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260510.1",
+    "@opennextjs/cloudflare": "^1.19.8",
     "@tailwindcss/postcss": "^4",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
@@ -30,10 +39,12 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
     "jsdom": "^29.1.1",
+    "miniflare": "^4.20260507.1",
     "prettier": "^3.8.3",
     "prettier-plugin-tailwindcss": "^0.8.0",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "vitest": "^4.1.5"
+    "vitest": "^4.1.5",
+    "wrangler": "^4.90.0"
   }
 }

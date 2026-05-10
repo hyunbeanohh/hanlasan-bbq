@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { buildCanonical } from '@/lib/seo/canonical';
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   const res = NextResponse.next();
   const canonical = buildCanonical(req.nextUrl.pathname);
   res.headers.set('Link', `<${canonical}>; rel="canonical"`);
