@@ -1,69 +1,21 @@
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo/metadata';
 import { NAVER } from '@/lib/constants';
-import type { GalleryPost } from '@/types';
+import { fetchNaverBlogRss } from '@/lib/blog/naver-rss';
 import GalleryGrid from '@/components/gallery/GalleryGrid';
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = pageMetadata({
   title: '갤러리',
   description:
-    '한라산출장바베큐 갤러리. 기업 워크샵, 가족 모임, 야외 행사 등 실제 출장 현장 사진과 직화구이 메뉴 사진을 확인하세요.',
+    '한라산출장바베큐 행사 사진과 후기. 네이버 블로그에서 자동 동기화됩니다.',
   path: '/gallery',
 });
 
-// Demo posts — Phase 2 will replace with RSS-driven data
-const DEMO_POSTS: GalleryPost[] = [
-  {
-    id: 'post-1',
-    title: '제주 기업 워크샵 출장 바베큐 후기',
-    summary: '50명 규모 기업 워크샵 현장. 제주 흑돼지와 한우를 직화로 구워 드렸습니다. 탁 트인 야외에서 즐기는 직화구이의 감동.',
-    thumbnailUrl: null,
-    originalUrl: `https://blog.naver.com/${NAVER.blogId}`,
-    publishedAt: '2025-04-20T10:00:00+09:00',
-  },
-  {
-    id: 'post-2',
-    title: '가족 나들이 소규모 바베큐 파티',
-    summary: '10인 가족 모임을 위한 소규모 출장 케이터링. 아이들과 함께하는 신나는 바베큐 파티 현장을 담았습니다.',
-    thumbnailUrl: null,
-    originalUrl: `https://blog.naver.com/${NAVER.blogId}`,
-    publishedAt: '2025-03-15T11:00:00+09:00',
-  },
-  {
-    id: 'post-3',
-    title: '동호회 봄 나들이 바베큐',
-    summary: '30명 동호회 봄 나들이 행사. 모듬 버섯구이, 흑돼지 오겹살, 한우 갈빗살까지 다양하게 즐기셨습니다.',
-    thumbnailUrl: null,
-    originalUrl: `https://blog.naver.com/${NAVER.blogId}`,
-    publishedAt: '2025-02-28T12:00:00+09:00',
-  },
-  {
-    id: 'post-4',
-    title: '한라산 한우 안심 스테이크 — 신메뉴 소개',
-    summary: '새롭게 추가된 한우 안심 스테이크 메뉴. 미디엄으로 직화 마감해 드리는 부드러운 안심의 풍미를 소개합니다.',
-    thumbnailUrl: null,
-    originalUrl: `https://blog.naver.com/${NAVER.blogId}`,
-    publishedAt: '2025-01-10T09:00:00+09:00',
-  },
-  {
-    id: 'post-5',
-    title: '제주 흑돼지 오겹살 직화구이 현장',
-    summary: '제주 현지 직거래 흑돼지 오겹살을 숯불에 두툼하게 굽는 현장. 껍데기까지 바삭하게 완성되는 과정을 담았습니다.',
-    thumbnailUrl: null,
-    originalUrl: `https://blog.naver.com/${NAVER.blogId}`,
-    publishedAt: '2024-12-22T14:00:00+09:00',
-  },
-  {
-    id: 'post-6',
-    title: '연말 기업 송년회 출장 케이터링',
-    summary: '80명 규모 기업 송년회 행사. 풀 코스 세팅부터 정리까지 한라산출장바베큐가 책임졌습니다.',
-    thumbnailUrl: null,
-    originalUrl: `https://blog.naver.com/${NAVER.blogId}`,
-    publishedAt: '2024-12-05T18:00:00+09:00',
-  },
-];
+export default async function GalleryPage() {
+  const posts = await fetchNaverBlogRss(NAVER.blogId).catch(() => []);
 
-export default function GalleryPage() {
   return (
     <>
       {/* Page header */}
@@ -84,7 +36,13 @@ export default function GalleryPage() {
       {/* Gallery grid */}
       <section className="py-16 md:py-20 bg-cream">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <GalleryGrid posts={DEMO_POSTS} />
+          {posts.length === 0 ? (
+            <div className="text-center py-24 text-muted">
+              아직 등록된 글이 없습니다. 곧 첫 사진을 만나보실 수 있어요.
+            </div>
+          ) : (
+            <GalleryGrid posts={posts} />
+          )}
         </div>
       </section>
 
