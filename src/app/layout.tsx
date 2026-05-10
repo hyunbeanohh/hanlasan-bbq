@@ -7,6 +7,8 @@ import MobileCTABar from '@/components/layout/MobileCTABar';
 import LocalBusinessJsonLd from '@/components/seo/LocalBusinessJsonLd';
 import NaverAnalytics from '@/components/analytics/NaverAnalytics';
 import UtmCapture from '@/components/analytics/UtmCapture';
+import { Analytics as VercelAnalytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.canonicalOriginDisplay),
@@ -50,6 +52,8 @@ export default function RootLayout({
         <MobileCTABar />
         <NaverAnalytics accountId={process.env.NEXT_PUBLIC_NAVER_ANALYTICS_ID ?? ''} />
         <UtmCapture />
+        <VercelAnalytics />
+        <SpeedInsights />
       </body>
     </html>
   );
