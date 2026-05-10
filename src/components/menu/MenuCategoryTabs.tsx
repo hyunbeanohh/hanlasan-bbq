@@ -44,6 +44,7 @@ export default function MenuCategoryTabs() {
       <div
         role="tabpanel"
         id={`tabpanel-${activeCategory}`}
+        tabIndex={0}
         aria-label={
           MENU_CATEGORIES.find((c) => c.id === activeCategory)?.name ?? '전체'
         }

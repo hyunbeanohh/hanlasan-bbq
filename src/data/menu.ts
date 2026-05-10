@@ -1,5 +1,12 @@
 import type { MenuItem, MenuCategory } from '@/types';
 
+export const CATEGORY_LABELS: Record<MenuItem['categoryId'], string> = {
+  signature: '시그니처',
+  beef: '소고기',
+  pork: '돼지고기',
+  side: '사이드',
+};
+
 export const MENU_CATEGORIES: MenuCategory[] = [
   { id: 'all', name: '전체' },
   { id: 'signature', name: '시그니처' },

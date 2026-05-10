@@ -1,5 +1,3 @@
-'use client';
-
 import { CONTACT } from '@/lib/constants';
 
 type Variant = 'primary' | 'ghost' | 'pill';

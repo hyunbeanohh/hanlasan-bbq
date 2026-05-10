@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { MENU_ITEMS } from '@/data/menu';
+import { MENU_ITEMS, CATEGORY_LABELS } from '@/data/menu';
 
 export default function MenuPreview() {
   const previewItems = MENU_ITEMS.slice(0, 4);
@@ -50,9 +50,7 @@ export default function MenuPreview() {
               </div>
               <div className="p-4">
                 <p className="text-xs font-semibold text-brand uppercase tracking-wide mb-1">
-                  {item.categoryId === 'signature' ? '시그니처' :
-                    item.categoryId === 'beef' ? '소고기' :
-                    item.categoryId === 'pork' ? '돼지고기' : '사이드'}
+                  {CATEGORY_LABELS[item.categoryId]}
                 </p>
                 <h3 className="font-bold text-ink mb-1">{item.name}</h3>
                 <p className="text-muted text-sm leading-relaxed mb-3">{item.description}</p>

@@ -11,9 +11,7 @@
 }
 
 @layer base {
-  html {
-    font-family: var(--font-display);
-  }
+  html { font-family: var(--font-display); line-height: 1.75; }
   body {
     background: var(--color-cream);
     color: var(--color-ink);

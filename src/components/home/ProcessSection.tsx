@@ -15,7 +15,7 @@ export default function ProcessSection() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {PROCESS_STEPS.map((step, index) => (
-            <div key={step.step} className="flex flex-col items-center text-center">
+            <div key={step.step} className="relative flex flex-col items-center text-center">
               {/* Step number circle */}
               <div className="w-14 h-14 rounded-full bg-brand text-white flex items-center justify-center font-bold text-xl mb-4 shrink-0">
                 {step.step}

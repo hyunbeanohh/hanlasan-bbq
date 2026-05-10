@@ -21,8 +21,8 @@ export default function ChefStory() {
             </h2>
             <p className="text-muted text-base font-medium mb-6">{CHEF.role}</p>
             <div className="space-y-4 text-ink/80 leading-relaxed">
-              {STORY.body.map((paragraph, i) => (
-                <p key={i}>{paragraph}</p>
+              {STORY.body.map((paragraph) => (
+                <p key={paragraph.slice(0, 24)}>{paragraph}</p>
               ))}
               <p>{CHEF.summary}</p>
               <p>{CHEF.detail}</p>

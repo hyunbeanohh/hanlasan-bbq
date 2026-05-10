@@ -1,10 +1,9 @@
-'use client';
-
 import { CONTACT } from '@/lib/constants';
 
 export default function MobileCTABar() {
   return (
-    <div
+    <nav
+      aria-label="빠른 연락"
       className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-warm-100 flex"
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
     >
@@ -83,6 +82,6 @@ export default function MobileCTABar() {
         </svg>
         <span className="text-xs font-medium">이메일</span>
       </a>
-    </div>
+    </nav>
   );
 }

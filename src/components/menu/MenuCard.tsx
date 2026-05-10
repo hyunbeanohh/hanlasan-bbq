@@ -1,11 +1,5 @@
 import type { MenuItem } from '@/types';
-
-const CATEGORY_LABELS: Record<string, string> = {
-  signature: '시그니처',
-  beef: '소고기',
-  pork: '돼지고기',
-  side: '사이드',
-};
+import { CATEGORY_LABELS } from '@/data/menu';
 
 const CATEGORY_EMOJIS: Record<string, string> = {
   signature: '⭐',
