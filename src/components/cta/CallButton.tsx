@@ -3,7 +3,7 @@ import { CONTACT } from '@/lib/constants';
 import { trackNaverEvent } from '@/lib/analytics/naver';
 import { getUtm } from '@/lib/analytics/utm';
 
-type Variant = 'primary' | 'ghost' | 'pill';
+type Variant = 'primary' | 'ghost' | 'pill' | 'dark-on-brand';
 
 interface CallButtonProps {
   variant?: Variant;
@@ -13,11 +13,13 @@ interface CallButtonProps {
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    'bg-brand text-white hover:bg-brand-dark active:bg-brand-dark',
+    'bg-brand text-white hover:bg-brand-hover active:bg-brand-hover',
   ghost:
-    'bg-transparent text-brand border border-brand hover:bg-brand hover:text-white active:bg-brand-dark active:text-white',
+    'bg-transparent text-brand border border-brand hover:bg-brand hover:text-white active:bg-brand-hover active:text-white',
   pill:
-    'bg-brand text-white hover:bg-brand-dark active:bg-brand-dark text-sm px-4',
+    'bg-brand text-white hover:bg-brand-hover active:bg-brand-hover text-sm px-4',
+  'dark-on-brand':
+    'bg-white text-brand hover:bg-fg-soft active:bg-fg-soft font-bold',
 };
 
 export default function CallButton({ variant = 'primary', className = '', children }: CallButtonProps) {
