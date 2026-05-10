@@ -32,7 +32,7 @@ export default function MenuCategoryTabs() {
               'px-5 py-2 rounded-full text-sm font-semibold transition-colors duration-150',
               activeCategory === cat.id
                 ? 'bg-brand text-white shadow-sm'
-                : 'bg-cream text-ink-soft border border-warm-100 hover:border-brand hover:text-brand',
+                : 'bg-surface text-fg-soft border border-border hover:border-brand hover:text-brand',
             ].join(' ')}
           >
             {cat.name}
@@ -56,7 +56,7 @@ export default function MenuCategoryTabs() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 text-muted">
+          <div className="text-center py-20 text-fg-muted">
             <p className="text-4xl mb-4" aria-hidden="true">🍽️</p>
             <p>해당 카테고리의 메뉴가 없습니다.</p>
           </div>

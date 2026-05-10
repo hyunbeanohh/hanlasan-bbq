@@ -1,42 +1,48 @@
+import Image from 'next/image';
 import type { MenuItem } from '@/types';
 import { CATEGORY_LABELS } from '@/data/menu';
 import { CONTACT } from '@/lib/constants';
-
-const CATEGORY_EMOJIS: Record<string, string> = {
-  signature: '🥩',
-  beef: '🥩',
-  pork: '🔥',
-  side: '🌿',
-};
 
 interface MenuCardProps {
   item: MenuItem;
 }
 
 export default function MenuCard({ item }: MenuCardProps) {
+  const hasPhoto = item.imageSrc && item.imageSrc.startsWith('http');
+
   return (
-    <article className="rounded-xl overflow-hidden bg-white border border-warm-100 hover:shadow-lg transition-shadow flex flex-col md:flex-row">
-      {/* Photo placeholder */}
-      <div className="md:w-48 lg:w-56 aspect-[4/3] md:aspect-auto bg-gradient-to-br from-warm-200 via-warm-100 to-warm-50 flex flex-col items-center justify-center gap-2 shrink-0">
-        <span className="text-5xl" aria-hidden="true">
-          {CATEGORY_EMOJIS[item.categoryId] ?? '🔥'}
-        </span>
-        <p className="text-muted text-xs">사진 준비중</p>
+    <article className="rounded-2xl overflow-hidden bg-surface border border-border hover:border-border-strong transition-colors flex flex-col md:flex-row">
+      {/* Photo */}
+      <div className="md:w-52 lg:w-64 aspect-[4/3] md:aspect-auto relative shrink-0 bg-surface-3">
+        {hasPhoto ? (
+          <Image
+            src={item.imageSrc}
+            alt={item.name}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 256px"
+          />
+        ) : (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-surface-3">
+            <span className="text-5xl" aria-hidden="true">🔥</span>
+            <p className="text-fg-muted text-xs">사진 준비중</p>
+          </div>
+        )}
       </div>
 
       {/* Content */}
-      <div className="p-5 flex flex-col flex-1 justify-between">
+      <div className="p-6 flex flex-col flex-1 justify-between">
         <div>
-          <div className="flex items-center gap-2 mb-2">
-            <span className="inline-block text-xs font-semibold text-brand bg-brand-soft px-2.5 py-0.5 rounded-full">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="inline-block text-xs font-semibold text-brand bg-brand-soft px-2.5 py-0.5 rounded-full border border-brand/20">
               {CATEGORY_LABELS[item.categoryId] ?? item.categoryId}
             </span>
           </div>
-          <h3 className="font-bold text-ink text-xl mb-2 leading-snug">{item.name}</h3>
-          <p className="text-muted text-sm leading-relaxed mb-4">{item.description}</p>
+          <h3 className="font-bold text-fg text-xl mb-2 leading-snug">{item.name}</h3>
+          <p className="text-fg-muted text-sm leading-relaxed mb-4">{item.description}</p>
 
           {/* Price chip */}
-          <div className="flex flex-wrap gap-2 mb-4">
+          <div className="flex flex-wrap gap-2 mb-5">
             <span className="inline-block text-sm font-semibold text-brand bg-brand-soft border border-brand/20 px-3 py-1 rounded-full">
               {item.priceText}
             </span>
@@ -46,10 +52,10 @@ export default function MenuCard({ item }: MenuCardProps) {
         {/* CTA */}
         <a
           href={CONTACT.phoneTel}
-          className="self-start inline-flex items-center gap-1.5 bg-brand text-white text-sm font-semibold px-5 py-2 rounded-full hover:bg-brand-dark transition-colors"
+          className="self-start inline-flex items-center gap-1.5 bg-brand text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-brand-hover transition-colors"
           aria-label={`${item.name} — 전화 문의`}
         >
-          전화 문의
+          상세보기 · 전화 문의
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="14"
