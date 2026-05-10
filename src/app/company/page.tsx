@@ -6,6 +6,7 @@ import Differentiators from '@/components/company/Differentiators';
 import ProcessSteps from '@/components/company/ProcessSteps';
 import CallButton from '@/components/cta/CallButton';
 import SmsButton from '@/components/cta/SmsButton';
+import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
 
 export const metadata: Metadata = pageMetadata({
   title: '회사소개',
@@ -17,6 +18,7 @@ export const metadata: Metadata = pageMetadata({
 export default function CompanyPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: '홈', path: '/' }, { name: '회사소개', path: '/company' }]} />
       <CompanyHero />
       <ChefStory />
       <Differentiators />

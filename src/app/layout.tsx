@@ -4,6 +4,7 @@ import { SITE } from '@/lib/constants';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import MobileCTABar from '@/components/layout/MobileCTABar';
+import LocalBusinessJsonLd from '@/components/seo/LocalBusinessJsonLd';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.canonicalOriginDisplay),
@@ -29,6 +30,7 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col antialiased pb-[60px] md:pb-0">
+        <LocalBusinessJsonLd />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo/metadata';
 import MenuCategoryTabs from '@/components/menu/MenuCategoryTabs';
 import CallButton from '@/components/cta/CallButton';
+import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
 
 export const metadata: Metadata = pageMetadata({
   title: '메뉴소개',
@@ -13,6 +14,7 @@ export const metadata: Metadata = pageMetadata({
 export default function MenuPage() {
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: '홈', path: '/' }, { name: '메뉴', path: '/menu' }]} />
       {/* Page header */}
       <section className="py-16 md:py-20 bg-ink">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">

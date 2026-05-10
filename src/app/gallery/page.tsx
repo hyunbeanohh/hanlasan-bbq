@@ -3,6 +3,7 @@ import { pageMetadata } from '@/lib/seo/metadata';
 import { NAVER } from '@/lib/constants';
 import { fetchNaverBlogRss } from '@/lib/blog/naver-rss';
 import GalleryGrid from '@/components/gallery/GalleryGrid';
+import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
 
 export const revalidate = 3600;
 
@@ -18,6 +19,7 @@ export default async function GalleryPage() {
 
   return (
     <>
+      <BreadcrumbJsonLd items={[{ name: '홈', path: '/' }, { name: '갤러리', path: '/gallery' }]} />
       {/* Page header */}
       <section className="py-16 md:py-20 bg-ink">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
