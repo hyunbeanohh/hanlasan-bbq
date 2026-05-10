@@ -1,13 +1,10 @@
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo/metadata';
-import { fetchNaverBlogRss } from '@/lib/blog/naver-rss';
-import { NAVER } from '@/lib/constants';
 import Hero from '@/components/home/Hero';
-import ServiceFeatures from '@/components/home/ServiceFeatures';
-import MenuPreview from '@/components/home/MenuPreview';
-import GalleryPreview from '@/components/home/GalleryPreview';
-import ProcessSection from '@/components/home/ProcessSection';
-import FinalCTA from '@/components/home/FinalCTA';
+import SignatureMenu from '@/components/home/SignatureMenu';
+import WhyUs from '@/components/home/WhyUs';
+import Testimonials from '@/components/home/Testimonials';
+import ReservationBanner from '@/components/home/ReservationBanner';
 
 export const revalidate = 3600;
 
@@ -19,16 +16,13 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default async function HomePage() {
-  const posts = await fetchNaverBlogRss(NAVER.blogId).catch(() => []);
-
   return (
     <>
       <Hero />
-      <ServiceFeatures />
-      <MenuPreview />
-      <GalleryPreview posts={posts.slice(0, 3)} />
-      <ProcessSection />
-      <FinalCTA />
+      <SignatureMenu />
+      <WhyUs />
+      <Testimonials />
+      <ReservationBanner />
     </>
   );
 }
