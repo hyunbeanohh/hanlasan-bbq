@@ -2,12 +2,16 @@ import { PROCESS_STEPS } from '@/data/company';
 
 export default function ProcessSteps() {
   return (
-    <section className="py-20 md:py-24 bg-cream">
+    <section className="py-20 md:py-24 bg-warm-100">
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">
+        <div className="text-center mb-12">
+          <p className="text-brand text-xs font-semibold uppercase tracking-widest mb-3">
+            PROCESS
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-ink mb-3">
             서비스 진행 과정
           </h2>
+          <div className="w-10 h-0.5 bg-brand mx-auto mb-4" aria-hidden="true" />
           <p className="text-muted text-lg">
             문의부터 마무리까지, 4단계로 간단하게
           </p>
@@ -22,7 +26,7 @@ export default function ProcessSteps() {
                   {step.step}
                 </div>
                 {index < PROCESS_STEPS.length - 1 && (
-                  <div className="w-0.5 flex-1 bg-warm-100 my-2" aria-hidden="true" />
+                  <div className="w-0.5 flex-1 bg-warm-200 my-2" aria-hidden="true" />
                 )}
               </div>
 

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo/metadata';
 import CompanyHero from '@/components/company/CompanyHero';
 import ChefStory from '@/components/company/ChefStory';
+import ChefTeam from '@/components/company/ChefTeam';
 import Differentiators from '@/components/company/Differentiators';
 import ProcessSteps from '@/components/company/ProcessSteps';
 import CallButton from '@/components/cta/CallButton';
@@ -21,14 +22,15 @@ export default function CompanyPage() {
       <BreadcrumbJsonLd items={[{ name: '홈', path: '/' }, { name: '회사소개', path: '/company' }]} />
       <CompanyHero />
       <ChefStory />
+      <ChefTeam />
       <Differentiators />
       <ProcessSteps />
 
       {/* Page-level CTA */}
-      <section className="py-16 bg-warm-100">
+      <section className="py-16 bg-brand-soft">
         <div className="mx-auto max-w-2xl px-4 sm:px-6 text-center">
           <h2 className="text-2xl font-bold text-ink mb-3">지금 문의해보세요</h2>
-          <p className="text-muted mb-8">
+          <p className="text-ink-soft mb-8">
             어떤 자리든 한라산출장바베큐가 함께합니다. 먼저 연락주세요.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
