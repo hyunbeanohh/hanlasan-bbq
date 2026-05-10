@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { SITE, CONTACT, NAVER } from '@/lib/constants';
+import NaverMapEmbed from '@/components/cta/NaverMapEmbed';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -70,6 +71,39 @@ export default function Footer() {
               </a>
             </p>
           </div>
+        </div>
+
+        {/* Map embed — location preview */}
+        <div className="mb-8">
+          <NaverMapEmbed
+            query="한라산출장바베큐"
+            height={320}
+            className="rounded-xl overflow-hidden"
+          />
+          <p className="mt-2 text-center">
+            <a
+              href={`https://map.naver.com/p/search/${encodeURIComponent('한라산출장바베큐')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-cream/60 hover:text-brand transition-colors text-sm"
+            >
+              네이버 지도에서 위치 보기
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              </svg>
+            </a>
+          </p>
         </div>
 
         <div className="border-t border-cream/10 pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
