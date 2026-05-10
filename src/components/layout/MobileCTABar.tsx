@@ -8,7 +8,7 @@ export default function MobileCTABar() {
   return (
     <nav
       aria-label="빠른 연락"
-      className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-cream border-t border-warm-100 flex"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-surface border-t border-border flex"
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
     >
       {/* 전화 */}
@@ -16,7 +16,7 @@ export default function MobileCTABar() {
         href={CONTACT.phoneTel}
         aria-label={`전화 연결: ${CONTACT.phone}`}
         onClick={() => trackNaverEvent({ event: 'phone_click', ...getUtm() })}
-        className="flex-1 flex flex-col items-center justify-center py-3 gap-0.5 text-brand hover:bg-warm-100 transition-colors"
+        className="flex-1 flex flex-col items-center justify-center py-3 gap-0.5 text-brand hover:bg-surface-3 transition-colors"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -36,14 +36,14 @@ export default function MobileCTABar() {
       </a>
 
       {/* Divider */}
-      <div className="w-px bg-warm-100 self-stretch my-2" aria-hidden="true" />
+      <div className="w-px bg-border self-stretch my-2" aria-hidden="true" />
 
       {/* 문자 */}
       <a
         href={CONTACT.smsHref}
         aria-label={`문자 보내기: ${CONTACT.phone}`}
         onClick={() => trackNaverEvent({ event: 'sms_click', ...getUtm() })}
-        className="flex-1 flex flex-col items-center justify-center py-3 gap-0.5 text-ink-soft hover:bg-warm-100 transition-colors"
+        className="flex-1 flex flex-col items-center justify-center py-3 gap-0.5 text-fg-soft hover:bg-surface-3 transition-colors"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -63,14 +63,14 @@ export default function MobileCTABar() {
       </a>
 
       {/* Divider */}
-      <div className="w-px bg-warm-100 self-stretch my-2" aria-hidden="true" />
+      <div className="w-px bg-border self-stretch my-2" aria-hidden="true" />
 
       {/* 이메일 */}
       <a
         href={CONTACT.mailtoHref}
         aria-label={`이메일 문의: ${CONTACT.email}`}
         onClick={() => trackNaverEvent({ event: 'email_click', ...getUtm() })}
-        className="flex-1 flex flex-col items-center justify-center py-3 gap-0.5 text-ink-soft hover:bg-warm-100 transition-colors"
+        className="flex-1 flex flex-col items-center justify-center py-3 gap-0.5 text-fg-soft hover:bg-surface-3 transition-colors"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
