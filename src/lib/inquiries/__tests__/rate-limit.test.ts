@@ -4,14 +4,14 @@ import { RateLimiter } from '../rate-limit';
 class FakeDB {
   rows = new Map<string, { attempts: number; window_end: string }>();
   prepare(sql: string) {
-    const self = this;
+    const { rows } = this;
     return {
       bind(...args: unknown[]) {
         return {
           async first<T>() {
             if (sql.includes('SELECT')) {
               const key = `${args[0]}|${args[1]}`;
-              const r = self.rows.get(key);
+              const r = rows.get(key);
               return (r as unknown) as T | null;
             }
             return null;
@@ -19,14 +19,14 @@ class FakeDB {
           async run() {
             if (sql.includes('INSERT')) {
               const key = `${args[0]}|${args[1]}`;
-              self.rows.set(key, { attempts: args[2] as number, window_end: args[3] as string });
+              rows.set(key, { attempts: args[2] as number, window_end: args[3] as string });
             } else if (sql.includes('UPDATE')) {
               const key = `${args[1]}|${args[2]}`;
-              const r = self.rows.get(key);
+              const r = rows.get(key);
               if (r) r.attempts = args[0] as number;
             } else if (sql.includes('DELETE')) {
               const key = `${args[0]}|${args[1]}`;
-              self.rows.delete(key);
+              rows.delete(key);
             }
             return { meta: { changes: 1 } };
           },

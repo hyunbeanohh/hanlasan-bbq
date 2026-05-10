@@ -5,7 +5,7 @@ export default function PrivacyPage() {
     <main className="mx-auto max-w-3xl px-4 py-12 text-sm leading-relaxed">
       <h1 className="text-2xl font-bold mb-6">개인정보처리방침</h1>
       <p className="mb-6">
-        한라산출장바베큐(이하 "회사")는 「개인정보보호법」을 준수하여 다음과 같이 개인정보를 처리합니다.
+        한라산출장바베큐(이하 &ldquo;회사&rdquo;)는 「개인정보보호법」을 준수하여 다음과 같이 개인정보를 처리합니다.
       </p>
 
       <h2 className="text-lg font-bold mt-6 mb-2">1. 수집하는 개인정보 항목</h2>

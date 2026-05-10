@@ -2,6 +2,7 @@
 
 import { useActionState } from 'react';
 import { useFormStatus } from 'react-dom';
+import Link from 'next/link';
 import { updateInquiryAction, type EditState } from './actions';
 
 const INITIAL: EditState = { ok: false };
@@ -53,9 +54,9 @@ export default function EditForm({
       {state.message && !state.ok && <p className="text-red-600 text-sm">{state.message}</p>}
       <div className="flex justify-center gap-2">
         <SubmitBtn />
-        <a href={`/inquiry/${inquiryId}`} className="border border-border px-6 py-2 rounded-full text-sm">
+        <Link href={`/inquiry/${inquiryId}`} className="border border-border px-6 py-2 rounded-full text-sm">
           취소
-        </a>
+        </Link>
       </div>
     </form>
   );

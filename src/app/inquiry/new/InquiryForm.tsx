@@ -2,6 +2,7 @@
 
 import { useState, useActionState } from 'react';
 import { useFormStatus } from 'react-dom';
+import Link from 'next/link';
 import TurnstileWidget from '@/components/inquiry/TurnstileWidget';
 import { createInquiryAction, type FormState } from './actions';
 
@@ -69,7 +70,7 @@ export default function InquiryForm({ siteKey }: { siteKey: string }) {
 
       <div className="flex justify-center gap-2 pt-4">
         <SubmitButton />
-        <a href="/inquiry" className="border border-border px-6 py-2.5 rounded-full text-sm">취소</a>
+        <Link href="/inquiry" className="border border-border px-6 py-2.5 rounded-full text-sm">취소</Link>
       </div>
     </form>
   );
