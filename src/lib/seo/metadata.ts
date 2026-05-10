@@ -10,7 +10,6 @@ export function pageMetadata(opts: {
 }): Metadata {
   const url = buildCanonical(opts.path);
   const displayUrl = buildCanonicalDisplay(opts.path);
-  const ogImageUrl = opts.ogImage ?? '/images/og/default.svg';
 
   return {
     title: `${opts.title} | ${SITE.name}`,
@@ -23,7 +22,9 @@ export function pageMetadata(opts: {
       siteName: SITE.name,
       locale: 'ko_KR',
       type: 'website',
-      images: [{ url: ogImageUrl }],
+      images: opts.ogImage
+        ? [{ url: opts.ogImage }]
+        : [{ url: `${SITE.canonicalOriginDisplay}/images/og/default.svg`, width: 1200, height: 630, alt: SITE.name }],
     },
     twitter: {
       card: 'summary_large_image',
