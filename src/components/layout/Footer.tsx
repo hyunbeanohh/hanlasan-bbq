@@ -1,120 +1,127 @@
 import Link from 'next/link';
 import { SITE, CONTACT, NAVER } from '@/lib/constants';
-import NaverMapEmbed from '@/components/cta/NaverMapEmbed';
 
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-ink text-cream/80 text-sm">
+    <footer className="bg-warm-100 text-ink-soft text-sm">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
-          {/* Brand */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+
+          {/* Column 1: 회사 소개 */}
           <div>
-            <p className="text-brand font-bold text-lg mb-2">{SITE.name}</p>
-            <p className="text-cream/60 leading-relaxed">{SITE.description}</p>
+            <p className="text-ink font-bold text-base mb-4">회사 소개</p>
+            <ul className="space-y-2">
+              <li>사업자명: {SITE.name}</li>
+              <li>사업자번호: {CONTACT.businessNumber}</li>
+              <li>주소: {CONTACT.address}</li>
+              <li>영업시간: {CONTACT.businessHours}</li>
+            </ul>
           </div>
 
-          {/* Business info */}
-          <div className="space-y-2">
-            <p className="text-cream font-semibold mb-3">사업자 정보</p>
-            <p>사업자등록번호: {CONTACT.businessNumber}</p>
-            <p>주소: {CONTACT.address}</p>
-            <p>영업시간: {CONTACT.businessHours}</p>
+          {/* Column 2: 콘텐츠 */}
+          <div>
+            <p className="text-ink font-bold text-base mb-4">콘텐츠</p>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/menu" className="hover:text-brand transition-colors">
+                  메뉴
+                </Link>
+              </li>
+              <li>
+                <Link href="/gallery" className="hover:text-brand transition-colors">
+                  갤러리
+                </Link>
+              </li>
+              <li>
+                <Link href="/company" className="hover:text-brand transition-colors">
+                  회사소개
+                </Link>
+              </li>
+            </ul>
           </div>
 
-          {/* Contact */}
-          <div className="space-y-2">
-            <p className="text-cream font-semibold mb-3">연락처</p>
-            <p>
-              전화:{' '}
-              <a
-                href={CONTACT.phoneTel}
-                className="hover:text-brand transition-colors"
-                aria-label={`전화 연결: ${CONTACT.phone}`}
-              >
-                {CONTACT.phone}
-              </a>
-            </p>
-            <p>
-              이메일:{' '}
-              <a
-                href={CONTACT.mailtoHref}
-                className="hover:text-brand transition-colors break-all"
-                aria-label={`이메일: ${CONTACT.email}`}
-              >
-                {CONTACT.email}
-              </a>
-            </p>
-            <p>
-              <a
-                href={NAVER.blogHomeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 hover:text-brand transition-colors"
-              >
-                네이버 블로그
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="13"
-                  height="13"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
+          {/* Column 3: 소셜 미디어 */}
+          <div>
+            <p className="text-ink font-bold text-base mb-4">소셜 미디어</p>
+            <ul className="space-y-2">
+              <li>
+                <a
+                  href={NAVER.blogHomeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 hover:text-brand transition-colors"
                 >
-                  <path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                </svg>
-              </a>
-            </p>
+                  네이버 블로그
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  </svg>
+                </a>
+              </li>
+              <li className="text-muted">Instagram (준비중)</li>
+              <li className="text-muted">YouTube (준비중)</li>
+            </ul>
           </div>
+
+          {/* Column 4: 한라산 출장바베큐 contact */}
+          <div>
+            <p className="text-ink font-bold text-base mb-4">한라산 출장바베큐</p>
+            <ul className="space-y-2">
+              <li>
+                전화:{' '}
+                <a
+                  href={CONTACT.phoneTel}
+                  className="hover:text-brand transition-colors font-medium"
+                  aria-label={`전화 연결: ${CONTACT.phone}`}
+                >
+                  {CONTACT.phone}
+                </a>
+              </li>
+              <li>
+                이메일:{' '}
+                <a
+                  href={CONTACT.mailtoHref}
+                  className="hover:text-brand transition-colors break-all"
+                  aria-label={`이메일: ${CONTACT.email}`}
+                >
+                  {CONTACT.email}
+                </a>
+              </li>
+              <li className="pt-2">
+                <a
+                  href={CONTACT.phoneTel}
+                  className="inline-flex items-center justify-center bg-brand text-white text-xs font-semibold px-4 py-2 rounded-full hover:bg-brand-dark transition-colors"
+                >
+                  전화 문의
+                </a>
+              </li>
+            </ul>
+          </div>
+
         </div>
 
-        {/* Map embed — location preview */}
-        <div className="mb-8">
-          <NaverMapEmbed
-            query="한라산출장바베큐"
-            height={320}
-            className="rounded-xl overflow-hidden"
-          />
-          <p className="mt-2 text-center">
-            <a
-              href={`https://map.naver.com/p/search/${encodeURIComponent('한라산출장바베큐')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-cream/60 hover:text-brand transition-colors text-sm"
-            >
-              네이버 지도에서 위치 보기
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="13"
-                height="13"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-              </svg>
-            </a>
+        {/* Bottom row */}
+        <div className="border-t border-warm-200 pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+          <p className="text-muted text-xs">
+            © {year} {SITE.name}. All rights reserved. 사업자번호: {CONTACT.businessNumber}
           </p>
-        </div>
-
-        <div className="border-t border-cream/10 pt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-          <p className="text-cream/40">
-            © {year} {SITE.name}. All rights reserved.
-          </p>
-          <nav className="flex gap-4 text-cream/40" aria-label="푸터 링크">
-            <Link href="/" className="hover:text-cream/70 transition-colors">메인</Link>
-            <Link href="/company" className="hover:text-cream/70 transition-colors">회사소개</Link>
-            <Link href="/menu" className="hover:text-cream/70 transition-colors">메뉴</Link>
-            <Link href="/gallery" className="hover:text-cream/70 transition-colors">갤러리</Link>
+          <nav className="flex gap-4 text-muted text-xs" aria-label="푸터 링크">
+            <Link href="/" className="hover:text-ink transition-colors">메인</Link>
+            <Link href="/company" className="hover:text-ink transition-colors">회사소개</Link>
+            <Link href="/menu" className="hover:text-ink transition-colors">메뉴</Link>
+            <Link href="/gallery" className="hover:text-ink transition-colors">갤러리</Link>
           </nav>
         </div>
       </div>

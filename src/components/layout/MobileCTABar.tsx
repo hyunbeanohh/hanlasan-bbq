@@ -1,16 +1,21 @@
+'use client';
+
 import { CONTACT } from '@/lib/constants';
+import { trackNaverEvent } from '@/lib/analytics/naver';
+import { getUtm } from '@/lib/analytics/utm';
 
 export default function MobileCTABar() {
   return (
     <nav
       aria-label="빠른 연락"
-      className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-warm-100 flex"
+      className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-cream border-t border-warm-100 flex"
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
     >
       {/* 전화 */}
       <a
         href={CONTACT.phoneTel}
         aria-label={`전화 연결: ${CONTACT.phone}`}
+        onClick={() => trackNaverEvent({ event: 'phone_click', ...getUtm() })}
         className="flex-1 flex flex-col items-center justify-center py-3 gap-0.5 text-brand hover:bg-warm-100 transition-colors"
       >
         <svg
@@ -37,7 +42,8 @@ export default function MobileCTABar() {
       <a
         href={CONTACT.smsHref}
         aria-label={`문자 보내기: ${CONTACT.phone}`}
-        className="flex-1 flex flex-col items-center justify-center py-3 gap-0.5 text-ink hover:bg-warm-100 transition-colors"
+        onClick={() => trackNaverEvent({ event: 'sms_click', ...getUtm() })}
+        className="flex-1 flex flex-col items-center justify-center py-3 gap-0.5 text-ink-soft hover:bg-warm-100 transition-colors"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +69,8 @@ export default function MobileCTABar() {
       <a
         href={CONTACT.mailtoHref}
         aria-label={`이메일 문의: ${CONTACT.email}`}
-        className="flex-1 flex flex-col items-center justify-center py-3 gap-0.5 text-ink hover:bg-warm-100 transition-colors"
+        onClick={() => trackNaverEvent({ event: 'email_click', ...getUtm() })}
+        className="flex-1 flex flex-col items-center justify-center py-3 gap-0.5 text-ink-soft hover:bg-warm-100 transition-colors"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

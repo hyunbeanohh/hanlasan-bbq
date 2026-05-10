@@ -3,8 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { SITE } from '@/lib/constants';
-import CallButton from '@/components/cta/CallButton';
+import { CONTACT } from '@/lib/constants';
 
 const NAV_LINKS = [
   { href: '/', label: '메인' },
@@ -18,19 +17,19 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 bg-cream border-b border-warm-100">
+    <header className="sticky top-0 z-50 bg-cream/90 backdrop-blur-sm border-b border-warm-100">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+          {/* Logo — space between 한라산 and 출장바베큐 matching Variant 2 */}
           <Link
             href="/"
-            className="text-xl font-bold text-brand tracking-tight shrink-0"
+            className="text-lg font-bold text-ink tracking-tight shrink-0 hover:text-brand transition-colors"
           >
-            {SITE.name}
+            한라산 출장바베큐
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-6" aria-label="주요 메뉴">
+          <nav className="hidden md:flex items-center gap-7" aria-label="주요 메뉴">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
@@ -40,7 +39,7 @@ export default function Header() {
                   'text-sm font-medium transition-colors duration-150',
                   pathname === link.href
                     ? 'text-brand'
-                    : 'text-ink hover:text-brand',
+                    : 'text-ink-soft hover:text-brand',
                 ].join(' ')}
               >
                 {link.label}
@@ -48,11 +47,14 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* Desktop CTA */}
+          {/* Desktop CTA — 예약하기 orange pill */}
           <div className="hidden md:flex items-center">
-            <CallButton variant="pill" className="text-sm">
-              전화 문의
-            </CallButton>
+            <a
+              href={CONTACT.phoneTel}
+              className="inline-flex items-center justify-center bg-brand text-white text-sm font-semibold px-6 py-2.5 rounded-full hover:bg-brand-dark active:bg-brand-dark transition-colors duration-150"
+            >
+              예약하기
+            </a>
           </div>
 
           {/* Mobile hamburger */}
@@ -120,6 +122,15 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
+            <div className="px-6 py-3">
+              <a
+                href={CONTACT.phoneTel}
+                onClick={() => setMobileOpen(false)}
+                className="block w-full text-center bg-brand text-white text-sm font-semibold px-6 py-2.5 rounded-full hover:bg-brand-dark transition-colors"
+              >
+                예약하기
+              </a>
+            </div>
           </nav>
         </div>
       )}
