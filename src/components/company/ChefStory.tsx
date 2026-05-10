@@ -2,31 +2,48 @@ import { CHEF, STORY } from '@/data/company';
 
 export default function ChefStory() {
   return (
-    <section className="py-20 md:py-24 bg-cream">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Chef image placeholder */}
-          <div className="relative aspect-[3/4] max-w-sm mx-auto lg:mx-0 w-full rounded-2xl overflow-hidden bg-warm-100 flex flex-col items-center justify-center gap-4">
-            <span className="text-7xl" aria-hidden="true">👨‍🍳</span>
-            <p className="text-muted text-sm font-medium">셰프 사진 교체 예정</p>
+    <section className="py-[120px] px-6 md:px-12 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+        {/* Image placeholder — Option B */}
+        <div className="relative group">
+          <div className="absolute -inset-4 border border-white/10 translate-x-4 translate-y-4 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform" aria-hidden="true" />
+          <div className="relative z-10 w-full h-[500px] bg-gradient-to-br from-zinc-800 via-zinc-900 to-black flex flex-col items-center justify-center gap-4">
+            <div
+              className="absolute inset-0 opacity-20"
+              style={{
+                background:
+                  'radial-gradient(ellipse at 50% 80%, rgba(249,94,20,0.4) 0%, transparent 70%)',
+              }}
+            />
+            <span className="material-symbols-outlined text-[#f95e14] text-6xl relative z-10">
+              person
+            </span>
+            <p className="text-zinc-500 text-sm relative z-10">[대표 사진 준비중]</p>
           </div>
+        </div>
 
-          {/* Story text */}
-          <div>
-            <p className="text-brand font-semibold text-sm uppercase tracking-widest mb-4">
-              우리의 이야기
+        {/* Text */}
+        <div className="space-y-8">
+          <h2
+            className="text-3xl md:text-4xl font-black text-white uppercase border-l-4 border-[#f95e14] pl-6 leading-tight"
+            style={{ fontFamily: 'var(--font-headline)' }}
+          >
+            우리의 철학
+          </h2>
+          {STORY.body.map((para, i) => (
+            <p key={i} className="text-white/80 text-lg leading-relaxed">
+              {para}
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-ink mb-6 leading-tight">
+          ))}
+          <div className="pt-4 border-t border-white/10">
+            <p className="text-[#ffb59a] font-bold text-lg" style={{ fontFamily: 'var(--font-headline)' }}>
               {CHEF.name}
-            </h2>
-            <p className="text-muted text-base font-medium mb-6">{CHEF.role}</p>
-            <div className="space-y-4 text-ink/80 leading-relaxed">
-              {STORY.body.map((paragraph) => (
-                <p key={paragraph.slice(0, 24)}>{paragraph}</p>
-              ))}
-              <p>{CHEF.summary}</p>
-              <p>{CHEF.detail}</p>
-            </div>
+            </p>
+            <p className="text-zinc-500 text-sm mt-1">{CHEF.role}</p>
+          </div>
+          <div className="pt-2">
+            <p className="text-zinc-400 text-base leading-relaxed">{CHEF.summary}</p>
+            <p className="text-zinc-400 text-base leading-relaxed mt-4">{CHEF.detail}</p>
           </div>
         </div>
       </div>

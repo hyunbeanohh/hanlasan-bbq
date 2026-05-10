@@ -25,15 +25,30 @@ export default function CompanyPage() {
       <ProcessSteps />
 
       {/* Page-level CTA */}
-      <section className="py-16 bg-warm-100">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6 text-center">
-          <h2 className="text-2xl font-bold text-ink mb-3">지금 문의해보세요</h2>
-          <p className="text-muted mb-8">
+      <section className="py-[120px] bg-[#0c0f0f] relative overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-20 pointer-events-none"
+          style={{
+            background:
+              'radial-gradient(ellipse 80% 60% at 50% 100%, rgba(249,94,20,0.4) 0%, transparent 70%)',
+          }}
+        />
+        <div className="max-w-2xl mx-auto px-6 md:px-12 text-center relative z-10">
+          <span className="font-bold text-[#f95e14] uppercase tracking-widest text-sm mb-6 block">
+            CONTACT US
+          </span>
+          <h2
+            className="text-3xl md:text-4xl font-black text-white uppercase mb-4 leading-tight"
+            style={{ fontFamily: 'var(--font-headline)' }}
+          >
+            지금 문의해보세요
+          </h2>
+          <p className="text-zinc-400 text-lg mb-10">
             어떤 자리든 한라산출장바베큐가 함께합니다. 먼저 연락주세요.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <CallButton variant="primary" />
-            <SmsButton variant="ghost" />
+            <CallButton variant="primary">전화 문의하기</CallButton>
+            <SmsButton variant="ghost">문자 문의하기</SmsButton>
           </div>
         </div>
       </section>
