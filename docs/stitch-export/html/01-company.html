@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About Us | FLAME &amp; CRAFT</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #121414;
+            color: #e2e2e2;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-surface": "#e2e2e2",
+                      "secondary-container": "#4a4949",
+                      "on-primary": "#5b1b00",
+                      "tertiary-container": "#929090",
+                      "surface-tint": "#ffb59a",
+                      "on-primary-container": "#4f1700",
+                      "inverse-primary": "#a83900",
+                      "on-secondary-container": "#bab8b7",
+                      "surface-container-lowest": "#0c0f0f",
+                      "tertiary-fixed-dim": "#c8c6c5",
+                      "on-background": "#e2e2e2",
+                      "on-tertiary": "#303030",
+                      "outline-variant": "#5a4138",
+                      "on-secondary": "#313030",
+                      "on-error-container": "#ffdad6",
+                      "error": "#ffb4ab",
+                      "secondary-fixed-dim": "#c8c6c5",
+                      "on-error": "#690005",
+                      "on-tertiary-container": "#2a2a2a",
+                      "on-surface-variant": "#e3bfb2",
+                      "on-primary-fixed": "#380d00",
+                      "tertiary-fixed": "#e4e2e1",
+                      "inverse-on-surface": "#2f3131",
+                      "on-secondary-fixed": "#1c1b1b",
+                      "on-primary-fixed-variant": "#802a00",
+                      "on-tertiary-fixed-variant": "#474746",
+                      "primary-fixed": "#ffdbcf",
+                      "surface-dim": "#121414",
+                      "on-tertiary-fixed": "#1b1c1c",
+                      "on-secondary-fixed-variant": "#474646",
+                      "surface-container-low": "#1a1c1c",
+                      "error-container": "#93000a",
+                      "primary-fixed-dim": "#ffb59a",
+                      "background": "#121414",
+                      "tertiary": "#c8c6c5",
+                      "primary-container": "#f95e14",
+                      "inverse-surface": "#e2e2e2",
+                      "surface-container-highest": "#333535",
+                      "surface-variant": "#333535",
+                      "surface-container-high": "#282a2b",
+                      "primary": "#ffb59a",
+                      "secondary": "#c8c6c5",
+                      "surface": "#121414",
+                      "surface-container": "#1e2020",
+                      "outline": "#aa8a7e",
+                      "surface-bright": "#37393a",
+                      "secondary-fixed": "#e5e2e1"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "stack-md": "16px",
+                      "gutter": "24px",
+                      "section-gap": "120px",
+                      "margin": "32px",
+                      "stack-lg": "32px",
+                      "stack-sm": "8px",
+                      "container-max": "1200px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Plus Jakarta Sans"],
+                      "label-md": ["Inter"],
+                      "headline-xl": ["Plus Jakarta Sans"],
+                      "headline-lg": ["Plus Jakarta Sans"],
+                      "body-md": ["Inter"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "headline-xl": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="font-body-md bg-background text-on-surface">
+<!-- TopAppBar -->
+<header class="bg-zinc-950/90 backdrop-blur-md fixed top-0 w-full z-50 border-b border-white/10 shadow-2xl">
+<nav class="flex justify-between items-center px-12 py-6 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-black tracking-tighter text-white font-headline-lg uppercase">FLAME &amp; CRAFT</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-headline-md text-orange-600 border-b-2 border-orange-600 pb-1 text-sm uppercase tracking-widest font-bold" href="#">About</a>
+<a class="font-headline-md text-white/70 hover:text-white transition-colors text-sm uppercase tracking-widest font-bold" href="#">Menu</a>
+<a class="font-headline-md text-white/70 hover:text-white transition-colors text-sm uppercase tracking-widest font-bold" href="#">Gallery</a>
+<a class="font-headline-md text-white/70 hover:text-white transition-colors text-sm uppercase tracking-widest font-bold" href="#">Contact</a>
+</div>
+<button class="bg-primary-container text-white px-8 py-3 font-bold uppercase tracking-widest hover:scale-105 transition-transform duration-300 hover:shadow-[0_0_15px_rgba(230,81,0,0.3)]">
+                Reserve Now
+            </button>
+</nav>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative h-screen flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="" class="w-full h-full object-cover opacity-60" data-alt="A cinematic, high-contrast wide shot of professional chefs working over an open fire pit in a dark, atmospheric outdoor kitchen. Intense orange flames lick the air against a deep charcoal background, creating dramatic lighting and shadows. The scene is captured in a premium, editorial style with a focus on the craft of live-fire cooking, maintaining a sophisticated dark-mode aesthetic with warm embers and smoke." src="https://lh3.googleusercontent.com/aida/ADBb0uhJkMIgOh5gwwk3Viv-72jq_my6Bnk0C3Rvo9STCXgtc5LGLFWLuo6il5HB5zNXQKIe_xMkl6yFBQElhgU6pqCUCcz4MNfb7LahNVTU5eNKn6Sfm7dQKGF1aLobJOgQPGp_xWAvWUU-gHLjqZY5IbZAzo7kioHOWGq_KlUQv_eRkbHrl4p7FJSbFFyHpEWqg3F0uwh8-FvmqaP38ARFD34-HArML9DYR0_Rppt1nCpUYRcXD5zjHbuk1fY"/>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-950/40 to-zinc-950"></div>
+</div>
+<div class="relative z-10 text-center px-gutter">
+<span class="font-label-md text-primary-container uppercase tracking-widest mb-4 block">Since 2003</span>
+<h1 class="font-headline-xl text-white mb-6 uppercase">The Art of the Flame: <br/><span class="text-primary">Our Story</span></h1>
+<div class="w-24 h-1 bg-primary-container mx-auto"></div>
+</div>
+</section>
+<!-- Our Mission Section -->
+<section class="py-section-gap px-12 max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
+<div class="relative group">
+<div class="absolute -inset-4 border border-white/10 translate-x-4 translate-y-4 group-hover:translate-x-2 group-hover:translate-y-2 transition-transform"></div>
+<img alt="" class="relative z-10 w-full h-[600px] object-cover rounded-sm grayscale-[0.2] hover:grayscale-0 transition-all duration-700" data-alt="A macro, professional food photograph of premium sliced brisket with a perfect smoke ring, resting on a rustic dark slate platter. The lighting is warm and directional, highlighting the succulent texture and crystalline salt flakes on the meat. The background is a moody, dark gray environment typical of a high-end BBQ restaurant, emphasizing a cinematic and luxurious culinary atmosphere." src="https://lh3.googleusercontent.com/aida/ADBb0uhruUXcqyLEWjrsKpnqEocV8iLeZRoMP_45jhhUI-Qu32RdPUQPdEzlXo14evwNISD90H8nzfWl3qPf_8tWANQhYG_X8sdJFtBZmeEUa8C12tVcotS6yVd_aDGCBJbzh8EKwSO4NbImdKhVhW7eZligA7rmq1QN7wILSgPSuX8OlxE2FxEwnUknjkOTayMQo_lOa8Y_DAO7Cl74_lxRjszYt-Qq_o1Qn-p4za49V6eT21Yeif5LMAYa9xk"/>
+</div>
+<div class="space-y-stack-lg">
+<h2 class="font-headline-lg text-white uppercase border-l-4 border-primary-container pl-6">Our Mission</h2>
+<p class="font-body-lg text-on-surface/80 leading-relaxed">
+                        At FLAME &amp; CRAFT, we believe BBQ is not just food—it's a sacred ritual of wood, smoke, and time. Our mission is to elevate the catering experience by blending traditional pitmaster techniques with modern culinary precision.
+                    </p>
+<p class="font-body-md text-on-surface/60">
+                        Every cut of meat is hand-selected from sustainable heritage farms, seasoned with our signature house-blends, and smoked for up to 18 hours using only seasoned white oak and hickory. This dedication to quality ensures that every plate we serve carries the authentic soul of the flame.
+                    </p>
+<div class="pt-stack-md">
+<button class="px-8 py-4 border-2 border-white text-white font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300">Explore Our Values</button>
+</div>
+</div>
+</div>
+</section>
+<!-- History of Excellence Timeline -->
+<section class="py-section-gap bg-surface-container-low overflow-hidden">
+<div class="max-w-7xl mx-auto px-12">
+<div class="text-center mb-24">
+<h2 class="font-headline-lg text-white uppercase">A Legacy of Smoke</h2>
+<p class="font-label-md text-primary-container uppercase mt-2">The Journey from 2003 to 2023</p>
+</div>
+<div class="relative">
+<!-- Horizontal Line for Timeline -->
+<div class="absolute top-1/2 left-0 w-full h-px bg-white/10 -translate-y-1/2 hidden md:block"></div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
+<!-- 2003 -->
+<div class="bg-zinc-900 p-8 border border-white/5 hover:border-primary-container transition-colors duration-500">
+<span class="font-headline-lg text-primary-container block mb-4">2003</span>
+<h3 class="font-headline-md text-white mb-4">The Spark</h3>
+<p class="font-body-md text-zinc-500">Founded as a small backyard operation in Austin, focusing on the pure art of wood-fired brisket.</p>
+</div>
+<!-- 2010 -->
+<div class="bg-zinc-900 p-8 border border-white/5 hover:border-primary-container transition-colors duration-500 md:mt-12">
+<span class="font-headline-lg text-primary-container block mb-4">2010</span>
+<h3 class="font-headline-md text-white mb-4">Full Scale</h3>
+<p class="font-body-md text-zinc-500">Launched our premium catering division, bringing the smokehouse experience to elite corporate events.</p>
+</div>
+<!-- 2018 -->
+<div class="bg-zinc-900 p-8 border border-white/5 hover:border-primary-container transition-colors duration-500">
+<span class="font-headline-lg text-primary-container block mb-4">2018</span>
+<h3 class="font-headline-md text-white mb-4">Innovation</h3>
+<p class="font-body-md text-zinc-500">Integrated sustainable energy solutions and mobile pit-trailers to deliver live-fire dining anywhere.</p>
+</div>
+<!-- 2023 -->
+<div class="bg-zinc-900 p-8 border border-white/5 hover:border-primary-container transition-colors duration-500 md:mt-12">
+<span class="font-headline-lg text-primary-container block mb-4">2023</span>
+<h3 class="font-headline-md text-white mb-4">Excellence</h3>
+<p class="font-body-md text-zinc-500">Celebrated 20 years of fire, awarded the National BBQ Caterer of the Year for outstanding craft.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Certifications & Quality Assurance -->
+<section class="py-section-gap px-12 max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-white uppercase">Quality Without Compromise</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="flex flex-col items-center text-center p-12 bg-surface-container-highest/30 border border-white/5 rounded-sm hover:shadow-[0_0_20px_rgba(230,81,0,0.1)] transition-all">
+<div class="w-20 h-20 flex items-center justify-center bg-zinc-900 rounded-full mb-6 border border-primary-container">
+<span class="material-symbols-outlined text-primary-container text-4xl" data-weight="fill">verified_user</span>
+</div>
+<h4 class="font-headline-md text-white mb-2">HACCP Certified</h4>
+<p class="font-body-md text-zinc-400">Exceeding international food safety and hygiene standards in every preparation stage.</p>
+</div>
+<div class="flex flex-col items-center text-center p-12 bg-surface-container-highest/30 border border-white/5 rounded-sm hover:shadow-[0_0_20px_rgba(230,81,0,0.1)] transition-all">
+<div class="w-20 h-20 flex items-center justify-center bg-zinc-900 rounded-full mb-6 border border-primary-container">
+<span class="material-symbols-outlined text-primary-container text-4xl" data-weight="fill">eco</span>
+</div>
+<h4 class="font-headline-md text-white mb-2">Eco-Conscious</h4>
+<p class="font-body-md text-zinc-400">100% sustainably sourced ingredients and plastic-free service equipment for all events.</p>
+</div>
+<div class="flex flex-col items-center text-center p-12 bg-surface-container-highest/30 border border-white/5 rounded-sm hover:shadow-[0_0_20px_rgba(230,81,0,0.1)] transition-all">
+<div class="w-20 h-20 flex items-center justify-center bg-zinc-900 rounded-full mb-6 border border-primary-container">
+<span class="material-symbols-outlined text-primary-container text-4xl" data-weight="fill">military_tech</span>
+</div>
+<h4 class="font-headline-md text-white mb-2">Elite Service</h4>
+<p class="font-body-md text-zinc-400">Winner of the 'Customer Choice Award' for five consecutive years of catering excellence.</p>
+</div>
+</div>
+</section>
+<!-- Image Bento Grid / Visual Reference Support -->
+<section class="pb-section-gap px-12 max-w-screen-2xl mx-auto">
+<div class="grid grid-cols-4 grid-rows-2 gap-4 h-[700px]">
+<div class="col-span-2 row-span-2">
+<img class="w-full h-full object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-700" data-alt="A vertical, atmospheric image of a pitmaster's hands meticulously trimming a large piece of raw beef. The scene is shot in a dark, high-contrast kitchen with a single source of overhead light creating deep shadows. The aesthetic is clean and professional, emphasizing the artisanal preparation and high-quality standards of the catering service." src="https://lh3.googleusercontent.com/aida/ADBb0ui9Xn0UDQQvewgsO-UjNKxbX00O7zcnA4QDZiZ6geAGOr3TD0w4EG5rP1l_PW9OoXgZFuQuhQHYj6MmUMZRVKaKAET9279TBT14X3Ac8OW8S2OUSfaIfCmhbDV0pNzzQ87ma07PXLIMMzBaVEawvisYsRMTVKlvWLjnCDWmNzAZQcuWbCBeRibHxWs1fPPR1lkuMfYzj65Hdiqc1lUDSGn_m7vj5PBHaCVXuyMCmWp5SOTs5vLGzVyEwSU"/>
+</div>
+<div class="col-span-1 row-span-1">
+<img class="w-full h-full object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-700" data-alt="A detailed shot of firewood being split for a barbecue pit. The textures of the aged oak wood are highlighted by sharp side-lighting, set against a dark, moody background. The image evokes a sense of tradition and the raw elements of fire-based cooking, aligned with a premium dark-mode brand identity." src="https://lh3.googleusercontent.com/aida/ADBb0ujmaZwQrN9Ru6AHm0xeznBNj3RzyWOrthbFlpzDUc-AGjg_zvJcMCWLeA5XWtcu2-TcMibgz6cr29mNN7L5LEh_xUaJNO0V85I7kEysUlO5Xra-4zmL__YkPh6krKHW_a3GrtsChnJYMeNSG7tqpA44Tz2OzJHu_5Yr7y-RU0GUbqSENxJVYu5O-UhcYD_xL-XSa8Mfimr3GkJAsf68Kpu_MpMHDtzX0GkjoSmVl3vRt2Mka_fnNYDa7w"/>
+</div>
+<div class="col-span-1 row-span-2">
+<img class="w-full h-full object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-700" data-alt="A vertical shot of glowing orange embers and a small flame inside a professional smokehouse pit. The deep blacks of the interior charcoal and the vibrant warmth of the burning wood create a high-contrast, cinematic visual. This image represents the 'Art of the Flame' with its dramatic lighting and focus on the primal element of fire." src="https://lh3.googleusercontent.com/aida/ADBb0ujhYHc6xWDdakiBaF9r2bgw30CYlJRzrJk_aza2JTScFythvVYboKEPnZ1JlIQf7tPZocIUaEmVC-is1h-hL0hiySDrAOl2u4U0CbHyKjfVDhIRGYbSYCNUGr9PN-6FwwXk3Fa2PcvrEDuWYugTVLhr9C9pGczphW4xzG_3-3gcEt-6AwZyA-uS2LTtEH-JHMIsNxiZrTWYjT2MfgJDLYLEM9FO7a_ovnU1KvF3BO7vKcdmQlmGuYNYGNo"/>
+</div>
+<div class="col-span-1 row-span-1">
+<img class="w-full h-full object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-700" data-alt="A wide, professional shot of a luxury catered event setup at night. Long dark wooden tables are decorated with minimalist orange accents and soft amber lighting. In the background, the silhouette of a mobile smoker trailer adds an authentic touch to the high-end, sophisticated outdoor dining atmosphere." src="https://lh3.googleusercontent.com/aida/ADBb0uhmvZtWjni09TM_mCgmvstq0CIqPXERXBYfQDAlkekslAvt3W0u5s41kEZtDb25p6X5ejDzacVcSitZ8un4ZdUuv_q9St9mlWkYcjVfl4u_Ihd01o1fJ-Hzri4pSI3trjN-iViqXHuFzivj5x237aSDEwntSNVKYpcfO8-Yzam6RlsG9zOu28NlPBlsGrULuri77VlvT1NBKsjugSieflBLECfHxuEvwRgQiH1ebpswlF8_qZtO-hqBzI8"/>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-zinc-950 w-full py-20 px-12 border-t border-white/5">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto">
+<div>
+<div class="text-xl font-bold text-white mb-6 font-headline-md">FLAME &amp; CRAFT</div>
+<p class="text-zinc-500 font-body-md mb-8">Elevating the tradition of live-fire cooking for the most discerning palates.</p>
+<p class="text-xs tracking-normal text-zinc-600 font-['Plus_Jakarta_Sans'] uppercase">© 2024 FLAME &amp; CRAFT CATERING. THE ART OF THE FLAME.</p>
+</div>
+<div class="flex flex-col gap-4">
+<h5 class="text-white font-bold uppercase tracking-widest text-sm mb-4">Quick Links</h5>
+<a class="text-zinc-500 hover:text-white transition-colors font-body-md" href="#">Our Story</a>
+<a class="text-zinc-500 hover:text-white transition-colors font-body-md" href="#">Safety Certifications</a>
+<a class="text-zinc-500 hover:text-white transition-colors font-body-md" href="#">Privacy Policy</a>
+<a class="text-zinc-500 hover:text-white transition-colors font-body-md" href="#">Event Inquiry</a>
+</div>
+<div>
+<h5 class="text-white font-bold uppercase tracking-widest text-sm mb-4">Newsletter</h5>
+<p class="text-zinc-500 mb-6 font-body-md">Get exclusive menu previews and smokehouse secrets.</p>
+<div class="flex gap-2">
+<input class="bg-zinc-900 border border-white/10 px-4 py-2 text-white w-full focus:border-primary-container outline-none transition-colors" placeholder="YOUR EMAIL" type="email"/>
+<button class="bg-primary-container text-white px-6 py-2 font-bold uppercase text-xs">Join</button>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

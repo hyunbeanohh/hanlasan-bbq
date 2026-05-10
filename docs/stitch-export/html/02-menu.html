@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Inter:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#e2e2e2",
+                        "secondary-container": "#4a4949",
+                        "on-primary": "#5b1b00",
+                        "tertiary-container": "#929090",
+                        "surface-tint": "#ffb59a",
+                        "on-primary-container": "#4f1700",
+                        "inverse-primary": "#a83900",
+                        "on-secondary-container": "#bab8b7",
+                        "surface-container-lowest": "#0c0f0f",
+                        "tertiary-fixed-dim": "#c8c6c5",
+                        "on-background": "#e2e2e2",
+                        "on-tertiary": "#303030",
+                        "outline-variant": "#5a4138",
+                        "on-secondary": "#313030",
+                        "on-error-container": "#ffdad6",
+                        "error": "#ffb4ab",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#2a2a2a",
+                        "on-surface-variant": "#e3bfb2",
+                        "on-primary-fixed": "#380d00",
+                        "tertiary-fixed": "#e4e2e1",
+                        "inverse-on-surface": "#2f3131",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-primary-fixed-variant": "#802a00",
+                        "on-tertiary-fixed-variant": "#474746",
+                        "primary-fixed": "#ffdbcf",
+                        "surface-dim": "#121414",
+                        "on-tertiary-fixed": "#1b1c1c",
+                        "on-secondary-fixed-variant": "#474646",
+                        "surface-container-low": "#1a1c1c",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#ffb59a",
+                        "background": "#121414",
+                        "tertiary": "#c8c6c5",
+                        "primary-container": "#f95e14",
+                        "inverse-surface": "#e2e2e2",
+                        "surface-container-highest": "#333535",
+                        "surface-variant": "#333535",
+                        "surface-container-high": "#282a2b",
+                        "primary": "#ffb59a",
+                        "secondary": "#c8c6c5",
+                        "surface": "#121414",
+                        "surface-container": "#1e2020",
+                        "outline": "#aa8a7e",
+                        "surface-bright": "#37393a",
+                        "secondary-fixed": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "gutter": "24px",
+                        "section-gap": "120px",
+                        "margin": "32px",
+                        "stack-lg": "32px",
+                        "stack-sm": "8px",
+                        "container-max": "1200px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-md": ["Inter"],
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-xl": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.3", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .ghost-border {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(18, 20, 20, 0.4), rgba(18, 20, 20, 1));
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-container selection:text-white">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-zinc-950/90 backdrop-blur-md border-b border-white/10 shadow-2xl">
+<nav class="flex justify-between items-center px-12 py-6 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-black tracking-tighter text-white font-headline-xl">FLAME &amp; CRAFT</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="font-headline-md text-orange-600 border-b-2 border-orange-600 pb-1 uppercase tracking-widest font-bold" href="#">Menu</a>
+<a class="font-headline-md text-white/70 hover:text-white transition-colors uppercase tracking-widest font-bold" href="#">About</a>
+<a class="font-headline-md text-white/70 hover:text-white transition-colors uppercase tracking-widest font-bold" href="#">Gallery</a>
+<a class="font-headline-md text-white/70 hover:text-white transition-colors uppercase tracking-widest font-bold" href="#">Contact</a>
+</div>
+<button class="bg-primary-container text-white font-headline-md px-8 py-3 rounded-none font-bold uppercase tracking-widest hover:scale-105 transition-transform duration-300 hover:shadow-[0_0_15px_rgba(230,81,0,0.3)]">
+                Reserve Now
+            </button>
+</nav>
+</header>
+<main class="pt-32">
+<!-- Hero Section -->
+<section class="relative h-[60vh] flex items-center justify-center overflow-hidden mb-section-gap">
+<img class="absolute inset-0 w-full h-full object-cover" data-alt="A cinematic, high-contrast close-up of a slow-roasted whole pig being glazed over an open fire. Warm amber light dances across the crispy, golden-brown skin, creating deep shadows and bright highlights. The background is a moody, dark outdoor kitchen setting at dusk, emphasizing the craftsmanship of the fire-cooking process. The scene is rich with textures of smoke, charred wood, and succulent meat." src="https://lh3.googleusercontent.com/aida/ADBb0uhJkMIgOh5gwwk3Viv-72jq_my6Bnk0C3Rvo9STCXgtc5LGLFWLuo6il5HB5zNXQKIe_xMkl6yFBQElhgU6pqCUCcz4MNfb7LahNVTU5eNKn6Sfm7dQKGF1aLobJOgQPGp_xWAvWUU-gHLjqZY5IbZAzo7kioHOWGq_KlUQv_eRkbHrl4p7FJSbFFyHpEWqg3F0uwh8-FvmqaP38ARFD34-HArML9DYR0_Rppt1nCpUYRcXD5zjHbuk1fY"/>
+<div class="absolute inset-0 hero-gradient"></div>
+<div class="relative z-10 text-center px-gutter max-w-4xl">
+<span class="text-primary font-label-md uppercase mb-4 block">Crafted with Fire &amp; Tradition</span>
+<h1 class="font-headline-xl text-white mb-6 uppercase">Our Gourmet BBQ Menu</h1>
+<p class="text-body-lg text-on-surface-variant max-w-2xl mx-auto">Discover the art of slow-cooked perfection. From our signature whole pig BBQ to premium beef cuts, every dish is a celebration of smoke and soul.</p>
+</div>
+</section>
+<!-- Category Filters -->
+<section class="max-w-7xl mx-auto px-12 mb-stack-lg">
+<div class="flex flex-wrap gap-4 justify-center">
+<button class="px-8 py-2 border-1.5 border-orange-600 bg-orange-600 text-white font-label-md uppercase tracking-widest transition-all">All</button>
+<button class="px-8 py-2 border-1.5 border-white/20 hover:border-orange-600 text-white/60 hover:text-white font-label-md uppercase tracking-widest transition-all">Whole Pig BBQ</button>
+<button class="px-8 py-2 border-1.5 border-white/20 hover:border-orange-600 text-white/60 hover:text-white font-label-md uppercase tracking-widest transition-all">Beef</button>
+<button class="px-8 py-2 border-1.5 border-white/20 hover:border-orange-600 text-white/60 hover:text-white font-label-md uppercase tracking-widest transition-all">Side Dishes</button>
+</div>
+</section>
+<!-- Menu Grid -->
+<section class="max-w-7xl mx-auto px-12 mb-section-gap">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Card 1: Whole Pig -->
+<div class="bg-surface-container ghost-border group overflow-hidden flex flex-col">
+<div class="relative aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A professional food photography shot of a sliced premium BBQ platter. The succulent meat is arranged artfully on a dark stone slab, featuring deep red smoke rings and a glistening honey glaze. Soft, warm directional lighting highlights the tender fibers of the pork, while the dark charcoal background creates a moody, upscale atmosphere typical of fine dining catering." src="https://lh3.googleusercontent.com/aida/ADBb0ui9Xn0UDQQvewgsO-UjNKxbX00O7zcnA4QDZiZ6geAGOr3TD0w4EG5rP1l_PW9OoXgZFuQuhQHYj6MmUMZRVKaKAET9279TBT14X3Ac8OW8S2OUSfaIfCmhbDV0pNzzQ87ma07PXLIMMzBaVEawvisYsRMTVKlvWLjnCDWmNzAZQcuWbCBeRibHxWs1fPPR1lkuMfYzj65Hdiqc1lUDSGn_m7vj5PBHaCVXuyMCmWp5SOTs5vLGzVyEwSU"/>
+<div class="absolute top-4 left-4">
+<span class="bg-primary-container text-white px-3 py-1 font-label-md uppercase text-xs">Signature Dish</span>
+</div>
+</div>
+<div class="p-8 flex-grow">
+<h3 class="font-headline-lg text-white mb-4">Premium Whole Pig BBQ</h3>
+<ul class="space-y-3 mb-8 text-on-surface-variant font-body-md">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> 12-Hour Slow Roasted</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Traditional Fire Glaze</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Serves 30-50 Guests</li>
+</ul>
+<div class="flex items-center justify-between mt-auto pt-6 border-t border-white/5">
+<span class="text-white font-headline-md">₩1,200,000</span>
+<button class="bg-primary-container text-white font-label-md px-6 py-2 uppercase hover:scale-105 transition-transform">Order Now</button>
+</div>
+</div>
+</div>
+<!-- Card 2: Smoked Brisket -->
+<div class="bg-surface-container ghost-border group overflow-hidden flex flex-col">
+<div class="relative aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Close-up of a thick-cut, slow-smoked beef brisket resting on a wooden butcher block. The black pepper crust is beautifully charred, contrasting with the moist, pink smoke ring of the tender beef. Wisps of steam rise from the meat, captured against a dark, atmospheric background with subtle warm orange lighting that echoes the flame-grilled theme of the brand." src="https://lh3.googleusercontent.com/aida/ADBb0ujhYHc6xWDdakiBaF9r2bgw30CYlJRzrJk_aza2JTScFythvVYboKEPnZ1JlIQf7tPZocIUaEmVC-is1h-hL0hiySDrAOl2u4U0CbHyKjfVDhIRGYbSYCNUGr9PN-6FwwXk3Fa2PcvrEDuWYugTVLhr9C9pGczphW4xzG_3-3gcEt-6AwZyA-uS2LTtEH-JHMIsNxiZrTWYjT2MfgJDLYLEM9FO7a_ovnU1KvF3BO7vKcdmQlmGuYNYGNo"/>
+</div>
+<div class="p-8 flex-grow">
+<h3 class="font-headline-lg text-white mb-4">Oak-Smoked Brisket</h3>
+<ul class="space-y-3 mb-8 text-on-surface-variant font-body-md">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Black Pepper Bark</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Prime Hanwoo Beef</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Homemade Hickory Rub</li>
+</ul>
+<div class="flex items-center justify-between mt-auto pt-6 border-t border-white/5">
+<span class="text-white font-headline-md">₩45,000 / kg</span>
+<button class="bg-primary-container text-white font-label-md px-6 py-2 uppercase hover:scale-105 transition-transform">Order Now</button>
+</div>
+</div>
+</div>
+<!-- Card 3: Pork Ribs -->
+<div class="bg-surface-container ghost-border group overflow-hidden flex flex-col">
+<div class="relative aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A rack of sticky, glazed BBQ pork ribs presented in a minimalist, high-end culinary style. The ribs are coated in a deep mahogany sauce that reflects the overhead warm spotlighting. Garnished with subtle herbs, the dish sits on a matte black plate, emphasizing a luxurious and modern catering aesthetic. The lighting is low-key, focusing entirely on the rich color and texture of the meat." src="https://lh3.googleusercontent.com/aida/ADBb0uhruUXcqyLEWjrsKpnqEocV8iLeZRoMP_45jhhUI-Qu32RdPUQPdEzlXo14evwNISD90H8nzfWl3qPf_8tWANQhYG_X8sdJFtBZmeEUa8C12tVcotS6yVd_aDGCBJbzh8EKwSO4NbImdKhVhW7eZligA7rmq1QN7wILSgPSuX8OlxE2FxEwnUknjkOTayMQo_lOa8Y_DAO7Cl74_lxRjszYt-Qq_o1Qn-p4za49V6eT21Yeif5LMAYa9xk"/>
+</div>
+<div class="p-8 flex-grow">
+<h3 class="font-headline-lg text-white mb-4">Flame-Glazed Ribs</h3>
+<ul class="space-y-3 mb-8 text-on-surface-variant font-body-md">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Falling off the Bone</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Spicy Plum Glaze</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Double Smoked</li>
+</ul>
+<div class="flex items-center justify-between mt-auto pt-6 border-t border-white/5">
+<span class="text-white font-headline-md">₩38,000 / ea</span>
+<button class="bg-primary-container text-white font-label-md px-6 py-2 uppercase hover:scale-105 transition-transform">Order Now</button>
+</div>
+</div>
+</div>
+<!-- Card 4: Sides -->
+<div class="bg-surface-container ghost-border group overflow-hidden flex flex-col">
+<div class="relative aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="An elegant spread of gourmet side dishes for a premium catering event. Featured are artisanal coleslaw with fresh herbs, charred corn with lime butter, and roasted root vegetables. The arrangement is clean and architectural, shot from a slightly high angle to showcase the variety of colors and textures. The lighting is bright yet warm, maintaining the premium dark-theme contrast of the overall brand." src="https://lh3.googleusercontent.com/aida/ADBb0uhmvZtWjni09TM_mCgmvstq0CIqPXERXBYfQDAlkekslAvt3W0u5s41kEZtDb25p6X5ejDzacVcSitZ8un4ZdUuv_q9St9mlWkYcjVfl4u_Ihd01o1fJ-Hzri4pSI3trjN-iViqXHuFzivj5x237aSDEwntSNVKYpcfO8-Yzam6RlsG9zOu28NlPBlsGrULuri77VlvT1NBKsjugSieflBLECfHxuEvwRgQiH1ebpswlF8_qZtO-hqBzI8"/>
+</div>
+<div class="p-8 flex-grow">
+<h3 class="font-headline-lg text-white mb-4">Artisan Side Platter</h3>
+<ul class="space-y-3 mb-8 text-on-surface-variant font-body-md">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Charred Corn Cobettes</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Truffle Mac &amp; Cheese</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Seasonal Root Slaw</li>
+</ul>
+<div class="flex items-center justify-between mt-auto pt-6 border-t border-white/5">
+<span class="text-white font-headline-md">₩15,000 / pp</span>
+<button class="bg-primary-container text-white font-label-md px-6 py-2 uppercase hover:scale-105 transition-transform">Order Now</button>
+</div>
+</div>
+</div>
+<!-- Card 5: Pulled Pork -->
+<div class="bg-surface-container ghost-border group overflow-hidden flex flex-col">
+<div class="relative aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A mounds of tender, hand-pulled pork shoulder piled high on a rustic dark platter. The meat is visibly juicy, drizzled with a thin, vinegar-based Carolina sauce. The composition is tight and focused, with soft bokeh in the background showing hints of a warm fire. The aesthetic is raw yet incredibly refined, highlighting the simple beauty of perfectly cooked BBQ." src="https://lh3.googleusercontent.com/aida/ADBb0ujm56lVJOyFtuUTHyQt7Wylrvg7r-HJn6Ha2S1FomUWLJ2g0o22YZ8RMPPWr6iERmTQHc2IebsJ77DojUYYWkYDmxPCWd4rM56Ug6PznD_NqkWTj1ChdrfesxVGuxeRNoFfhQG2VlUqCbNVKF11not3q7m-nL6faOxnOeCex7y4c7n3pdoYMhhQBIW9EAwV6p6XFpeIeK_kuhRVlW-4XdxhxyXme2BIU2P9e99nrZ2tVToUyT7xUZCBAw"/>
+</div>
+<div class="p-8 flex-grow">
+<h3 class="font-headline-lg text-white mb-4">14-Hour Pulled Pork</h3>
+<ul class="space-y-3 mb-8 text-on-surface-variant font-body-md">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Hand-Pulled Daily</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Cider Vinegar Base</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> House-made Brioche</li>
+</ul>
+<div class="flex items-center justify-between mt-auto pt-6 border-t border-white/5">
+<span class="text-white font-headline-md">₩32,000 / kg</span>
+<button class="bg-primary-container text-white font-label-md px-6 py-2 uppercase hover:scale-105 transition-transform">Order Now</button>
+</div>
+</div>
+</div>
+<!-- Card 6: Smoked Sausage -->
+<div class="bg-surface-container ghost-border group overflow-hidden flex flex-col">
+<div class="relative aspect-[4/3] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Artisanal smoked sausages displayed in a high-end catering presentation. The sausages are dark and snap-skinned, resting on a bed of fresh herbs. Deep, warm shadows and a single strong key light create a dramatic, theatrical look. The background is a textured dark wood, reinforcing the brand's 'Art of the Flame' visual identity and commitment to high-quality ingredients." src="https://lh3.googleusercontent.com/aida/ADBb0ujmaZwQrN9Ru6AHm0xeznBNj3RzyWOrthbFlpzDUc-AGjg_zvJcMCWLeA5XWtcu2-TcMibgz6cr29mNN7L5LEh_xUaJNO0V85I7kEysUlO5Xra-4zmL__YkPh6krKHW_a3GrtsChnJYMeNSG7tqpA44Tz2OzJHu_5Yr7y-RU0GUbqSENxJVYu5O-UhcYD_xL-XSa8Mfimr3GkJAsf68Kpu_MpMHDtzX0GkjoSmVl3vRt2Mka_fnNYDa7w"/>
+</div>
+<div class="p-8 flex-grow">
+<h3 class="font-headline-lg text-white mb-4">Crafstman Sausages</h3>
+<ul class="space-y-3 mb-8 text-on-surface-variant font-body-md">
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Custom Blend Herbs</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Natural Casing Snap</li>
+<li class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Cold Smoked 6 Hours</li>
+</ul>
+<div class="flex items-center justify-between mt-auto pt-6 border-t border-white/5">
+<span class="text-white font-headline-md">₩12,000 / ea</span>
+<button class="bg-primary-container text-white font-label-md px-6 py-2 uppercase hover:scale-105 transition-transform">Order Now</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="max-w-7xl mx-auto px-12 mb-section-gap">
+<div class="bg-zinc-900 ghost-border p-16 flex flex-col md:flex-row items-center justify-between gap-8">
+<div class="max-w-2xl">
+<h2 class="font-headline-xl text-white mb-4 uppercase">Planning an event?</h2>
+<p class="text-body-lg text-on-surface-variant">Our catering specialists can create a custom menu tailored to your guest list and venue. From intimate gatherings to grand celebrations.</p>
+</div>
+<button class="bg-primary-container text-white font-headline-md px-12 py-4 rounded-none font-bold uppercase tracking-widest hover:scale-105 transition-transform shrink-0">
+                    Contact Specialist
+                </button>
+</div>
+</section>
+</main>
+<!-- Booking Bar (Specialized Component) -->
+<div class="fixed bottom-0 left-0 w-full z-40 bg-zinc-950/95 border-t border-white/10 py-6 px-12 backdrop-blur-md">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-8">
+<div class="flex-grow grid grid-cols-2 md:grid-cols-4 gap-4 w-full">
+<div class="flex flex-col">
+<label class="text-[10px] uppercase text-zinc-500 font-bold mb-1">Event Date</label>
+<input class="bg-zinc-900 border-white/10 text-white font-label-md focus:border-primary focus:ring-0" type="date"/>
+</div>
+<div class="flex flex-col">
+<label class="text-[10px] uppercase text-zinc-500 font-bold mb-1">Guest Count</label>
+<input class="bg-zinc-900 border-white/10 text-white font-label-md focus:border-primary focus:ring-0" placeholder="Min. 20" type="number"/>
+</div>
+<div class="flex flex-col">
+<label class="text-[10px] uppercase text-zinc-500 font-bold mb-1">Service Type</label>
+<select class="bg-zinc-900 border-white/10 text-white font-label-md focus:border-primary focus:ring-0">
+<option>Full Service</option>
+<option>Drop-off</option>
+</select>
+</div>
+<div class="flex items-end">
+<button class="w-full bg-white text-black font-headline-md py-3 uppercase font-bold text-sm tracking-widest hover:bg-orange-600 hover:text-white transition-colors">Check Availability</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-zinc-950 w-full py-20 px-12 border-t border-white/5">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl mx-auto">
+<div class="space-y-6">
+<div class="text-xl font-bold text-white font-headline-lg uppercase">FLAME &amp; CRAFT</div>
+<p class="text-zinc-500 text-sm max-w-xs font-body-md">Pioneering the art of premium fire-cooking in the heart of the city. Excellence in every ember.</p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-zinc-500 cursor-pointer hover:text-primary transition-colors">public</span>
+<span class="material-symbols-outlined text-zinc-500 cursor-pointer hover:text-primary transition-colors">location_on</span>
+<span class="material-symbols-outlined text-zinc-500 cursor-pointer hover:text-primary transition-colors">mail</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div class="flex flex-col gap-4">
+<h4 class="text-white font-label-md uppercase mb-2">Company</h4>
+<a class="text-zinc-500 hover:text-white transition-colors text-sm font-body-md" href="#">Our Story</a>
+<a class="text-zinc-500 hover:text-white transition-colors text-sm font-body-md" href="#">Safety Certifications</a>
+<a class="text-zinc-500 hover:text-white transition-colors text-sm font-body-md" href="#">Privacy Policy</a>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-white font-label-md uppercase mb-2">Support</h4>
+<a class="text-zinc-500 hover:text-white transition-colors text-sm font-body-md" href="#">Event Inquiry</a>
+<a class="text-zinc-500 hover:text-white transition-colors text-sm font-body-md" href="#">FAQ</a>
+<a class="text-zinc-500 hover:text-white transition-colors text-sm font-body-md" href="#">Careers</a>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<h4 class="text-white font-label-md uppercase mb-2">Join our Newsletter</h4>
+<div class="flex border border-white/10">
+<input class="bg-transparent border-none text-white focus:ring-0 flex-grow text-sm" placeholder="Email Address" type="email"/>
+<button class="bg-white/10 p-2 text-white hover:bg-primary transition-colors">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<p class="text-[10px] text-zinc-600 font-body-md">Subscribe to receive exclusive event invitations and menu updates.</p>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-20 pt-8 border-t border-white/5 flex justify-between items-center">
+<p class="text-zinc-500 text-sm tracking-normal">© 2024 FLAME &amp; CRAFT CATERING. THE ART OF THE FLAME.</p>
+<div class="flex gap-6 text-zinc-500 text-xs uppercase tracking-widest">
+<span>Seoul, Korea</span>
+<span>Established 2012</span>
+</div>
+</div>
+</footer>
+</body></html>
