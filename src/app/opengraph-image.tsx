@@ -21,7 +21,7 @@ export default async function OpengraphImage() {
           fontFamily: 'sans-serif',
         }}
       >
-        <div style={{ fontSize: 28, color: '#d44211', fontWeight: 600, letterSpacing: 4 }}>
+        <div style={{ fontSize: 28, color: '#ea580c', fontWeight: 600, letterSpacing: 4 }}>
           HALLASAN BBQ CATERING
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
@@ -34,7 +34,7 @@ export default async function OpengraphImage() {
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', fontSize: 28, color: '#bdb6a6' }}>
           <span>한라산출장바베큐.kr</span>
-          <span style={{ color: '#d44211', fontSize: 64 }}>🔥</span>
+          <span style={{ color: '#ea580c', fontSize: 64 }}>🔥</span>
         </div>
       </div>
     ),
