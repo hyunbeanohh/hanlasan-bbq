@@ -1,6 +1,14 @@
+const _displayOrigin = 'https://한라산출장바베큐.kr';
+const _aceOrigin = new URL(_displayOrigin).origin; // → https://xn--... (ASCII)
+const _aceHost = new URL(_displayOrigin).hostname;
+
 export const SITE = {
-  canonicalHost: '한라산출장바베큐.kr',
-  canonicalOrigin: 'https://한라산출장바베큐.kr',
+  // Display forms (Korean) — use in HTML <link>, OG tags, user-visible UI
+  canonicalHostDisplay: '한라산출장바베큐.kr',
+  canonicalOriginDisplay: _displayOrigin,
+  // ASCII-compatible (punycode) forms — use in HTTP headers, sitemap, robots, JSON-LD
+  canonicalHost: _aceHost,
+  canonicalOrigin: _aceOrigin,
   altHosts: ['출장바베큐.kr'] as const,
   name: '한라산출장바베큐',
   nameEn: 'Hallasan BBQ Catering',
