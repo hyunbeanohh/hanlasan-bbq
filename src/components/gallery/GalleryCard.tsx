@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import type { GalleryPost } from '@/types';
 
 interface GalleryCardProps {
@@ -9,14 +10,44 @@ function formatDate(iso: string): string {
   return d.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
+function formatShortDate(iso: string): string {
+  const d = new Date(iso);
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
+
 export default function GalleryCard({ post }: GalleryCardProps) {
   return (
-    <article className="rounded-xl overflow-hidden bg-white border border-warm-100 hover:shadow-lg transition-shadow flex flex-col">
-      {/* Thumbnail placeholder */}
-      <div className="aspect-[4/3] bg-warm-100 flex flex-col items-center justify-center gap-2 shrink-0">
-        <span className="text-5xl" aria-hidden="true">📸</span>
-        <p className="text-muted text-xs">사진 준비중</p>
-      </div>
+    <article className="group rounded-xl overflow-hidden bg-white border border-warm-100 hover:shadow-lg transition-shadow flex flex-col">
+      {/* Thumbnail */}
+      <a
+        href={post.originalUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="relative aspect-[4/3] block overflow-hidden shrink-0"
+        aria-label={`${post.title} — 네이버 블로그에서 보기`}
+        tabIndex={-1}
+      >
+        {post.thumbnailUrl ? (
+          <Image
+            src={post.thumbnailUrl}
+            alt={post.title}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            unoptimized
+          />
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-warm-200 via-warm-100 to-warm-50 flex items-center justify-center">
+            <span className="text-muted text-xs">사진 준비중</span>
+          </div>
+        )}
+        {/* Date stamp */}
+        <span className="absolute top-3 left-3 bg-ink/70 text-white text-xs font-medium px-2 py-1 rounded">
+          {formatShortDate(post.publishedAt)}
+        </span>
+      </a>
 
       {/* Content */}
       <div className="p-5 flex flex-col flex-1">
@@ -26,10 +57,14 @@ export default function GalleryCard({ post }: GalleryCardProps) {
         >
           {formatDate(post.publishedAt)}
         </time>
-        <h3 className="font-bold text-ink text-base mb-2 line-clamp-2">{post.title}</h3>
-        <p className="text-muted text-sm leading-relaxed flex-1 mb-4 line-clamp-3">
-          {post.summary}
-        </p>
+        <h3 className="font-bold text-ink text-base mb-2 line-clamp-2 flex-1">
+          {post.title}
+        </h3>
+        {post.summary && (
+          <p className="text-muted text-sm leading-relaxed mb-4 line-clamp-2">
+            {post.summary}
+          </p>
+        )}
         <a
           href={post.originalUrl}
           target="_blank"

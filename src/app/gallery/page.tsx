@@ -14,33 +14,76 @@ export const metadata: Metadata = pageMetadata({
   path: '/gallery',
 });
 
+const FILTER_CHIPS = ['전체', '기업행사', '가족모임', '결혼·돌잔치'];
+
 export default async function GalleryPage() {
   const posts = await fetchNaverBlogRss(NAVER.blogId).catch(() => []);
 
   return (
     <>
       <BreadcrumbJsonLd items={[{ name: '홈', path: '/' }, { name: '갤러리', path: '/gallery' }]} />
-      {/* Page header */}
-      <section className="py-16 md:py-20 bg-ink">
+
+      {/* Page hero — light warm gradient */}
+      <section className="bg-warm-100 py-16 md:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-brand font-semibold text-sm uppercase tracking-widest mb-4">
-            갤러리
+          <p className="text-brand font-semibold text-xs uppercase tracking-widest mb-3">
+            EVENT GALLERY
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold text-cream mb-4 leading-tight">
-            현장 사진
+          <h1 className="text-4xl md:text-5xl font-bold text-ink mb-4 leading-tight">
+            현장 갤러리
           </h1>
-          <p className="text-cream/60 text-lg max-w-2xl">
-            최근 행사 및 메뉴 사진입니다. 네이버 블로그 새 글이 자동으로 추가됩니다.
+          <p className="text-ink-soft text-lg max-w-2xl">
+            실제 행사 사진과 후기. 네이버 블로그에서 자동 동기화됩니다.
           </p>
         </div>
       </section>
 
-      {/* Gallery grid */}
+      {/* Gallery section */}
       <section className="py-16 md:py-20 bg-cream">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          {/* Category filter chips — visual only; "전체" active */}
+          <div className="flex flex-wrap gap-2 mb-10" aria-label="카테고리 필터">
+            {FILTER_CHIPS.map((chip) => (
+              <span
+                key={chip}
+                className={[
+                  'px-4 py-2 rounded-full text-sm font-semibold',
+                  chip === '전체'
+                    ? 'bg-brand text-white'
+                    : 'bg-cream text-ink-soft border border-warm-100',
+                ].join(' ')}
+              >
+                {chip}
+              </span>
+            ))}
+          </div>
+
           {posts.length === 0 ? (
             <div className="text-center py-24 text-muted">
-              아직 등록된 글이 없습니다. 곧 첫 사진을 만나보실 수 있어요.
+              <p className="text-4xl mb-4" aria-hidden="true">📷</p>
+              <p className="text-lg mb-4">아직 등록된 글이 없습니다. 곧 첫 사진을 만나보실 수 있어요.</p>
+              <a
+                href={NAVER.blogHomeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-brand font-semibold hover:underline"
+              >
+                네이버 블로그 바로가기
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                </svg>
+              </a>
             </div>
           ) : (
             <GalleryGrid posts={posts} />
@@ -48,12 +91,11 @@ export default async function GalleryPage() {
         </div>
       </section>
 
-      {/* Blog link */}
+      {/* Bottom CTA card */}
       <section className="py-12 bg-warm-100">
         <div className="mx-auto max-w-2xl px-4 sm:px-6 text-center">
-          <p className="text-muted text-base mb-4">
-            더 많은 사진과 행사 후기는 네이버 블로그에서 확인하세요
-          </p>
+          <p className="text-ink font-bold text-lg mb-2">더 많은 사진은 네이버 블로그에서</p>
+          <p className="text-muted text-sm mb-6">행사 후기와 현장 사진을 블로그에서 더 많이 만나보세요.</p>
           <a
             href={NAVER.blogHomeUrl}
             target="_blank"
