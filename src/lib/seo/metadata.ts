@@ -12,7 +12,7 @@ export function pageMetadata(opts: {
   const displayUrl = buildCanonicalDisplay(opts.path);
 
   return {
-    title: `${opts.title} | ${SITE.name}`,
+    title: opts.title,
     description: opts.description,
     alternates: { canonical: url },
     openGraph: {
@@ -22,9 +22,7 @@ export function pageMetadata(opts: {
       siteName: SITE.name,
       locale: 'ko_KR',
       type: 'website',
-      images: opts.ogImage
-        ? [{ url: opts.ogImage }]
-        : [{ url: `${SITE.canonicalOriginDisplay}/images/og/default.svg`, width: 1200, height: 630, alt: SITE.name }],
+      images: opts.ogImage ? [{ url: opts.ogImage }] : undefined,
     },
     twitter: {
       card: 'summary_large_image',

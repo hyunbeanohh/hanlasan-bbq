@@ -10,7 +10,7 @@ export default function BreadcrumbJsonLd({ items }: { items: Crumb[] }) {
       '@type': 'ListItem',
       position: i + 1,
       name: item.name,
-      item: `${SITE.canonicalOriginDisplay}${item.path}`,
+      item: `${SITE.canonicalOriginDisplay}${item.path === '/' ? '' : item.path}`,
     })),
   };
   return (
