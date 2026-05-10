@@ -1,4 +1,7 @@
+'use client';
 import { CONTACT } from '@/lib/constants';
+import { trackNaverEvent } from '@/lib/analytics/naver';
+import { getUtm } from '@/lib/analytics/utm';
 
 type Variant = 'primary' | 'ghost' | 'pill';
 
@@ -18,9 +21,14 @@ const variantClasses: Record<Variant, string> = {
 };
 
 export default function CallButton({ variant = 'primary', className = '', children }: CallButtonProps) {
+  function onClick() {
+    trackNaverEvent({ event: 'phone_click', ...getUtm() });
+  }
+
   return (
     <a
       href={CONTACT.phoneTel}
+      onClick={onClick}
       aria-label={`전화 연결: ${CONTACT.phone}`}
       className={[
         'inline-flex items-center justify-center gap-2 rounded-full font-semibold',

@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer';
 import MobileCTABar from '@/components/layout/MobileCTABar';
 import LocalBusinessJsonLd from '@/components/seo/LocalBusinessJsonLd';
 import NaverAnalytics from '@/components/analytics/NaverAnalytics';
+import UtmCapture from '@/components/analytics/UtmCapture';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.canonicalOriginDisplay),
@@ -48,6 +49,7 @@ export default function RootLayout({
         <Footer />
         <MobileCTABar />
         <NaverAnalytics accountId={process.env.NEXT_PUBLIC_NAVER_ANALYTICS_ID ?? ''} />
+        <UtmCapture />
       </body>
     </html>
   );

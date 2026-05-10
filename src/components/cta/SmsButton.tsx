@@ -1,4 +1,7 @@
+'use client';
 import { CONTACT } from '@/lib/constants';
+import { trackNaverEvent } from '@/lib/analytics/naver';
+import { getUtm } from '@/lib/analytics/utm';
 
 type Variant = 'primary' | 'ghost' | 'pill';
 
@@ -18,9 +21,14 @@ const variantClasses: Record<Variant, string> = {
 };
 
 export default function SmsButton({ variant = 'ghost', className = '', children }: SmsButtonProps) {
+  function onClick() {
+    trackNaverEvent({ event: 'sms_click', ...getUtm() });
+  }
+
   return (
     <a
       href={CONTACT.smsHref}
+      onClick={onClick}
       aria-label={`문자 보내기: ${CONTACT.phone}`}
       className={[
         'inline-flex items-center justify-center gap-2 rounded-full font-semibold',
