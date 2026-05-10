@@ -6,7 +6,7 @@ pages_build_output_dir = ".open-next/dist"
 [[d1_databases]]
 binding = "DB"
 database_name = "hanlasan-bbq"
-database_id = "REPLACE_WITH_REAL_ID_FROM_WRANGLER_OUTPUT"
+database_id = "00000000-0000-0000-0000-000000000000"  # local placeholder; replace with real id for prod (`wrangler d1 create hanlasan-bbq`)
 
 [triggers]
 crons = ["0 18 * * *"]
@@ -15,4 +15,4 @@ crons = ["0 18 * * *"]
 SITE_URL = "https://한라산출장바베큐.kr"
 NOTIFY_EMAILS = "ohnamsoo3822@naver.com,ohb4199@gmail.com"
 SENDER_EMAIL = "noreply@한라산출장바베큐.kr"
-TURNSTILE_SITE_KEY = ""
+TURNSTILE_SITE_KEY = "1x00000000000000000000AA"  # Cloudflare test key (always passes); replace with real key for prod
