@@ -1,52 +1,62 @@
-import Image from 'next/image';
-import CallButton from '@/components/cta/CallButton';
-import SmsButton from '@/components/cta/SmsButton';
-import EmailButton from '@/components/cta/EmailButton';
+import Link from 'next/link';
+import { CONTACT } from '@/lib/constants';
 
 export default function Hero() {
   return (
-    <section className="bg-cream py-16 md:py-24 lg:py-32">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Copy */}
-          <div>
-            <p className="inline-flex items-center gap-2 text-brand font-semibold text-sm mb-6 uppercase tracking-widest">
-              <span aria-hidden="true">🔥</span>
-              제주 직화구이 출장 케이터링
-            </p>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-ink leading-tight mb-6">
-              제주에서 시작되는
-              <br />
-              <span className="text-brand">진짜 직화구이</span>
-              <br />
-              출장 바베큐
-            </h1>
-            <p className="text-muted text-lg leading-relaxed mb-10 max-w-lg">
-              기업·가족·동호회 어디든 한라산이 갑니다.
-              <br />
-              제주 직거래 식재료, 셰프 직출장, 세팅부터 정리까지.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <CallButton variant="primary" />
-              <SmsButton variant="ghost" />
-              <EmailButton variant="ghost" />
-            </div>
-          </div>
+    <section className="relative overflow-hidden bg-warm-200 min-h-[540px] md:min-h-[620px] flex items-center">
+      {/* Photo placeholder — warm gradient simulating BBQ scene */}
+      <div
+        className="absolute inset-0 bg-gradient-to-br from-warm-200 via-[#c4956a]/40 to-[#8b5e3c]/60"
+        aria-hidden="true"
+      />
+      {/* Subtle dark overlay for text readability */}
+      <div className="absolute inset-0 bg-ink/30" aria-hidden="true" />
 
-          {/* Hero image placeholder */}
-          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-warm-100 flex items-center justify-center">
-            <Image
-              src="/images/hero/placeholder.svg"
-              alt="한라산출장바베큐 직화구이 현장"
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
-            <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-7xl" aria-hidden="true">🔥</span>
-              <p className="text-muted text-sm mt-3 font-medium">실제 사진으로 교체 예정</p>
-            </div>
+      {/* Photo placeholder label */}
+      <div className="absolute bottom-4 right-4 text-white/40 text-xs pointer-events-none" aria-hidden="true">
+        사진 준비중
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+        <div className="max-w-2xl">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4 drop-shadow-lg">
+            출장바베큐로 가는 길!
+            <br />
+            한라산이 함께 합니다.
+          </h1>
+          <p className="text-white/85 text-lg md:text-xl leading-relaxed mb-8 max-w-xl drop-shadow">
+            특별한 날을 위한 최고의 케이터링 — 한라산이 직접 책임집니다.
+          </p>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <Link
+              href={CONTACT.phoneTel}
+              className="inline-flex items-center justify-center bg-brand text-white font-bold text-base px-8 py-3.5 rounded-full hover:bg-brand-dark active:bg-brand-dark transition-colors shadow-lg"
+            >
+              예약하기
+            </Link>
+            <a
+              href={CONTACT.phoneTel}
+              className="inline-flex items-center gap-2 text-white/90 font-medium hover:text-white transition-colors"
+              aria-label={`전화 연결: ${CONTACT.phone}`}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.72 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.63 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+              {CONTACT.phone}
+            </a>
           </div>
         </div>
       </div>
