@@ -13,11 +13,11 @@ interface EmailButtonProps {
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    'bg-[#f95e14] text-white hover:scale-105 hover:shadow-[0_0_15px_rgba(230,81,0,0.3)]',
+    'bg-brand text-white hover:bg-brand-dark active:bg-brand-dark',
   ghost:
-    'bg-transparent text-white border-2 border-white hover:bg-white hover:text-black',
+    'bg-transparent text-brand border border-brand hover:bg-brand hover:text-white active:bg-brand-dark active:text-white',
   pill:
-    'bg-[#f95e14] text-white hover:scale-105 hover:shadow-[0_0_15px_rgba(230,81,0,0.3)] text-sm px-4',
+    'bg-brand text-white hover:bg-brand-dark active:bg-brand-dark text-sm px-4',
 };
 
 export default function EmailButton({ variant = 'ghost', className = '', children }: EmailButtonProps) {
@@ -31,9 +31,9 @@ export default function EmailButton({ variant = 'ghost', className = '', childre
       onClick={onClick}
       aria-label={`이메일 문의: ${CONTACT.email}`}
       className={[
-        'inline-flex items-center justify-center gap-2 font-bold uppercase tracking-widest',
-        'h-12 px-8',
-        'transition-all duration-300',
+        'inline-flex items-center justify-center gap-2 rounded-full font-semibold',
+        'h-12 px-6 md:h-14 md:px-8',
+        'transition-colors duration-150',
         variantClasses[variant],
         className,
       ]
