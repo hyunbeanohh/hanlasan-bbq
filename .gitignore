@@ -51,4 +51,5 @@ pnpm-debug.log*
 # Cloudflare / OpenNext
 .open-next/
 .dev.vars
+.wrangler/
 cloudflare-env.d.ts
