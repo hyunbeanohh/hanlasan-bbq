@@ -1,19 +1,20 @@
 @import "tailwindcss";
 
 @theme {
+  --color-cream: #faf6f0;
+  --color-warm-50: #fffbf5;
+  --color-warm-100: #f3ece1;
+  --color-warm-200: #e8ddc9;
+  --color-ink: #1f1a17;
+  --color-ink-soft: #5b5147;
+  --color-muted: #8a7e72;
   --color-brand: #d44211;
   --color-brand-dark: #a8330d;
-  --color-cream: #fafaf7;
-  --color-warm-100: #e8e3d8;
-  --color-ink: #1a1a1a;
-  --color-muted: #737373;
-  --font-display: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --color-brand-soft: #fef0e6;
+  --font-display: 'Pretendard Variable', Pretendard, -apple-system, system-ui, sans-serif;
 }
 
 @layer base {
-  html { font-family: var(--font-display); line-height: 1.75; }
-  body {
-    background: var(--color-cream);
-    color: var(--color-ink);
-  }
+  html { font-family: var(--font-display); line-height: 1.7; }
+  body { background: var(--color-cream); color: var(--color-ink); }
 }
