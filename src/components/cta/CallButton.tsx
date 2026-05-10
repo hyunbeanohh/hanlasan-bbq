@@ -13,11 +13,11 @@ interface CallButtonProps {
 
 const variantClasses: Record<Variant, string> = {
   primary:
-    'bg-brand text-white hover:bg-brand-dark active:bg-brand-dark',
+    'bg-[#f95e14] text-white hover:scale-105 hover:shadow-[0_0_15px_rgba(230,81,0,0.3)]',
   ghost:
-    'bg-transparent text-brand border border-brand hover:bg-brand hover:text-white active:bg-brand-dark active:text-white',
+    'bg-transparent text-white border-2 border-white hover:bg-white hover:text-black',
   pill:
-    'bg-brand text-white hover:bg-brand-dark active:bg-brand-dark text-sm px-4',
+    'bg-[#f95e14] text-white hover:scale-105 hover:shadow-[0_0_15px_rgba(230,81,0,0.3)] text-sm px-4',
 };
 
 export default function CallButton({ variant = 'primary', className = '', children }: CallButtonProps) {
@@ -31,9 +31,9 @@ export default function CallButton({ variant = 'primary', className = '', childr
       onClick={onClick}
       aria-label={`전화 연결: ${CONTACT.phone}`}
       className={[
-        'inline-flex items-center justify-center gap-2 rounded-full font-semibold',
-        'h-12 px-6 md:h-14 md:px-8',
-        'transition-colors duration-150',
+        'inline-flex items-center justify-center gap-2 font-bold uppercase tracking-widest',
+        'h-12 px-8',
+        'transition-all duration-300',
         variantClasses[variant],
         className,
       ]
