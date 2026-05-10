@@ -1,13 +1,19 @@
 import Link from 'next/link';
 import { NAVER } from '@/lib/constants';
+import type { GalleryPost } from '@/types';
+import GalleryCard from '@/components/gallery/GalleryCard';
 
-const DEMO_PREVIEWS = [
+const PLACEHOLDER_CARDS = [
   { id: 'g1', label: '기업 워크샵', emoji: '🏕️' },
   { id: 'g2', label: '가족 모임', emoji: '👨‍👩‍👧‍👦' },
   { id: 'g3', label: '야외 행사', emoji: '🌿' },
 ];
 
-export default function GalleryPreview() {
+interface GalleryPreviewProps {
+  posts?: GalleryPost[];
+}
+
+export default function GalleryPreview({ posts = [] }: GalleryPreviewProps) {
   return (
     <section className="py-20 md:py-24 bg-warm-100">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -42,17 +48,25 @@ export default function GalleryPreview() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
-          {DEMO_PREVIEWS.map((item) => (
-            <div
-              key={item.id}
-              className="aspect-[4/3] rounded-xl bg-warm-100 border border-cream flex flex-col items-center justify-center gap-3 hover:shadow-md transition-shadow"
-            >
-              <span className="text-6xl" aria-hidden="true">{item.emoji}</span>
-              <p className="text-muted font-medium text-sm">{item.label}</p>
-            </div>
-          ))}
-        </div>
+        {posts.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
+            {posts.map((post) => (
+              <GalleryCard key={post.id} post={post} />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
+            {PLACEHOLDER_CARDS.map((item) => (
+              <div
+                key={item.id}
+                className="aspect-[4/3] rounded-xl bg-warm-100 border border-cream flex flex-col items-center justify-center gap-3 hover:shadow-md transition-shadow"
+              >
+                <span className="text-6xl" aria-hidden="true">{item.emoji}</span>
+                <p className="text-muted font-medium text-sm">{item.label}</p>
+              </div>
+            ))}
+          </div>
+        )}
 
         <p className="text-center text-sm text-muted">
           더 많은 사진은{' '}
