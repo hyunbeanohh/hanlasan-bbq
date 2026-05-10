@@ -10,7 +10,7 @@ export const newInquirySchema = z.object({
   title: z.string().trim().min(1, '제목을 입력해주세요').max(200),
   content: z.string().trim().min(1, '내용을 입력해주세요').max(5000),
   isSecret: z.string().optional(),
-  privacyConsent: z.literal('on', { errorMap: () => ({ message: '개인정보 동의가 필요합니다' }) }),
+  privacyConsent: z.literal('on', { error: '개인정보 동의가 필요합니다' }),
   turnstileToken: z.string().min(1, '자동가입방지 검증이 필요합니다'),
 });
 
