@@ -14,9 +14,9 @@ export default function MenuCategoryTabs() {
 
   return (
     <div>
-      {/* Tab bar */}
+      {/* Tab bar — Stitch filter style */}
       <div
-        className="flex gap-2 flex-wrap mb-10"
+        className="flex gap-3 flex-wrap mb-12 justify-center"
         role="tablist"
         aria-label="메뉴 카테고리"
       >
@@ -29,10 +29,10 @@ export default function MenuCategoryTabs() {
             aria-controls={`tabpanel-${cat.id}`}
             onClick={() => setActiveCategory(cat.id)}
             className={[
-              'px-5 py-2.5 rounded-full text-sm font-semibold transition-colors duration-150',
+              'px-8 py-2 text-sm font-bold uppercase tracking-widest transition-all duration-200',
               activeCategory === cat.id
-                ? 'bg-brand text-white'
-                : 'bg-white text-ink border border-warm-100 hover:border-brand hover:text-brand',
+                ? 'bg-[#f95e14] text-white border border-[#f95e14]'
+                : 'border border-white/20 text-white/60 hover:border-[#f95e14] hover:text-white',
             ].join(' ')}
           >
             {cat.name}
@@ -50,15 +50,17 @@ export default function MenuCategoryTabs() {
         }
       >
         {filteredItems.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredItems.map((item) => (
-              <MenuCard key={item.id} item={item} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredItems.map((item, i) => (
+              <MenuCard key={item.id} item={item} featured={i === 0 && activeCategory === 'all'} />
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 text-muted">
-            <p className="text-4xl mb-4" aria-hidden="true">🍽️</p>
-            <p>해당 카테고리의 메뉴가 없습니다.</p>
+          <div className="text-center py-20 text-zinc-500">
+            <span className="material-symbols-outlined text-6xl block mb-4 text-zinc-700">
+              restaurant_menu
+            </span>
+            <p className="text-lg">해당 카테고리의 메뉴가 없습니다.</p>
           </div>
         )}
       </div>
