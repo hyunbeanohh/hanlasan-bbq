@@ -8,6 +8,7 @@ const config: NextConfig = {
       { protocol: 'https', hostname: 'blogfiles.naver.net' },
       { protocol: 'https', hostname: 'mblogthumb-phinf.pstatic.net' },
       { protocol: 'https', hostname: 'blogpfthumb-phinf.pstatic.net' },
+      { protocol: 'https', hostname: 'images.unsplash.com' },
     ],
   },
   async headers() {
@@ -22,7 +23,7 @@ const config: NextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              "img-src 'self' data: https://*.pstatic.net https://*.naver.net https://wcs.naver.net",
+              "img-src 'self' data: https://*.pstatic.net https://*.naver.net https://wcs.naver.net https://images.unsplash.com",
               "script-src 'self' 'unsafe-inline' https://wcs.naver.net",
               "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net",
               "font-src 'self' https://cdn.jsdelivr.net data:",

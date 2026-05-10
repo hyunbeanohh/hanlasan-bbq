@@ -1,20 +1,29 @@
 @import "tailwindcss";
 
 @theme {
-  --color-cream: #faf6f0;
-  --color-warm-50: #fffbf5;
-  --color-warm-100: #f3ece1;
-  --color-warm-200: #e8ddc9;
-  --color-ink: #1f1a17;
-  --color-ink-soft: #5b5147;
-  --color-muted: #8a7e72;
-  --color-brand: #d44211;
-  --color-brand-dark: #a8330d;
-  --color-brand-soft: #fef0e6;
+  /* Surfaces */
+  --color-bg: #0a0a0a;
+  --color-surface: #131313;
+  --color-surface-2: #1a1a1a;
+  --color-surface-3: #232323;
+  --color-border: #2a2a2a;
+  --color-border-strong: #3a3a3a;
+
+  /* Text */
+  --color-fg: #f5f5f5;
+  --color-fg-soft: #c5c5c5;
+  --color-fg-muted: #8a8a8a;
+
+  /* Brand (orange flame) */
+  --color-brand: #ea580c;
+  --color-brand-hover: #c2410c;
+  --color-brand-soft: rgba(234, 88, 12, 0.12);
+
+  /* Type */
   --font-display: 'Pretendard Variable', Pretendard, -apple-system, system-ui, sans-serif;
 }
 
 @layer base {
-  html { font-family: var(--font-display); line-height: 1.7; }
-  body { background: var(--color-cream); color: var(--color-ink); }
+  html { color-scheme: dark; font-family: var(--font-display); line-height: 1.65; }
+  body { background: var(--color-bg); color: var(--color-fg); }
 }
