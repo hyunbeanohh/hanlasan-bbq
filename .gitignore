@@ -47,3 +47,8 @@ pnpm-debug.log*
 
 # Claude Code plugin artifacts
 .omc/
+
+# Cloudflare / OpenNext
+.open-next/
+.dev.vars
+cloudflare-env.d.ts
