@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { CONTACT } from '@/lib/constants';
+import Link from 'next/link';
 
 export default function Hero() {
   return (
@@ -31,12 +31,12 @@ export default function Hero() {
             당신의 특별한 행사를 위한 최고의 선택.
           </p>
 
-          <a
-            href={CONTACT.phoneTel}
+          <Link
+            href="/inquiry/new"
             className="inline-flex items-center justify-center bg-brand text-white font-bold text-base px-8 py-4 rounded-full hover:bg-brand-hover active:bg-brand-hover transition-colors shadow-xl"
           >
             상담 신청하기
-          </a>
+          </Link>
         </div>
       </div>
     </section>

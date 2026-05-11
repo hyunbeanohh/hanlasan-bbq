@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { CONTACT } from '@/lib/constants';
 
 const NAV_LINKS = [
   { href: '/company', label: '회사소개' },
@@ -65,12 +64,12 @@ export default function Header() {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center">
-            <a
-              href={CONTACT.phoneTel}
+            <Link
+              href="/inquiry"
               className="inline-flex items-center justify-center bg-brand text-white text-sm font-semibold px-6 py-2.5 rounded-full hover:bg-brand-hover active:bg-brand-hover transition-colors duration-150"
             >
               예약하기
-            </a>
+            </Link>
           </div>
 
           {/* Mobile hamburger */}
@@ -139,13 +138,13 @@ export default function Header() {
               </Link>
             ))}
             <div className="px-6 py-3">
-              <a
-                href={CONTACT.phoneTel}
+              <Link
+                href="/inquiry"
                 onClick={() => setMobileOpen(false)}
                 className="block w-full text-center bg-brand text-white text-sm font-semibold px-6 py-2.5 rounded-full hover:bg-brand-hover transition-colors"
               >
                 예약하기
-              </a>
+              </Link>
             </div>
           </nav>
         </div>

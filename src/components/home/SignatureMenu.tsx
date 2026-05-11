@@ -5,19 +5,19 @@ const SIGNATURE_ITEMS = [
     id: 'tong-dwaeji',
     name: '통돼지바베큐',
     description: '제주 흑돼지를 통째로 직화에 구워 겉은 바삭, 속은 촉촉하게 즐기는 시그니처 메뉴입니다.',
-    imageSrc: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80&fm=jpg',
+    imageSrc: 'https://images.unsplash.com/photo-1722290171775-3e417486279f?w=800&q=80&fm=jpg',
   },
   {
-    id: 'hoonje-ori',
-    name: '훈제오리',
-    description: '참나무 훈연향이 깊게 밴 오리, 부드러운 육질과 풍부한 풍미를 한 번에 느낄 수 있습니다.',
-    imageSrc: 'https://images.unsplash.com/photo-1626804475297-41608ea09aeb?w=800&q=80&fm=jpg',
+    id: 'tongsamgyeop',
+    name: '통삼겹바베큐',
+    description: '두툼한 통삼겹살을 장작 훈연으로 천천히 구워 겉은 바삭, 속은 촉촉한 육즙과 깊은 풍미를 살린 시그니처 메뉴입니다.',
+    imageSrc: '/images/menu/tongsamgyeop-v2.jpg',
   },
   {
     id: 'haemul-modum',
     name: '해물모듬',
     description: '제주 청정 해역에서 갓 잡은 해산물을 직화로 구워내는 풍성한 모듬 플래터입니다.',
-    imageSrc: 'https://images.unsplash.com/photo-1551888419-7b7a520fe0ca?w=800&q=80&fm=jpg',
+    imageSrc: '/images/menu/haemul-modum.jpg',
   },
 ];
 
