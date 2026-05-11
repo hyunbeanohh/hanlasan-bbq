@@ -7,16 +7,11 @@ export type ServiceFeature = {
 
 export type MenuItem = {
   id: string;
-  categoryId: 'signature' | 'beef' | 'pork' | 'side';
+  categoryId: 'signature';
   name: string;
   priceText: string;
   description: string;
   imageSrc: string;
-};
-
-export type MenuCategory = {
-  id: 'all' | 'signature' | 'beef' | 'pork' | 'side';
-  name: string;
 };
 
 export type GalleryPost = {

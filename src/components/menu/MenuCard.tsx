@@ -8,7 +8,7 @@ interface MenuCardProps {
 }
 
 export default function MenuCard({ item }: MenuCardProps) {
-  const hasPhoto = item.imageSrc && item.imageSrc.startsWith('http');
+  const hasPhoto = Boolean(item.imageSrc);
 
   return (
     <article className="rounded-2xl overflow-hidden bg-surface border border-border hover:border-border-strong transition-colors flex flex-col md:flex-row">
