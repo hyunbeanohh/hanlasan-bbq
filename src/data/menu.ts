@@ -24,7 +24,7 @@ export const MENU_ITEMS: MenuItem[] = [
   {
     id: 'sig-haemul-modum',
     categoryId: 'signature',
-    name: '해물모듬',
+    name: '해물모듬 바베큐',
     priceText: '1인 50,000원~',
     description: '제주 청정 해역에서 갓 잡은 해산물을 직화로 구워내는 풍성한 모듬 플래터입니다.',
     imageSrc: '/images/menu/haemul-modum.jpg',
