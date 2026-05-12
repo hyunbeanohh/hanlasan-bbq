@@ -4,19 +4,19 @@ const SIGNATURE_ITEMS = [
   {
     id: 'tong-dwaeji',
     name: '통돼지바베큐',
-    description: '제주 흑돼지를 통째로 직화에 구워 겉은 바삭, 속은 촉촉하게 즐기는 시그니처 메뉴입니다.',
+    description: '돼지를 통째로 참나무 숯불에 직화로 구워 겉은 바삭, 속은 촉촉하게 즐기는 시그니처 메뉴입니다.',
     imageSrc: 'https://images.unsplash.com/photo-1722290171775-3e417486279f?w=800&q=80&fm=jpg',
   },
   {
     id: 'tongsamgyeop',
     name: '통삼겹바베큐',
-    description: '두툼한 통삼겹살을 장작 훈연으로 천천히 구워 겉은 바삭, 속은 촉촉한 육즙과 깊은 풍미를 살린 시그니처 메뉴입니다.',
+    description: '두툼한 통삼겹살을 참나무 장작 훈연으로 2시간 이상 천천히 구워 겉은 바삭, 속은 촉촉한 육즙과 깊은 풍미를 살린 시그니처 메뉴입니다.',
     imageSrc: '/images/menu/tongsamgyeop-v2.jpg',
   },
   {
     id: 'haemul-modum',
-    name: '해물모듬',
-    description: '제주 청정 해역에서 갓 잡은 해산물을 직화로 구워내는 풍성한 모듬 플래터입니다.',
+    name: '해물모듬 바베큐',
+    description: '새벽 시장에서 공수해 온 싱싱한 해산물을 통삼겹바베큐와 참나무 숯불로 2시간 이상 천천히 구워내는 풍성한 모듬 플래터입니다.',
     imageSrc: '/images/menu/haemul-modum.jpg',
   },
 ];
@@ -28,7 +28,7 @@ export default function SignatureMenu() {
         {/* Section header */}
         <div className="text-center mb-14">
           <h2 className="text-3xl md:text-4xl font-bold text-fg">
-            우리의 대표 메뉴
+            한라산 출장 바베큐의 대표 메뉴
           </h2>
         </div>
 
