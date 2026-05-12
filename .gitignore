@@ -53,3 +53,4 @@ pnpm-debug.log*
 .dev.vars
 .wrangler/
 cloudflare-env.d.ts
+.superpowers/
