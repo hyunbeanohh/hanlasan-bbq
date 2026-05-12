@@ -31,7 +31,7 @@ export default function MenuPage() {
             메뉴 소개
           </h1>
           <p className="text-fg-soft text-lg max-w-2xl">
-            특별한 날을 위한 시그니처 메뉴 — 제주 직거래 한우·흑돼지·해산물을 숯불로 직접 구워 드립니다.
+            특별한 날을 위한 한라산 출장 바베큐의 메뉴 — 참나무 숯불로 직접 훈연하여 구워 드립니다.
           </p>
         </div>
       </section>
