@@ -18,9 +18,11 @@ function clamp(n: number, min: number, max: number) {
 }
 
 // Continuously update each slide's scale + opacity based on distance from the
-// current scroll position. Uses embla's documented "tween" pattern so the
-// effect tracks the scroll animation — including across the loop wrap point
-// (last → first), where state-driven updates would otherwise snap abruptly.
+// current scroll position. Targets a child wrapper inside each slide because
+// embla's `loop: true` sets its own translate3d() on slide nodes to position
+// looped slides — writing to the slide node directly wipes that out and the
+// wrap (last → first) stops rendering. Pattern adapted from embla's official
+// "tween-scale-loop" sandbox.
 function applyTween(emblaApi: EmblaApi) {
   type LoopPoint = { index: number; target: () => number };
   const engine = emblaApi.internalEngine() as unknown as {
@@ -54,9 +56,10 @@ function applyTween(emblaApi: EmblaApi) {
       const scale = clamp(tweenValue, MIN_SCALE, 1);
       const opacity = clamp(tweenValue, MIN_OPACITY, 1);
       const slide = slideNodes[slideIndex];
-      if (slide) {
-        slide.style.transform = `scale(${scale})`;
-        slide.style.opacity = `${opacity}`;
+      const tweenTarget = slide?.firstElementChild as HTMLElement | null;
+      if (tweenTarget) {
+        tweenTarget.style.transform = `scale(${scale})`;
+        tweenTarget.style.opacity = `${opacity}`;
       }
     });
   });
@@ -68,7 +71,7 @@ export default function Testimonials() {
   );
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true, align: 'center', slidesToScroll: 1, containScroll: false },
+    { loop: true, align: 'center', slidesToScroll: 1 },
     [autoplay],
   );
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -130,13 +133,17 @@ export default function Testimonials() {
                 <div
                   key={t.id}
                   className="shrink-0 grow-0 basis-[88%] md:basis-[44%] px-2 md:px-3"
-                  style={{ transformOrigin: 'center center' }}
                 >
-                  <TestimonialCard
-                    t={t}
-                    index={i}
-                    total={TESTIMONIALS.length}
-                  />
+                  <div
+                    className="h-full"
+                    style={{ transformOrigin: 'center center', willChange: 'transform, opacity' }}
+                  >
+                    <TestimonialCard
+                      t={t}
+                      index={i}
+                      total={TESTIMONIALS.length}
+                    />
+                  </div>
                 </div>
               ))}
             </div>
