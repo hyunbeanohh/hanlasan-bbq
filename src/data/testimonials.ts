@@ -7,97 +7,105 @@ export type Testimonial = {
   blogUrl: string;
 };
 
-const BLOG_HOME = 'https://blog.naver.com/ohnamsoo3822';
-
 export const TESTIMONIALS: Testimonial[] = [
   {
     id: 't1',
     rating: 5,
     quote:
-      '제주 가족 여행 마지막 밤 펜션에서 진행했어요. 셰프님이 직접 흑돼지를 구워주시는데 향이 정말 좋았고, 아이들도 너무 좋아했습니다.',
+      '학교 총동문회 행사에 한라산 출장 바베큐를 불렀습니다. 통삼겹 바베큐가 너무 맛있어서 많은 분들이 명함까지 챙겨 가셨어요. 다음에도 꼭 함께하고 싶습니다.',
     name: '고객1',
-    role: '가족 모임 · 10인',
-    blogUrl: BLOG_HOME,
+    role: '학교 총동문회',
+    blogUrl:
+      'https://blog.naver.com/ohnamsoo3822/223645344493',
   },
   {
     id: 't2',
     rating: 5,
     quote:
-      '회사 워크샵 30명 출장. 셰프님이 직접 와주셔서 모든 분들이 만족했습니다. 흑돼지 퀄리티가 인상적이었어요.',
+      '삼성초등학교 총동문회 행사에서 이용했습니다. 좋은 날씨에 통삼겹 바베큐 맛까지 잡아주셔서 행사가 더 즐거웠어요.',
     name: '고객2',
-    role: '기업 워크샵 · 30인',
-    blogUrl: BLOG_HOME,
+    role: '초등 총동문회',
+    blogUrl:
+      'https://blog.naver.com/ohnamsoo3822/223533530727',
   },
   {
     id: 't3',
     rating: 5,
     quote:
-      '돌잔치 출장 케이터링으로 부탁드렸는데 음식 퀄리티는 물론 세팅과 정리까지 흠잡을 데가 없었습니다.',
+      '교회 행사에 한라산 출장 바베큐로 모셨습니다. 맑은 하늘 아래 통삼겹 바베큐를 든든히 즐길 수 있어 교인분들 모두 만족하셨어요.',
     name: '고객3',
-    role: '돌잔치 · 50인',
-    blogUrl: BLOG_HOME,
+    role: '교회 행사',
+    blogUrl:
+      'https://blog.naver.com/ohnamsoo3822/223508562473',
   },
   {
     id: 't4',
     rating: 5,
     quote:
-      '동호회 야외 모임에서 진행했는데 셰프님이 분위기까지 살려주셔서 모두 즐겁게 즐겼습니다.',
+      '매년 송곡고 총동문회 체육대회에 한라산 출장 바베큐를 부릅니다. 날씨도 좋고 통삼겹 맛도 변함없어 늘 만족스럽습니다.',
     name: '고객4',
-    role: '동호회 · 25인',
-    blogUrl: BLOG_HOME,
+    role: '고교 체육대회 (재이용)',
+    blogUrl:
+      'https://blog.naver.com/ohnamsoo3822/223477582816',
   },
   {
     id: 't5',
     rating: 5,
     quote:
-      '제주 펜션 가족 모임. 사전 상담부터 정리까지 완벽했고 음식도 기대 이상이었습니다.',
+      '김포대학교 행사에 한라산 출장 바베큐를 불렀습니다. 봄 날씨에 통삼겹 바베큐로 즐거운 시간을 보냈고 학생들 반응이 정말 좋았어요.',
     name: '고객5',
-    role: '가족 모임 · 12인',
-    blogUrl: BLOG_HOME,
+    role: '대학교 행사',
+    blogUrl:
+      'https://blog.naver.com/ohnamsoo3822/223453017005',
   },
   {
     id: 't6',
     rating: 5,
     quote:
-      '바닷가 펜션에서 진행한 친구 모임. 해산물 조합이 신선했고 셰프님 친절하셨어요.',
+      '한국뉴욕주립대학교 행사로 매년 한라산 출장 바베큐를 부릅니다. 특별한 조리법과 부드러운 통삼겹 덕분에 만족도가 늘 높아요.',
     name: '고객6',
-    role: '친구 모임 · 8인',
-    blogUrl: BLOG_HOME,
+    role: '대학교 행사 (재이용)',
+    blogUrl:
+      'https://blog.naver.com/ohnamsoo3822/223409805235',
   },
   {
     id: 't7',
     rating: 5,
     quote:
-      '생일 파티 출장. 메뉴 구성도 풍성하고 사진 찍기 좋게 세팅해 주셔서 너무 만족스러웠습니다.',
+      '노동조합 이·취임식에 한라산 출장 바베큐를 모셨습니다. 통삼겹 바베큐를 모두 매우 맛있게 드셨고, 특별한 날이 더 의미 있어졌습니다.',
     name: '고객7',
-    role: '생일 파티 · 15인',
-    blogUrl: BLOG_HOME,
+    role: '노조 이·취임식',
+    blogUrl:
+      'https://blog.naver.com/ohnamsoo3822/223394048821',
   },
   {
     id: 't8',
     rating: 5,
     quote:
-      '결혼 기념일에 부모님 모시고 진행. 직화 향과 셰프님 응대 모두 최고였습니다.',
+      '정월대보름에 가족들과 함께 한라산 출장 바베큐를 즐겼습니다. 명절 분위기를 살려주는 통삼겹 바베큐 덕분에 새해 시작이 특별했어요.',
     name: '고객8',
-    role: '가족 모임 · 6인',
-    blogUrl: BLOG_HOME,
+    role: '가족 모임 · 명절',
+    blogUrl:
+      'https://blog.naver.com/ohnamsoo3822/223394041129',
   },
   {
     id: 't9',
     rating: 5,
     quote:
-      '회사 팀 회식. 식재료 신선도와 양 모두 만족스러웠고 정리도 깔끔했습니다.',
+      '회사 춘계 야유회에 한라산 출장 바베큐를 불렀습니다. 봄 날씨에 어울리는 통삼겹 바베큐로 야유회가 한층 풍성해졌습니다.',
     name: '고객9',
-    role: '기업 회식 · 18인',
-    blogUrl: BLOG_HOME,
+    role: '회사 야유회',
+    blogUrl:
+      'https://blog.naver.com/ohnamsoo3822/223246668360',
   },
   {
     id: 't10',
     rating: 5,
     quote:
-      '제주 출장 일정 중 바베큐. 일정 조율부터 음식까지 모든 면에서 추천할 만합니다.',
+      '한마음 체전 행사에 한라산 출장 바베큐와 함께했어요. 가을 날씨에 통삼겹 바베큐가 잘 어우러져 모두가 즐거운 시간이었습니다.',
     name: '고객10',
-    role: '기업 출장 · 20인',
-    blogUrl: BLOG_HOME,
+    role: '체육대회',
+    blogUrl:
+      'https://blog.naver.com/ohnamsoo3822/223241348779',
   },
 ];
