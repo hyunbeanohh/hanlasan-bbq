@@ -1,39 +1,34 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 import { TESTIMONIALS, type Testimonial } from '@/data/testimonials';
 import { prefersReducedMotion } from '@/lib/a11y/prefers-reduced-motion';
 
 export default function Testimonials() {
-  const [reduceMotion, setReduceMotion] = useState(false);
-
-  useEffect(() => {
-    setReduceMotion(prefersReducedMotion());
-  }, []);
-
-  const autoplayRef = useRef(
+  const [autoplay] = useState(() =>
     Autoplay({ delay: 5000, stopOnMouseEnter: true, stopOnInteraction: false }),
   );
 
-  const plugins = reduceMotion ? [] : [autoplayRef.current];
-
   const [emblaRef, emblaApi] = useEmblaCarousel(
     { loop: true, align: 'center', slidesToScroll: 1 },
-    plugins,
+    [autoplay],
   );
   const [selectedIndex, setSelectedIndex] = useState(0);
 
   useEffect(() => {
     if (!emblaApi) return;
+    if (prefersReducedMotion()) {
+      autoplay.stop();
+    }
     const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
     emblaApi.on('select', onSelect);
     onSelect();
     return () => {
       emblaApi.off('select', onSelect);
     };
-  }, [emblaApi]);
+  }, [emblaApi, autoplay]);
 
   const scrollPrev = useCallback(() => emblaApi?.scrollPrev(), [emblaApi]);
   const scrollNext = useCallback(() => emblaApi?.scrollNext(), [emblaApi]);
