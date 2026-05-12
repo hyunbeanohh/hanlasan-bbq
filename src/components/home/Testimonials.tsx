@@ -2,9 +2,65 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
+import type { UseEmblaCarouselType } from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
+
+type EmblaApi = NonNullable<UseEmblaCarouselType[1]>;
 import { TESTIMONIALS, type Testimonial } from '@/data/testimonials';
 import { prefersReducedMotion } from '@/lib/a11y/prefers-reduced-motion';
+
+const TWEEN_FACTOR = 0.6;
+const MIN_SCALE = 0.88;
+const MIN_OPACITY = 0.45;
+
+function clamp(n: number, min: number, max: number) {
+  return Math.min(Math.max(n, min), max);
+}
+
+// Continuously update each slide's scale + opacity based on distance from the
+// current scroll position. Uses embla's documented "tween" pattern so the
+// effect tracks the scroll animation — including across the loop wrap point
+// (last → first), where state-driven updates would otherwise snap abruptly.
+function applyTween(emblaApi: EmblaApi) {
+  type LoopPoint = { index: number; target: () => number };
+  const engine = emblaApi.internalEngine() as unknown as {
+    options: { loop: boolean };
+    slideRegistry: number[][];
+    slideLooper: { loopPoints: LoopPoint[] };
+  };
+  const scrollProgress = emblaApi.scrollProgress();
+  const slideNodes = emblaApi.slideNodes();
+
+  emblaApi.scrollSnapList().forEach((scrollSnap, snapIndex) => {
+    let diffToTarget = scrollSnap - scrollProgress;
+    const slidesInSnap = engine.slideRegistry[snapIndex];
+    if (!slidesInSnap) return;
+
+    slidesInSnap.forEach((slideIndex) => {
+      if (engine.options.loop) {
+        engine.slideLooper.loopPoints.forEach((loopItem) => {
+          const target = loopItem.target();
+          if (slideIndex === loopItem.index && target !== 0) {
+            const sign = Math.sign(target);
+            if (sign === -1)
+              diffToTarget = scrollSnap - (1 + scrollProgress);
+            if (sign === 1)
+              diffToTarget = scrollSnap + (1 - scrollProgress);
+          }
+        });
+      }
+
+      const tweenValue = 1 - Math.abs(diffToTarget * TWEEN_FACTOR);
+      const scale = clamp(tweenValue, MIN_SCALE, 1);
+      const opacity = clamp(tweenValue, MIN_OPACITY, 1);
+      const slide = slideNodes[slideIndex];
+      if (slide) {
+        slide.style.transform = `scale(${scale})`;
+        slide.style.opacity = `${opacity}`;
+      }
+    });
+  });
+}
 
 export default function Testimonials() {
   const [autoplay] = useState(() =>
@@ -12,7 +68,7 @@ export default function Testimonials() {
   );
 
   const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true, align: 'center', slidesToScroll: 1 },
+    { loop: true, align: 'center', slidesToScroll: 1, containScroll: false },
     [autoplay],
   );
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -23,10 +79,29 @@ export default function Testimonials() {
       autoplay.stop();
     }
     const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
-    emblaApi.on('select', onSelect);
+    const onScrollOrReInit = () => {
+      try {
+        applyTween(emblaApi);
+      } catch {
+        // Some test environments (jsdom) lack the layout APIs the tween
+        // pattern relies on. Silently ignore — the slides remain unstyled
+        // but still render and respond to navigation.
+      }
+    };
+
     onSelect();
+    onScrollOrReInit();
+
+    emblaApi.on('select', onSelect);
+    emblaApi.on('scroll', onScrollOrReInit);
+    emblaApi.on('reInit', onScrollOrReInit);
+    emblaApi.on('slideFocus', onScrollOrReInit);
+
     return () => {
       emblaApi.off('select', onSelect);
+      emblaApi.off('scroll', onScrollOrReInit);
+      emblaApi.off('reInit', onScrollOrReInit);
+      emblaApi.off('slideFocus', onScrollOrReInit);
     };
   }, [emblaApi, autoplay]);
 
@@ -54,11 +129,8 @@ export default function Testimonials() {
               {TESTIMONIALS.map((t, i) => (
                 <div
                   key={t.id}
-                  className="shrink-0 grow-0 basis-[88%] md:basis-[44%] px-2 md:px-3 transition-[transform,opacity] duration-300"
-                  style={{
-                    transform: i === selectedIndex ? 'scale(1)' : 'scale(0.88)',
-                    opacity: i === selectedIndex ? 1 : 0.45,
-                  }}
+                  className="shrink-0 grow-0 basis-[88%] md:basis-[44%] px-2 md:px-3"
+                  style={{ transformOrigin: 'center center' }}
                 >
                   <TestimonialCard
                     t={t}
@@ -74,7 +146,7 @@ export default function Testimonials() {
             type="button"
             onClick={scrollPrev}
             aria-label="이전 후기"
-            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-10 h-10 rounded-full bg-surface border border-border items-center justify-center text-fg-muted hover:text-fg hover:border-fg-muted transition"
+            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-10 h-10 rounded-full bg-surface border border-border items-center justify-center text-fg-muted hover:text-fg hover:border-fg-muted transition z-10"
           >
             ‹
           </button>
@@ -82,7 +154,7 @@ export default function Testimonials() {
             type="button"
             onClick={scrollNext}
             aria-label="다음 후기"
-            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 w-10 h-10 rounded-full bg-surface border border-border items-center justify-center text-fg-muted hover:text-fg hover:border-fg-muted transition"
+            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 w-10 h-10 rounded-full bg-surface border border-border items-center justify-center text-fg-muted hover:text-fg hover:border-fg-muted transition z-10"
           >
             ›
           </button>
