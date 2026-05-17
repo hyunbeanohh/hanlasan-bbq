@@ -5,6 +5,8 @@ import { trackNaverEvent } from '@/lib/analytics/naver';
 import { getUtm } from '@/lib/analytics/utm';
 
 export default function MobileCTABar() {
+  const hasKakao = Boolean(CONTACT.kakaoChannelUrl);
+
   return (
     <nav
       aria-label="빠른 연락"
@@ -34,6 +36,34 @@ export default function MobileCTABar() {
         </svg>
         <span className="text-xs font-medium">전화</span>
       </a>
+
+      {hasKakao && (
+        <>
+          <div className="w-px bg-border self-stretch my-2" aria-hidden="true" />
+
+          {/* 카카오톡 */}
+          <a
+            href={CONTACT.kakaoChannelUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="카카오톡 1:1 문의"
+            onClick={() => trackNaverEvent({ event: 'kakao_click', ...getUtm() })}
+            className="flex-1 flex flex-col items-center justify-center py-3 gap-0.5 text-fg-soft hover:bg-surface-3 transition-colors"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M12 3C6.48 3 2 6.58 2 11c0 2.78 1.78 5.23 4.47 6.67-.2.71-.74 2.62-.85 3.03 0 0-.01.11.06.15.07.04.16.01.16.01.22-.03 2.46-1.61 3.43-2.31.9.13 1.81.2 2.73.2 5.52 0 10-3.58 10-8s-4.48-8-10-8z" />
+            </svg>
+            <span className="text-xs font-medium">카톡</span>
+          </a>
+        </>
+      )}
 
       {/* Divider */}
       <div className="w-px bg-border self-stretch my-2" aria-hidden="true" />
