@@ -53,6 +53,7 @@ export default function GalleryPreview({ posts = [] }: GalleryPreviewProps) {
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                     unoptimized
+                    referrerPolicy="no-referrer"
                   />
                 ) : (
                   <div className="absolute inset-0 bg-gradient-to-br from-warm-200 via-warm-100 to-warm-50 flex items-center justify-center">

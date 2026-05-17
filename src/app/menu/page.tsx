@@ -7,7 +7,7 @@ import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
 export const metadata: Metadata = pageMetadata({
   title: '메뉴소개',
   description:
-    '한라산출장바베큐 메뉴 안내. 시그니처 코스, 한우, 제주 흑돼지, 사이드까지 — 제주 직거래 식재료로 만드는 프리미엄 출장 바베큐 메뉴.',
+    '한라산출장바베큐 메뉴 안내. 시그니처 코스, 한우, 흑돼지, 해물, 사이드까지 — 참나무 숯불 훈연으로 완성하는 프리미엄 출장 바베큐 메뉴.',
   path: '/menu',
 });
 

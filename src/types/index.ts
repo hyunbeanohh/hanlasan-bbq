@@ -5,6 +5,12 @@ export type ServiceFeature = {
   description: string;
 };
 
+export type PricingTier = {
+  range: string;
+  price: string;
+  contents?: string;
+};
+
 export type MenuItem = {
   id: string;
   categoryId: 'signature';
@@ -12,6 +18,8 @@ export type MenuItem = {
   priceText: string;
   description: string;
   imageSrc: string;
+  pricingTiers?: PricingTier[];
+  consultationOnly?: boolean;
 };
 
 export type GalleryPost = {

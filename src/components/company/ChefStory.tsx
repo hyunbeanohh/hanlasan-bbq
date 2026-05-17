@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { CHEF, STORY } from '@/data/company';
 
 export default function ChefStory() {
@@ -16,22 +17,22 @@ export default function ChefStory() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
-          {/* Chef image placeholder */}
-          <div className="relative aspect-[3/4] max-w-sm mx-auto lg:mx-0 w-full rounded-2xl overflow-hidden bg-surface border border-border flex flex-col items-center justify-center gap-4">
-            <div
-              className="w-24 h-24 rounded-full flex items-center justify-center text-4xl"
-              style={{ background: 'linear-gradient(135deg, #ea580c, #c2410c)' }}
-              aria-hidden="true"
-            >
-              👨‍🍳
-            </div>
-            <p className="text-fg-muted text-sm font-medium">셰프 사진 준비중</p>
+          {/* Chef portrait */}
+          <div className="relative aspect-[3/4] max-w-sm mx-auto lg:mx-0 w-full rounded-2xl overflow-hidden bg-surface border border-border">
+            <Image
+              src={CHEF.imageSrc}
+              alt={`${CHEF.name} - ${CHEF.role}`}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 90vw, 384px"
+              priority
+            />
           </div>
 
           {/* Story text */}
           <div>
             <p className="text-brand font-semibold text-sm uppercase tracking-widest mb-4">
-              총괄 셰프 · 대표
+              대표 인사말
             </p>
             <h3 className="text-2xl md:text-3xl font-bold text-fg mb-2">
               {CHEF.name}

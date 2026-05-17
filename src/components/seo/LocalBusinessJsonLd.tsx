@@ -20,13 +20,15 @@ export default function LocalBusinessJsonLd() {
     address: {
       '@type': 'PostalAddress',
       addressCountry: 'KR',
-      addressRegion: '제주특별자치도',
+      addressRegion: '경기도',
       streetAddress: CONTACT.address,
     },
     areaServed: [
-      { '@type': 'AdministrativeArea', name: '제주특별자치도' },
-      { '@type': 'City', name: '제주시' },
-      { '@type': 'City', name: '서귀포시' },
+      { '@type': 'Country', name: '대한민국' },
+      { '@type': 'AdministrativeArea', name: '수도권' },
+      { '@type': 'City', name: '군포시' },
+      { '@type': 'City', name: '안양시' },
+      { '@type': 'City', name: '서울특별시' },
     ],
     openingHoursSpecification: [
       {

@@ -9,9 +9,9 @@ import ReservationBanner from '@/components/home/ReservationBanner';
 export const revalidate = 3600;
 
 export const metadata: Metadata = pageMetadata({
-  title: '제주 출장바베큐 케이터링',
+  title: '전국 출장바베큐 케이터링',
   description:
-    '제주 직거래 식재료, 셰프 직출장, 한라산출장바베큐. 기업·가족·동호회 어디든 찾아가는 프리미엄 직화구이 출장 케이터링 서비스.',
+    '정직한 직화로 함께하는 한라산출장바베큐. 전국 어디든 대표가 직접 찾아가는 프리미엄 직화구이 출장 케이터링. 기업·가족·동호회 모임까지 한 자리로.',
   path: '/',
 });
 

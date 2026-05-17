@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo/metadata';
 import CompanyHero from '@/components/company/CompanyHero';
 import ChefStory from '@/components/company/ChefStory';
-import ChefTeam from '@/components/company/ChefTeam';
 import Differentiators from '@/components/company/Differentiators';
 import ProcessSteps from '@/components/company/ProcessSteps';
 import CallButton from '@/components/cta/CallButton';
@@ -12,7 +11,7 @@ import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
 export const metadata: Metadata = pageMetadata({
   title: '회사소개',
   description:
-    '한라산출장바베큐 회사소개. 제주 출신 셰프의 12년 노하우, 직거래 식재료, 셰프 직출장으로 완성하는 프리미엄 출장 바베큐 케이터링.',
+    '한라산출장바베큐 회사소개. 한 길을 걸어온 30년 외길의 집중력과 정직한 직화로 완성하는 출장 바베큐 케이터링. 대표가 직접 현장에 찾아갑니다.',
   path: '/company',
 });
 
@@ -22,7 +21,6 @@ export default function CompanyPage() {
       <BreadcrumbJsonLd items={[{ name: '홈', path: '/' }, { name: '회사소개', path: '/company' }]} />
       <CompanyHero />
       <ChefStory />
-      <ChefTeam />
       <Differentiators />
       <ProcessSteps />
 

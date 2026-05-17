@@ -35,7 +35,7 @@ export default function Hero() {
             href="/inquiry/new"
             className="inline-flex items-center justify-center bg-brand text-white font-bold text-base px-8 py-4 rounded-full hover:bg-brand-hover active:bg-brand-hover transition-colors shadow-xl"
           >
-            상담 신청하기
+            예약 문의
           </Link>
         </div>
       </div>

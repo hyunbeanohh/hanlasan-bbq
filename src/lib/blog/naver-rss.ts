@@ -1,4 +1,5 @@
 import { extractThumbnail, summarize } from './parser';
+import { SITE } from '@/lib/constants';
 import type { GalleryPost } from './types';
 
 const ITEM_RE = /<item>([\s\S]*?)<\/item>/g;
@@ -48,11 +49,19 @@ export function parseNaverRss(xml: string, blogId: string): GalleryPost[] {
 
 export async function fetchNaverBlogRss(blogId: string): Promise<GalleryPost[]> {
   const url = `https://rss.blog.naver.com/${blogId}.xml`;
-  const res = await fetch(url, {
-    next: { revalidate: 3600 },
-    headers: { 'user-agent': 'hallasan-bbq-site/1.0 (+https://한라산출장바베큐.kr)' },
-  } as RequestInit);
-  if (!res.ok) return [];
-  const xml = await res.text();
-  return parseNaverRss(xml, blogId);
+  try {
+    const res = await fetch(url, {
+      next: { revalidate: 3600 },
+      headers: { 'user-agent': `hallasan-bbq-site/1.0 (+https://${SITE.canonicalHost})` },
+    } as RequestInit);
+    if (!res.ok) {
+      console.error(`[naver-rss] fetch failed: ${res.status} ${url}`);
+      return [];
+    }
+    const xml = await res.text();
+    return parseNaverRss(xml, blogId);
+  } catch (err) {
+    console.error('[naver-rss] fetch threw:', err);
+    return [];
+  }
 }

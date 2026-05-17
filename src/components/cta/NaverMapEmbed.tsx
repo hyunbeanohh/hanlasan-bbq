@@ -5,7 +5,7 @@ type Props = {
 };
 
 export default function NaverMapEmbed({
-  query = '제주특별자치도',
+  query = '한라산출장바베큐',
   height = 360,
   className,
 }: Props) {

@@ -11,6 +11,7 @@ const config: NextConfig = {
       { protocol: 'https', hostname: 'blogfiles.naver.net' },
       { protocol: 'https', hostname: 'mblogthumb-phinf.pstatic.net' },
       { protocol: 'https', hostname: 'blogpfthumb-phinf.pstatic.net' },
+      { protocol: 'https', hostname: 'blogthumb.pstatic.net' },
       { protocol: 'https', hostname: 'images.unsplash.com' },
     ],
   },

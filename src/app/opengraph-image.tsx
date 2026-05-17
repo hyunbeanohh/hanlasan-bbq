@@ -1,7 +1,7 @@
 import { ImageResponse } from 'next/og';
 
 export const runtime = 'edge';
-export const alt = '한라산출장바베큐 — 제주 출장 바베큐 케이터링';
+export const alt = '한라산출장바베큐 — 전국 출장 바베큐 케이터링';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -29,7 +29,7 @@ export default async function OpengraphImage() {
             한라산출장바베큐
           </div>
           <div style={{ fontSize: 36, color: '#e8e3d8' }}>
-            제주 출장 바베큐 케이터링 · 직화구이 셰프 출장
+            전국 출장 바베큐 케이터링 · 정직한 직화구이
           </div>
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', fontSize: 28, color: '#bdb6a6' }}>

@@ -22,7 +22,7 @@ export default function CompanyHero() {
           회사 소개
         </h1>
         <p className="text-fg-soft text-lg md:text-xl max-w-xl mx-auto">
-          정성, 전통, 프리미엄의 만남
+          정직한 직화, 한결같은 품질
         </p>
       </div>
     </section>

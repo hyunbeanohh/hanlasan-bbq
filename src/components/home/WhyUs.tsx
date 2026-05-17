@@ -2,7 +2,7 @@ const FEATURES = [
   {
     id: 'fresh',
     title: '신선한 재료',
-    description: '매일 새벽 제주 직거래로 받은 식재료, 맛의 차이는 신선함에서 시작됩니다.',
+    description: '엄선한 식재료를 매일 새벽 직접 손질합니다. 맛의 차이는 신선함과 정직한 손길에서 시작됩니다.',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -24,7 +24,7 @@ const FEATURES = [
   {
     id: 'chef',
     title: '전문 셰프',
-    description: '12년 경력의 전문 셰프가 직접 출장하여 현장에서 직화로 구워드립니다.',
+    description: '30년 외길의 집중력으로 단련된 대표가 직접 출장하여 현장에서 직화로 구워드립니다.',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +46,7 @@ const FEATURES = [
   {
     id: 'nationwide',
     title: '전국 출장',
-    description: '제주 전역 어디든 출장합니다. 단체 행사·기업 워크샵·가족 모임 모두 가능합니다.',
+    description: '전국 어디든 출장합니다. 단체 행사·기업 워크샵·가족 모임 모두 가능합니다.',
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

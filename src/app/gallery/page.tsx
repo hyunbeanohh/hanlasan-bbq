@@ -14,8 +14,6 @@ export const metadata: Metadata = pageMetadata({
   path: '/gallery',
 });
 
-const FILTER_CHIPS = ['전체', '기업행사', '가족모임', '결혼·돌잔치'];
-
 export default async function GalleryPage() {
   const posts = await fetchNaverBlogRss(NAVER.blogId).catch(() => []);
 
@@ -41,23 +39,6 @@ export default async function GalleryPage() {
       {/* Gallery section */}
       <section className="py-16 md:py-20 bg-bg">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          {/* Category filter chips — visual only; "전체" active */}
-          <div className="flex flex-wrap gap-2 mb-10" aria-label="카테고리 필터">
-            {FILTER_CHIPS.map((chip) => (
-              <span
-                key={chip}
-                className={[
-                  'px-4 py-2 rounded-full text-sm font-semibold',
-                  chip === '전체'
-                    ? 'bg-brand text-white'
-                    : 'bg-surface text-fg-soft border border-border',
-                ].join(' ')}
-              >
-                {chip}
-              </span>
-            ))}
-          </div>
-
           {posts.length === 0 ? (
             <div className="text-center py-24 text-fg-muted">
               <p className="text-4xl mb-4" aria-hidden="true">📷</p>

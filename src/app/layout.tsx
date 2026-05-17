@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
-  keywords: ['출장바베큐', '제주출장바베큐', '한라산출장바베큐', '제주 케이터링', '제주 바베큐 출장', '기업 케이터링', '단체 회식 출장'],
+  keywords: ['출장바베큐', '전국 출장바베큐', '한라산출장바베큐', '프리미엄 출장바베큐', '기업 케이터링', '단체 회식 출장', '수도권 출장바베큐', '경기 출장바베큐', '안양 출장바베큐', '군포 출장바베큐'],
   verification: {
     ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && {
       google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
