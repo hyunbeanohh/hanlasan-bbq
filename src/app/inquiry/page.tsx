@@ -16,7 +16,7 @@ export default async function InquiryListPage({
   const { page: pageParam } = await searchParams;
   const page = Math.max(1, Number(pageParam ?? '1') || 1);
   const repo = new InquiryRepository(getDB());
-  const { items, total } = await repo.listPaginated(page, PER_PAGE);
+  const { items, total } = await repo.listPublicPaginated(page, PER_PAGE);
 
   // 부모 글에만 번호 매김. 페이지 첫 부모 = total - (page-1)*PER_PAGE
   let runningParentIndex = 0;
