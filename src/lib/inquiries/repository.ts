@@ -143,6 +143,48 @@ export class InquiryRepository {
     return { items, total };
   }
 
+  async listPublicPaginated(
+    page: number,
+    perPage: number,
+  ): Promise<{ items: Inquiry[]; total: number }> {
+    const offset = (page - 1) * perPage;
+    const totalRow = await this.db
+      .prepare(
+        `SELECT COUNT(*) as c FROM inquiries
+         WHERE parent_id IS NULL AND author_name != '[빠른 견적]'`,
+      )
+      .first<{ c: number }>();
+    const total = totalRow?.c ?? 0;
+
+    const parents = await this.db
+      .prepare(
+        `SELECT * FROM inquiries
+         WHERE parent_id IS NULL AND author_name != '[빠른 견적]'
+         ORDER BY created_at DESC LIMIT ? OFFSET ?`,
+      )
+      .bind(perPage, offset)
+      .all<InquiryRow>();
+    const parentList = (parents.results ?? []).map(rowToInquiry);
+    if (parentList.length === 0) return { items: [], total };
+
+    const ids = parentList.map((p) => p.id);
+    const placeholders = ids.map(() => '?').join(',');
+    const replies = await this.db
+      .prepare(
+        `SELECT * FROM inquiries WHERE parent_id IN (${placeholders}) ORDER BY created_at ASC`,
+      )
+      .bind(...ids)
+      .all<InquiryRow>();
+    const replyList = (replies.results ?? []).map(rowToInquiry);
+
+    const items: Inquiry[] = [];
+    for (const parent of parentList) {
+      items.push(parent);
+      for (const r of replyList) if (r.parentId === parent.id) items.push(r);
+    }
+    return { items, total };
+  }
+
   async update(id: number, fields: { title: string; content: string }): Promise<void> {
     await this.db
       .prepare(

@@ -66,3 +66,32 @@ describe('InquiryRepository.createQuickQuote', () => {
     expect(row.is_admin).toBe(0);
   });
 });
+
+describe('InquiryRepository.listPublicPaginated', () => {
+  it('SQL excludes rows whose author_name equals "[빠른 견적]"', async () => {
+    let countSql = '';
+    let listSql = '';
+    const db = {
+      prepare(sql: string) {
+        if (sql.includes('COUNT')) countSql = sql;
+        else if (sql.includes('SELECT *') && sql.includes('parent_id IS NULL')) listSql = sql;
+        const result = {
+          async first() {
+            return { c: 0 };
+          },
+          async all() {
+            return { results: [] };
+          },
+          bind() {
+            return result;
+          },
+        };
+        return result;
+      },
+    };
+    const repo = new InquiryRepository(db as unknown as D1Database);
+    await repo.listPublicPaginated(1, 10);
+    expect(countSql).toContain("author_name != '[빠른 견적]'");
+    expect(listSql).toContain("author_name != '[빠른 견적]'");
+  });
+});
