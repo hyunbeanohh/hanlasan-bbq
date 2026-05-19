@@ -5,6 +5,7 @@ import { useFormStatus } from 'react-dom';
 import TurnstileWidget from '@/components/inquiry/TurnstileWidget';
 import { trackNaverEvent } from '@/lib/analytics/naver';
 import { getUtm } from '@/lib/analytics/utm';
+import DatePickerField from './DatePickerField';
 import {
   createQuickQuoteAction,
   type QuickQuoteFormState,
@@ -83,10 +84,9 @@ export default function QuickQuoteForm({ siteKey }: Props) {
           error={state.fieldErrors?.headcount}
           required
         />
-        <Field
+        <DatePickerField
           label="희망 날짜"
           name="eventDate"
-          type="date"
           error={state.fieldErrors?.eventDate}
           required
         />
