@@ -22,6 +22,13 @@ export interface CreateReplyParams {
   content: string;
 }
 
+export interface CreateQuickQuoteParams {
+  phoneEnc: string;
+  emailEnc: string;
+  title: string;
+  content: string;
+}
+
 export class InquiryRepository {
   constructor(private db: D1Database) {}
 
@@ -48,6 +55,23 @@ export class InquiryRepository {
         p.isSecret ? 1 : 0,
         expiresAt,
       )
+      .run();
+    return result.meta.last_row_id as number;
+  }
+
+  async createQuickQuote(p: CreateQuickQuoteParams): Promise<number> {
+    const expiresAt = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000)
+      .toISOString()
+      .replace('T', ' ')
+      .slice(0, 19);
+    const result = await this.db
+      .prepare(
+        `INSERT INTO inquiries
+         (parent_id, is_admin, author_name, password_hash, password_salt,
+          phone_enc, email_enc, title, content, is_secret, expires_at)
+         VALUES (NULL, 0, ?, NULL, NULL, ?, ?, ?, ?, 1, ?)`,
+      )
+      .bind('[빠른 견적]', p.phoneEnc, p.emailEnc, p.title, p.content, expiresAt)
       .run();
     return result.meta.last_row_id as number;
   }
