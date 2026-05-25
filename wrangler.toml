@@ -38,5 +38,5 @@ crons = ["0 18 * * *"]
 [vars]
 SITE_URL = "https://한라산출장바베큐.kr"
 NOTIFY_EMAILS = "ohnamsoo3822@naver.com,ohb4199@gmail.com"
-SENDER_EMAIL = "noreply@한라산출장바베큐.kr"
+SENDER_EMAIL = "한라산출장바베큐 <noreply@xn--oi2b40g9l97kpyk0jjr0ee5l.kr>"
 TURNSTILE_SITE_KEY = "0x4AAAAAADWExXMJeUjuUznJ"
