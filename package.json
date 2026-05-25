@@ -10,8 +10,8 @@
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",
     "format": "prettier --write .",
-    "preview": "opennextjs-cloudflare build && wrangler pages dev .open-next/dist",
-    "deploy": "opennextjs-cloudflare build && wrangler pages deploy .open-next/dist",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "db:generate": "wrangler d1 execute hanlasan-bbq --local --file=migrations/0001_init.sql",
     "db:generate:remote": "wrangler d1 execute hanlasan-bbq --remote --file=migrations/0001_init.sql",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv ./cloudflare-env.d.ts"
