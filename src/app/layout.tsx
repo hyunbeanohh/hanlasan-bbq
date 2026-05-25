@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     }),
     other: {
       ...(process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION && {
-        'naver-site-verification': process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION,
+        'naver-site-verification': process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION.split(',').map((v) => v.trim()).filter(Boolean),
       }),
     },
   },
