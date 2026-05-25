@@ -14,7 +14,23 @@ service = "hanlasan-bbq"
 [[d1_databases]]
 binding = "DB"
 database_name = "hanlasan-bbq"
-database_id = "00000000-0000-0000-0000-000000000000"  # local placeholder; replace with real id for prod (`wrangler d1 create hanlasan-bbq`)
+database_id = "3893e279-deda-493d-8c95-8c087dc3377b"
+
+[[routes]]
+pattern = "xn--oi2b40g9l97kpyk0jjr0ee5l.kr"
+custom_domain = true
+
+[[routes]]
+pattern = "www.xn--oi2b40g9l97kpyk0jjr0ee5l.kr"
+custom_domain = true
+
+[[routes]]
+pattern = "xn--9g3b2j55zr3f7ud.kr"
+custom_domain = true
+
+[[routes]]
+pattern = "www.xn--9g3b2j55zr3f7ud.kr"
+custom_domain = true
 
 [triggers]
 crons = ["0 18 * * *"]
@@ -23,4 +39,4 @@ crons = ["0 18 * * *"]
 SITE_URL = "https://한라산출장바베큐.kr"
 NOTIFY_EMAILS = "ohnamsoo3822@naver.com,ohb4199@gmail.com"
 SENDER_EMAIL = "noreply@한라산출장바베큐.kr"
-TURNSTILE_SITE_KEY = "1x00000000000000000000AA"  # Cloudflare test key (always passes); replace with real key for prod
+TURNSTILE_SITE_KEY = "0x4AAAAAADWExXMJeUjuUznJ"

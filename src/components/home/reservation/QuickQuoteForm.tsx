@@ -95,7 +95,7 @@ export default function QuickQuoteForm({ siteKey }: Props) {
       <Field
         label="출장 장소"
         name="location"
-        placeholder="예) 애월읍 곽지리"
+        placeholder="예) 서울 강남구 역삼동"
         error={state.fieldErrors?.location}
         required
       />
