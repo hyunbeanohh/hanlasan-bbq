@@ -9,7 +9,7 @@ export const MENU_ITEMS: MenuItem[] = [
     id: 'sig-tong-dwaeji',
     categoryId: 'signature',
     name: '통돼지바베큐',
-    priceText: '40인분 800,000원~',
+    priceText: '40인분 900,000원~',
     description: '엄선한 흑돼지를 통째로 직화에 구워 겉은 바삭, 속은 촉촉하게 즐기는 시그니처 메뉴입니다.',
     imageSrc: '/images/menu/tong-dwaeji.jpg',
     pricingTiers: [
