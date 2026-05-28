@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import HeroTitleTyping from './HeroTitleTyping';
 
 export default function Hero() {
   return (
@@ -22,10 +23,11 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-24 md:py-32 w-full">
         <div className="max-w-3xl mx-auto text-center">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 drop-shadow-lg">
-            최고의 맛, 완벽한 서비스.
-            <br />
-            프리미엄 출장 바베큐.
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6 drop-shadow-lg min-h-[2.5em]">
+            <span className="sr-only">최고의 맛, 완벽한 서비스. 프리미엄 출장 바베큐.</span>
+            <span aria-hidden="true">
+              <HeroTitleTyping />
+            </span>
           </h1>
           <p className="text-white/80 text-lg md:text-xl leading-relaxed mb-10 drop-shadow">
             당신의 특별한 행사를 위한 최고의 선택.
