@@ -11,7 +11,7 @@ export const MENU_ITEMS: MenuItem[] = [
     name: '통돼지바베큐',
     priceText: '1인 55,000원~',
     description: '엄선한 흑돼지를 통째로 직화에 구워 겉은 바삭, 속은 촉촉하게 즐기는 시그니처 메뉴입니다.',
-    imageSrc: 'https://images.unsplash.com/photo-1722290171775-3e417486279f?w=800&q=80&fm=jpg',
+    imageSrc: '/images/menu/tong-dwaeji.jpg',
     pricingTiers: [
       { range: '40 ~ 50인분', price: '800,000원' },
       { range: '50 ~ 60인분', price: '900,000원' },
