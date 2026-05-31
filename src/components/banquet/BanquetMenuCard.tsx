@@ -8,7 +8,7 @@ interface BanquetMenuCardProps {
 
 export default function BanquetMenuCard({ item, preload = false }: BanquetMenuCardProps) {
   return (
-    <article className="relative aspect-square overflow-hidden rounded-2xl bg-surface-3 border border-border">
+    <article className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-surface-3 border border-border">
       {item.imageSrc ? (
         <Image
           src={item.imageSrc}
