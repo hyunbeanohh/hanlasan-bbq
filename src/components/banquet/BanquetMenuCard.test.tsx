@@ -20,13 +20,6 @@ const withoutImage: BanquetMenuItem = {
 };
 
 describe('BanquetMenuCard', () => {
-  it('renders name, portion, and price', () => {
-    render(<BanquetMenuCard item={withImage} />);
-    expect(screen.getByText('잡채')).toBeInTheDocument();
-    expect(screen.getByText('8인분 (1Kg)')).toBeInTheDocument();
-    expect(screen.getByText('25,000원')).toBeInTheDocument();
-  });
-
   it('renders the photo when imageSrc is provided', () => {
     render(<BanquetMenuCard item={withImage} />);
     const img = screen.getByAltText('잡채');

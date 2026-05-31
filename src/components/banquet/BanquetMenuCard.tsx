@@ -24,16 +24,6 @@ export default function BanquetMenuCard({ item, preload = false }: BanquetMenuCa
           <p className="text-fg-muted text-xs">사진 준비중</p>
         </div>
       )}
-
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/50 to-transparent p-3 md:p-4">
-        <p className="text-white text-sm md:text-base font-semibold leading-snug">
-          {item.name}
-          <span className="text-white/80 ml-1.5 text-xs md:text-sm font-normal">{item.portion}</span>
-        </p>
-        <p className="text-brand text-sm md:text-base font-bold tabular-nums leading-snug mt-0.5">
-          {item.price}
-        </p>
-      </div>
     </article>
   );
 }
