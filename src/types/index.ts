@@ -43,3 +43,11 @@ export type Differentiator = {
   title: string;
   description: string;
 };
+
+export type BanquetMenuItem = {
+  id: string;
+  name: string;
+  portion: string;
+  price: string;
+  imageSrc?: string;
+};

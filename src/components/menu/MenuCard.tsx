@@ -5,6 +5,7 @@ import { CONTACT } from '@/lib/constants';
 
 interface MenuCardProps {
   item: MenuItem;
+  preload?: boolean;
 }
 
 function PricingTable({ tiers }: { tiers: PricingTier[] }) {
@@ -39,21 +40,23 @@ function PricingTable({ tiers }: { tiers: PricingTier[] }) {
   );
 }
 
-export default function MenuCard({ item }: MenuCardProps) {
+export default function MenuCard({ item, preload = false }: MenuCardProps) {
   const hasPhoto = Boolean(item.imageSrc);
   const hasTiers = Boolean(item.pricingTiers && item.pricingTiers.length > 0);
 
   return (
-    <article className="rounded-2xl overflow-hidden bg-surface border border-border hover:border-border-strong transition-colors flex flex-col md:flex-row">
+    <article className="rounded-2xl overflow-hidden bg-surface border border-border hover:border-border-strong transition-colors flex flex-col">
       {/* Photo */}
-      <div className="md:w-52 lg:w-64 aspect-[4/3] md:aspect-auto relative shrink-0 bg-surface-3">
+      <div className="aspect-[16/9] relative bg-surface-3">
         {hasPhoto ? (
           <Image
             src={item.imageSrc}
             alt={item.name}
             fill
             className="object-cover"
-            sizes="(max-width: 768px) 100vw, 256px"
+            sizes="(max-width: 896px) 100vw, 896px"
+            preload={preload}
+            fetchPriority={preload ? 'high' : undefined}
           />
         ) : (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-surface-3">

@@ -9,8 +9,8 @@ export default function MenuCategoryTabs() {
       </h2>
 
       <div className="flex flex-col gap-6">
-        {MENU_ITEMS.map((item) => (
-          <MenuCard key={item.id} item={item} />
+        {MENU_ITEMS.map((item, index) => (
+          <MenuCard key={item.id} item={item} preload={index === 0} />
         ))}
       </div>
     </div>

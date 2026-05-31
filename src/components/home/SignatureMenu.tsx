@@ -5,7 +5,7 @@ const SIGNATURE_ITEMS = [
     id: 'tong-dwaeji',
     name: '통돼지바베큐',
     description: '돼지를 통째로 참나무 숯불에 직화로 구워 겉은 바삭, 속은 촉촉하게 즐기는 시그니처 메뉴입니다.',
-    imageSrc: 'https://images.unsplash.com/photo-1722290171775-3e417486279f?w=800&q=80&fm=jpg',
+    imageSrc: '/images/menu/tong-dwaeji.jpg',
   },
   {
     id: 'tongsamgyeop',
