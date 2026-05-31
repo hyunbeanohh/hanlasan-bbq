@@ -40,7 +40,12 @@ export default function Footer() {
                 </li>
                 <li>
                   <Link href="/menu" className="hover:text-brand transition-colors">
-                    메뉴소개
+                    출장 바베큐 메뉴
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/banquet" className="hover:text-brand transition-colors">
+                    잔치 메뉴
                   </Link>
                 </li>
                 <li>
@@ -57,7 +62,12 @@ export default function Footer() {
               <ul className="space-y-2">
                 <li>
                   <Link href="/menu" className="hover:text-brand transition-colors">
-                    메뉴소개
+                    출장 바베큐 메뉴
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/banquet" className="hover:text-brand transition-colors">
+                    잔치 메뉴
                   </Link>
                 </li>
                 <li>

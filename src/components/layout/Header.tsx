@@ -9,7 +9,8 @@ import { getUtm } from '@/lib/analytics/utm';
 
 const NAV_LINKS = [
   { href: '/company', label: '회사소개' },
-  { href: '/menu', label: '메뉴소개' },
+  { href: '/menu', label: '출장 바베큐 메뉴' },
+  { href: '/banquet', label: '잔치 메뉴' },
   { href: '/gallery', label: '행사갤러리' },
   { href: '/inquiry', label: '예약 문의' },
 ];
