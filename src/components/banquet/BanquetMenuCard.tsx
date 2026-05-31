@@ -14,7 +14,7 @@ export default function BanquetMenuCard({ item, preload = false }: BanquetMenuCa
           src={item.imageSrc}
           alt={item.name}
           fill
-          className="object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+          className="object-contain transition-transform duration-300 group-hover:scale-[1.03]"
           sizes="(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 384px"
           fetchPriority={preload ? 'high' : undefined}
         />
