@@ -8,13 +8,13 @@ interface BanquetMenuCardProps {
 
 export default function BanquetMenuCard({ item, preload = false }: BanquetMenuCardProps) {
   return (
-    <article className="group relative aspect-square overflow-hidden rounded-2xl bg-surface-3 border border-border">
+    <article className="relative aspect-square overflow-hidden rounded-2xl bg-surface-3 border border-border">
       {item.imageSrc ? (
         <Image
           src={item.imageSrc}
           alt={item.name}
           fill
-          className="object-contain transition-transform duration-300 group-hover:scale-[1.03]"
+          className="object-cover"
           sizes="(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 384px"
           fetchPriority={preload ? 'high' : undefined}
         />
