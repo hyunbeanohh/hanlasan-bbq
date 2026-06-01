@@ -1,27 +1,33 @@
-import TrustChips from './reservation/TrustChips';
-import QuickQuoteForm from './reservation/QuickQuoteForm';
-import ContactChannels from './reservation/ContactChannels';
+'use client';
+
+import { CONTACT } from '@/lib/constants';
+import { trackNaverEvent } from '@/lib/analytics/naver';
+import { getUtm } from '@/lib/analytics/utm';
 
 export default function ReservationBanner() {
-  const siteKey = process.env.TURNSTILE_SITE_KEY ?? '';
-
   return (
-    <section id="contact" className="relative py-20 md:py-24 bg-brand/90 backdrop-blur-sm">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <TrustChips />
-
-        <h2 className="text-3xl md:text-4xl font-bold text-white text-left md:text-center leading-tight mb-3">
-          1분이면 견적 도착
-        </h2>
-        <p className="text-white/85 text-base md:text-lg text-left md:text-center max-w-xl md:mx-auto mb-8 md:mb-10 leading-relaxed">
-          인원·날짜·장소만 알려주시면 맞춤 메뉴와 가격을 빠르게 보내드려요.
-          <span className="hidden md:inline"> 상담은 무료, 견적 후 부담 없이 결정하세요.</span>
+    <section id="contact" className="relative py-16 md:py-20 bg-brand">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center text-white">
+        <p className="text-xs font-bold tracking-widest opacity-70">
+          — 폼 입력이 어렵다면 —
         </p>
-
-        <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-4 lg:gap-5 items-start">
-          <QuickQuoteForm siteKey={siteKey} />
-          <ContactChannels />
-        </div>
+        <h2 className="text-2xl md:text-3xl font-bold mt-2 mb-2">
+          바로 통화로 견적 받기
+        </h2>
+        <p className="opacity-85 mb-6">
+          평일 10분 내 회신 · 통화 즉시 견적
+        </p>
+        <a
+          href={CONTACT.phoneTel}
+          onClick={() =>
+            trackNaverEvent({ event: 'phone_click', source: 'bottom_cta', ...getUtm() })
+          }
+          className="inline-flex items-center gap-2 bg-white text-brand font-bold text-lg px-6 py-3 rounded-lg hover:brightness-95 transition"
+          aria-label={`전화 ${CONTACT.phone}`}
+        >
+          <span aria-hidden="true">📞</span>
+          <span>{CONTACT.phone}</span>
+        </a>
       </div>
     </section>
   );
