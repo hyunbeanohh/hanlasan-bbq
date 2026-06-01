@@ -171,7 +171,7 @@ function Field({
         inputMode={inputMode}
         min={min}
         max={max}
-        className="w-full bg-neutral-50 border border-neutral-200 rounded-md h-10 px-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-brand"
+        className="w-full bg-neutral-50 border border-neutral-200 rounded-md h-10 px-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-brand [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-outer-spin-button]:m-0"
       />
       {error && <p className="text-red-600 text-[11px] mt-1">{error[0]}</p>}
     </div>
