@@ -119,7 +119,9 @@ export default function Footer() {
                     {CONTACT.email}
                   </a>
                 </li>
+                {/* 카카오톡 상담 임시 숨김 — 재오픈 시 아래 li 주석 해제
                 <li className="text-fg-muted">카카오톡 상담 (준비중)</li>
+                */}
               </ul>
             </div>
 
@@ -140,7 +142,7 @@ export default function Footer() {
         </div>
       </footer>
 
-      {/* Kakao floating button */}
+      {/* Kakao floating button — 임시 숨김. 재오픈 시 아래 블록 주석 해제
       <div className="fixed bottom-20 right-4 z-40 md:bottom-6">
         <span
           className="inline-flex items-center gap-1.5 bg-[#fee500] text-[#3a1d1d] text-xs font-bold px-4 py-2.5 rounded-full shadow-lg cursor-default select-none"
@@ -160,6 +162,7 @@ export default function Footer() {
           카카오톡 상담
         </span>
       </div>
+      */}
     </>
   );
 }
