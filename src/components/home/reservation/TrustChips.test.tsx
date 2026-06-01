@@ -7,7 +7,7 @@ describe('TrustChips', () => {
   it('renders all three chips with correct copy', () => {
     render(<TrustChips />);
     expect(screen.getByText(/평일 10분 내 회신/)).toBeInTheDocument();
-    expect(screen.getByText(/10년/)).toBeInTheDocument();
+    expect(screen.getByText(/10년 이상 경력/)).toBeInTheDocument();
     expect(screen.getByText(/전국 출장/)).toBeInTheDocument();
   });
 
@@ -26,7 +26,8 @@ describe('TrustChips', () => {
     const items = container.querySelectorAll('li');
     expect(items.length).toBe(3);
     items.forEach((li) => {
-      expect(li.className).not.toMatch(/hidden/);
+      expect(li.className).not.toMatch(/\bhidden\b/);
+      expect(li.className).not.toMatch(/\b(?:sm|md|lg):hidden\b/);
     });
   });
 });
