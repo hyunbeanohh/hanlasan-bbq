@@ -14,7 +14,7 @@ export default function ReservationBanner() {
         <h2 className="text-2xl md:text-3xl font-bold mt-2 mb-2">
           바로 통화로 견적 받기
         </h2>
-        <p className="opacity-85 mb-6">
+        <p className="text-white/85 mb-6">
           평일 10분 내 회신 · 통화 즉시 견적
         </p>
         <a
