@@ -9,7 +9,7 @@ export default function HeroCopy() {
         id="hero-title"
         className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mb-4 drop-shadow-lg"
       >
-        정직한 직화,
+        참나무 훈연, 깔끔한 맛
         <br />
         전국 출장바베큐
       </h1>

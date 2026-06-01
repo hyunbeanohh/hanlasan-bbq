@@ -12,7 +12,7 @@ describe('HeroCopy', () => {
   it('renders the H1 brand line', () => {
     render(<HeroCopy />);
     const h1 = screen.getByRole('heading', { level: 1 });
-    expect(h1.textContent).toMatch(/정직한 직화/);
+    expect(h1.textContent).toMatch(/참나무 훈연, 깔끔한 맛/);
     expect(h1.textContent).toMatch(/전국 출장바베큐/);
   });
 
