@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 
 vi.mock('@/lib/analytics/naver', () => ({ trackNaverEvent: () => {} }));
@@ -25,8 +25,9 @@ describe('HeroCopy', () => {
 
   it('renders TrustChips with all three items', () => {
     render(<HeroCopy />);
-    expect(screen.getByRole('list', { name: '신뢰 정보' })).toBeInTheDocument();
-    expect(screen.getAllByText(/전국 출장/).length).toBeGreaterThan(0);
+    const list = screen.getByRole('list', { name: '신뢰 정보' });
+    expect(list).toBeInTheDocument();
+    expect(within(list).getByText(/전국 출장/)).toBeInTheDocument();
   });
 
   it('renders a tel link to the contact phone', () => {
