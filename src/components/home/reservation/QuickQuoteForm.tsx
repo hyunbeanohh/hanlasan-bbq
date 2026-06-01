@@ -80,7 +80,7 @@ export default function QuickQuoteForm({ siteKey }: Props) {
           inputMode="numeric"
           placeholder="10"
           min={1}
-          max={200}
+          max={1000}
           error={state.fieldErrors?.headcount}
           required
         />

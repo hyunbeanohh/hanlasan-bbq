@@ -4,7 +4,7 @@ const phoneRegex = /^01[016789]-\d{3,4}-\d{4}$/;
 const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
 
 export const quickQuoteSchema = z.object({
-  headcount: z.coerce.number().int().min(1, '인원은 1명 이상').max(200, '인원은 200명 이하'),
+  headcount: z.coerce.number().int().min(1, '인원은 1명 이상').max(1000, '인원은 1000명 이하'),
   eventDate: z
     .string()
     .regex(dateRegex, '날짜 형식: YYYY-MM-DD')

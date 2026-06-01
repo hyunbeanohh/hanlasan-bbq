@@ -21,8 +21,12 @@ describe('quickQuoteSchema', () => {
     expect(quickQuoteSchema.safeParse({ ...valid, headcount: '0' }).success).toBe(false);
   });
 
-  it('rejects headcount above 200', () => {
-    expect(quickQuoteSchema.safeParse({ ...valid, headcount: '201' }).success).toBe(false);
+  it('accepts headcount at upper boundary 1000', () => {
+    expect(quickQuoteSchema.safeParse({ ...valid, headcount: '1000' }).success).toBe(true);
+  });
+
+  it('rejects headcount above 1000', () => {
+    expect(quickQuoteSchema.safeParse({ ...valid, headcount: '1001' }).success).toBe(false);
   });
 
   it('rejects malformed date', () => {
