@@ -117,7 +117,7 @@ export default function Testimonials() {
 
   return (
     <section
-      className="py-20 md:py-28 bg-surface-2"
+      className="relative py-20 md:py-28"
       aria-roledescription="carousel"
       aria-label="고객 후기"
     >

@@ -1,22 +1,12 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import HeroTitleTyping from './HeroTitleTyping';
 
 export default function Hero() {
   return (
     <section className="relative overflow-hidden min-h-[88vh] md:min-h-screen flex items-center">
-      {/* Full-bleed BBQ grill photo */}
-      <Image
-        src="https://images.unsplash.com/photo-1558030006-450675393462?w=1920&q=80&fm=jpg"
-        alt="바베큐 그릴 현장 사진"
-        fill
-        priority
-        className="object-cover"
-        sizes="100vw"
-      />
-      {/* Black gradient overlay for text legibility */}
+      {/* Local gradient on top of the page-level BBQ background for hero text legibility */}
       <div
-        className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"
+        className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/50"
         aria-hidden="true"
       />
 

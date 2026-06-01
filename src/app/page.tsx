@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo/metadata';
 import Hero from '@/components/home/Hero';
@@ -18,6 +19,18 @@ export const metadata: Metadata = pageMetadata({
 export default async function HomePage() {
   return (
     <>
+      <div aria-hidden="true" className="fixed inset-0 -z-10 pointer-events-none">
+        <Image
+          src="https://images.unsplash.com/photo-1558030006-450675393462?w=1920&q=80&fm=jpg"
+          alt=""
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
+
       <Hero />
       <SignatureMenu />
       <WhyUs />

@@ -6,7 +6,7 @@ export default function ReservationBanner() {
   const siteKey = process.env.TURNSTILE_SITE_KEY ?? '';
 
   return (
-    <section id="contact" className="py-20 md:py-24 bg-brand">
+    <section id="contact" className="relative py-20 md:py-24 bg-brand/90 backdrop-blur-sm">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <TrustChips />
 

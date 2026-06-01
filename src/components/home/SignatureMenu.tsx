@@ -23,7 +23,7 @@ const SIGNATURE_ITEMS = [
 
 export default function SignatureMenu() {
   return (
-    <section className="py-20 md:py-28 bg-bg">
+    <section className="relative py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         {/* Section header */}
         <div className="text-center mb-14">
