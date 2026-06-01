@@ -1,7 +1,7 @@
 export default function TrustChips() {
   return (
     <ul
-      className="flex flex-wrap gap-2 justify-start md:justify-center mb-4 md:mb-5 text-white/95 text-xs md:text-sm"
+      className="flex flex-wrap gap-2 mb-4 md:mb-5 text-white/95 text-xs md:text-sm"
       aria-label="신뢰 정보"
     >
       <li className="inline-flex items-center gap-1.5 bg-white/14 px-3 py-1 rounded-full">
