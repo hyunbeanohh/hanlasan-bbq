@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { CONTACT } from '@/lib/constants';
@@ -69,8 +70,16 @@ export default function Header() {
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center text-lg font-bold text-fg tracking-tight shrink-0 hover:text-brand transition-colors"
+            className="flex items-center gap-2 text-lg font-bold text-fg tracking-tight shrink-0 hover:text-brand transition-colors"
           >
+            <Image
+              src="/images/logo.png"
+              alt=""
+              width={36}
+              height={36}
+              priority
+              className="h-9 w-9 object-contain"
+            />
             한라산 출장 바베큐
           </Link>
 
