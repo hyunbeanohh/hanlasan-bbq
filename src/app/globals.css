@@ -26,4 +26,17 @@
 @layer base {
   html { color-scheme: dark; font-family: var(--font-display); line-height: 1.65; }
   body { background: var(--color-bg); color: var(--color-fg); }
+
+  :root { interpolate-size: allow-keywords; }
+
+  summary { list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+
+  details::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition: block-size 200ms ease,
+                content-visibility 200ms ease allow-discrete;
+  }
+  details[open]::details-content { block-size: auto; }
 }

@@ -8,9 +8,14 @@ export default function MenuCategoryTabs() {
         한라산 출장 바베큐 시그니처 메뉴
       </h2>
 
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-3">
         {MENU_ITEMS.map((item, index) => (
-          <MenuCard key={item.id} item={item} preload={index === 0} />
+          <MenuCard
+            key={item.id}
+            item={item}
+            preload={index === 0}
+            defaultOpen={index === 0}
+          />
         ))}
       </div>
     </div>

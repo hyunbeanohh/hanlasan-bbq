@@ -6,23 +6,6 @@ export const CATEGORY_LABELS: Record<MenuItem['categoryId'], string> = {
 
 export const MENU_ITEMS: MenuItem[] = [
   {
-    id: 'sig-tong-dwaeji',
-    categoryId: 'signature',
-    name: '통돼지바베큐',
-    priceText: '40인분 900,000원~',
-    description: '엄선한 흑돼지를 통째로 직화에 구워 겉은 바삭, 속은 촉촉하게 즐기는 시그니처 메뉴입니다.',
-    imageSrc: '/images/menu/tong-dwaeji.jpg',
-    pricingTiers: [
-      { range: '40인분', price: '900,000원' },
-      { range: '50인분', price: '1,000,000원' },
-      { range: '60인분', price: '1,100,000원' },
-      { range: '70인분', price: '1,200,000원' },
-      { range: '80인분', price: '1,300,000원' },
-      { range: '90인분', price: '1,400,000원' },
-      { range: '100인분', price: '1,500,000원' },
-    ],
-  },
-  {
     id: 'sig-tongsamgyeop',
     categoryId: 'signature',
     name: '통삼겹바베큐',
@@ -40,18 +23,37 @@ export const MENU_ITEMS: MenuItem[] = [
     ],
   },
   {
+    id: 'sig-tong-dwaeji',
+    categoryId: 'signature',
+    name: '통돼지바베큐',
+    priceText: '40인분 900,000원~',
+    description: '엄선한 흑돼지를 통째로 직화에 구워 겉은 바삭, 속은 촉촉하게 즐기는 시그니처 메뉴입니다.',
+    imageSrc: '/images/menu/tong-dwaeji.jpg',
+    pricingTiers: [
+      { range: '40인분', price: '900,000원' },
+      { range: '50인분', price: '1,000,000원' },
+      { range: '60인분', price: '1,100,000원' },
+      { range: '70인분', price: '1,200,000원' },
+      { range: '80인분', price: '1,300,000원' },
+      { range: '90인분', price: '1,400,000원' },
+      { range: '100인분', price: '1,500,000원' },
+    ],
+  },
+  {
     id: 'sig-haemul-modum',
     categoryId: 'signature',
     name: '해물모듬 바베큐',
-    priceText: '1인 50,000원~',
+    priceText: '40인분 1,000,000원~',
     description: '엄선한 해산물을 직화로 구워내는 풍성한 모듬 플래터입니다.',
     imageSrc: '/images/menu/haemul-modum.jpg',
     pricingTiers: [
-      {
-        range: '1인기분',
-        price: '800,000원',
-        contents: '전복 1마리, 대하 2마리, 통삼겹 180g, 수제소시지 100g, 순대 100g',
-      },
+      { range: '40인분', price: '1,000,000원' },
+      { range: '50인분', price: '1,250,000원' },
+      { range: '60인분', price: '1,500,000원' },
+      { range: '70인분', price: '1,750,000원' },
+      { range: '80인분', price: '2,000,000원' },
+      { range: '90인분', price: '2,250,000원' },
+      { range: '100인분', price: '2,500,000원' },
     ],
   },
   {
