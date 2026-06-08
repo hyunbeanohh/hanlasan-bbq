@@ -125,48 +125,50 @@ export default function Testimonials() {
         <div className="text-center mb-14">
           <h2 className="text-3xl md:text-4xl font-bold text-fg">고객 후기</h2>
         </div>
+      </div>
 
-        <div className="relative">
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex">
-              {TESTIMONIALS.map((t, i) => (
+      <div className="relative">
+        <div className="overflow-hidden" ref={emblaRef}>
+          <div className="flex">
+            {TESTIMONIALS.map((t, i) => (
+              <div
+                key={t.id}
+                className="shrink-0 grow-0 basis-[88%] md:basis-[44%] lg:basis-[33%] xl:basis-[26%] 2xl:basis-[22%] px-2 md:px-3"
+              >
                 <div
-                  key={t.id}
-                  className="shrink-0 grow-0 basis-[88%] md:basis-[44%] px-2 md:px-3"
+                  className="h-full"
+                  style={{ transformOrigin: 'center center', willChange: 'transform, opacity' }}
                 >
-                  <div
-                    className="h-full"
-                    style={{ transformOrigin: 'center center', willChange: 'transform, opacity' }}
-                  >
-                    <TestimonialCard
-                      t={t}
-                      index={i}
-                      total={TESTIMONIALS.length}
-                    />
-                  </div>
+                  <TestimonialCard
+                    t={t}
+                    index={i}
+                    total={TESTIMONIALS.length}
+                  />
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-
-          <button
-            type="button"
-            onClick={scrollPrev}
-            aria-label="이전 후기"
-            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-10 h-10 rounded-full bg-surface border border-border items-center justify-center text-fg-muted hover:text-fg hover:border-fg-muted transition z-10"
-          >
-            ‹
-          </button>
-          <button
-            type="button"
-            onClick={scrollNext}
-            aria-label="다음 후기"
-            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 w-10 h-10 rounded-full bg-surface border border-border items-center justify-center text-fg-muted hover:text-fg hover:border-fg-muted transition z-10"
-          >
-            ›
-          </button>
         </div>
 
+        <button
+          type="button"
+          onClick={scrollPrev}
+          aria-label="이전 후기"
+          className="hidden md:flex absolute left-4 lg:left-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-surface border border-border items-center justify-center text-fg-muted hover:text-fg hover:border-fg-muted transition z-10"
+        >
+          ‹
+        </button>
+        <button
+          type="button"
+          onClick={scrollNext}
+          aria-label="다음 후기"
+          className="hidden md:flex absolute right-4 lg:right-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-surface border border-border items-center justify-center text-fg-muted hover:text-fg hover:border-fg-muted transition z-10"
+        >
+          ›
+        </button>
+      </div>
+
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="flex justify-center gap-2 mt-10">
           {TESTIMONIALS.map((_, i) => (
             <button
