@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** `/banquet` 페이지의 기존 카드 그리드 아래에 11행짜리 "단체 옵션 · 부대 가격표" 섹션을 추가한다.
+**Goal:** `/banquet` 페이지의 기존 카드 그리드 아래에 9행짜리 "단체 옵션 · 부대 가격표" 섹션을 추가한다.
 
 **Architecture:** 정적 데이터(`src/data/banquet-options.ts`) → 서버 컴포넌트 테이블(`src/components/banquet/BanquetOptionsTable.tsx`) → 페이지(`src/app/banquet/page.tsx`)에 새 `<section>`으로 삽입. 기존 `BANQUET_ITEMS`/카드 그리드는 변경하지 않는다.
 
@@ -14,7 +14,7 @@
 
 ## File Structure
 
-- **Create** `src/data/banquet-options.ts` — 11개 옵션 데이터 + 페이지 단위 타입(`BanquetOption`). 재사용 없음이라 `src/types/index.ts`로 끌어올리지 않는다.
+- **Create** `src/data/banquet-options.ts` — 9개 옵션 데이터 + 페이지 단위 타입(`BanquetOption`). 재사용 없음이라 `src/types/index.ts`로 끌어올리지 않는다.
 - **Create** `src/components/banquet/BanquetOptionsTable.tsx` — 시맨틱 `<table>` 렌더. 클라이언트 상태 없음.
 - **Create** `src/components/banquet/BanquetOptionsTable.test.tsx` — RTL로 렌더 + 행 수 + 가격 포맷 검증.
 - **Modify** `src/app/banquet/page.tsx` — 그리드와 CTA 사이에 새 `<section>` 삽입.
@@ -39,17 +39,15 @@ export interface BanquetOption {
 }
 
 export const BANQUET_OPTIONS: BanquetOption[] = [
-  { id: 'vegetables',  label: '채소',                  detail: '상추·고추·마늘·당근',                       priceWon: 40000  },
-  { id: 'kimchi',      label: '김치',                  detail: null,                                         priceWon: 40000  },
-  { id: 'meal-set',    label: '식사 (밥 외 2종 포함)', detail: '시래기·김치찌개·콩나물·김칫국·오뎅탕 중',     priceWon: 6000   },
-  { id: 'soup-bowls',  label: '육개장 · 동태탕',       detail: '밥·찬 별도',                                  priceWon: 8000   },
-  { id: 'modeun-jeon', label: '모듬전',                detail: '1Kg (5~8인 기준)',                           priceWon: 30000  },
-  { id: 'hongeo',      label: '홍어무침',              detail: '1Kg (5~8인 기준)',                           priceWon: 30000  },
-  { id: 'japchae',     label: '잡채',                  detail: '1Kg (5~8인 기준)',                           priceWon: 20000  },
-  { id: 'table-6p',    label: '6인 테이블',            detail: '테이블 보 포함',                             priceWon: 13000  },
-  { id: 'chair',       label: '의자',                  detail: null,                                         priceWon: 1300   },
-  { id: 'tent',        label: '천막',                  detail: null,                                         priceWon: 60000  },
-  { id: 'draft-beer',  label: '생맥주',                detail: '20,000cc · 잔 포함',                         priceWon: 160000 },
+  { id: 'vegetables',   label: '채소',                                                   detail: '상추·고추·마늘·양파 (30~40명 기준)', priceWon: 40000  },
+  { id: 'kimchi',       label: '김치',                                                   detail: null,                                  priceWon: 40000  },
+  { id: 'meal-set',     label: '식사',                                                   detail: '콩나물 김칫국·오뎅탕, 반찬 3종',       priceWon: 6000   },
+  { id: 'soup-bowls',   label: '육개장 · 동태탕',                                        detail: '밥·찬 별도',                           priceWon: 8000   },
+  { id: 'party-platter', label: '모듬전·홍어무침·잡채·골뱅이(오징어)무침·과일',           detail: '30~40명 기준',                         priceWon: 120000 },
+  { id: 'table-6p',     label: '6인 테이블',                                             detail: '테이블 보 포함',                       priceWon: 13000  },
+  { id: 'chair',        label: '의자',                                                   detail: null,                                  priceWon: 1300   },
+  { id: 'tent',         label: '천막',                                                   detail: null,                                  priceWon: 60000  },
+  { id: 'draft-beer',   label: '생맥주',                                                 detail: '20,000cc · 잔 포함',                  priceWon: 160000 },
 ];
 ```
 
@@ -94,6 +92,7 @@ describe('BanquetOptionsTable', () => {
   it('formats prices as locale-aware Korean won', () => {
     render(<BanquetOptionsTable />);
     expect(screen.getByText('160,000원')).toBeInTheDocument();
+    expect(screen.getByText('120,000원')).toBeInTheDocument();
     expect(screen.getByText('1,300원')).toBeInTheDocument();
     expect(screen.getByText('40,000원')).toBeInTheDocument();
   });
@@ -244,8 +243,8 @@ Run (다른 터미널 또는 백그라운드): `pnpm dev`
 
 확인할 것:
 - 카드 그리드 아래에 "GROUP OPTIONS / 단체 옵션 · 부대 가격표" 섹션이 보이는가
-- 11개 행이 모두 노출되는가
-- 가격이 `40,000원`, `1,300원`, `160,000원` 등 천 단위 콤마로 표시되는가
+- 9개 행이 모두 노출되는가
+- 가격이 `40,000원`, `1,300원`, `120,000원`, `160,000원` 등 천 단위 콤마로 표시되는가
 - 김치/의자/천막 행의 "구성·단위" 칸이 `—` 로 표시되는가
 - 모바일 폭(<640px)에서 좌우 스크롤로 표 전체 열람 가능한가
 - 표 하단에 `※ 물가 변동이 있을 수 있습니다.` 가 보이는가
@@ -261,6 +260,6 @@ git commit -m "feat(banquet): /banquet 페이지에 단체 옵션·부대 가격
 
 ## Self-Review 결과
 
-- **Spec coverage:** 스펙의 모든 절(섹션 위치, 데이터 11행, 컴포넌트 분리, 접근성 caption/scope, 테스트, 푸터 노트, 비범위)을 Task 1~4가 모두 다룬다.
+- **Spec coverage:** 스펙의 모든 절(섹션 위치, 데이터 9행, 컴포넌트 분리, 접근성 caption/scope, 테스트, 푸터 노트, 비범위)을 Task 1~4가 모두 다룬다.
 - **Placeholder scan:** "TBD/TODO/적절한" 류 없음. 모든 코드와 명령이 실제 사용할 그대로다.
 - **Type consistency:** `BanquetOption`(id, label, detail, priceWon)을 Task 1에서 정의했고 Task 3에서 동일 필드명으로만 접근한다. 가격은 숫자 → `toLocaleString('ko-KR')`로 일관되게 포맷.
