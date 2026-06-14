@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo/metadata';
 import BanquetMenuGrid from '@/components/banquet/BanquetMenuGrid';
+import BanquetOptionsTable from '@/components/banquet/BanquetOptionsTable';
 import CallButton from '@/components/cta/CallButton';
 import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
 
@@ -40,6 +41,25 @@ export default function BanquetPage() {
       <section className="py-16 md:py-20 bg-bg">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <BanquetMenuGrid />
+        </div>
+      </section>
+
+      {/* 단체 옵션 · 부대 가격표 */}
+      <section className="py-16 md:py-20 bg-surface border-t border-border">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <p className="text-brand font-semibold text-xs uppercase tracking-widest mb-3">
+            GROUP OPTIONS
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-fg mb-3 leading-tight">
+            단체 옵션 · 부대 가격표
+          </h2>
+          <p className="text-fg-soft mb-8">
+            테이블·천막·생맥주·1Kg 단위 단체 구성 등 잔치 행사용 부대 가격입니다.
+          </p>
+          <BanquetOptionsTable />
+          <p className="text-fg-soft text-sm mt-6">
+            ※ 물가 변동이 있을 수 있습니다.
+          </p>
         </div>
       </section>
 
