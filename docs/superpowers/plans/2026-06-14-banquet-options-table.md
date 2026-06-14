@@ -93,8 +93,8 @@ describe('BanquetOptionsTable', () => {
     render(<BanquetOptionsTable />);
     expect(screen.getByText('160,000원')).toBeInTheDocument();
     expect(screen.getByText('120,000원')).toBeInTheDocument();
+    expect(screen.getByText('13,000원')).toBeInTheDocument();
     expect(screen.getByText('1,300원')).toBeInTheDocument();
-    expect(screen.getByText('40,000원')).toBeInTheDocument();
   });
 
   it('shows detail text for items that have a detail, and an em dash otherwise', () => {
