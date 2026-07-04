@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { InquiryRepository } from '../repository';
+import { QUICK_QUOTE_AUTHOR } from '@/lib/quick-quote/constants';
 
 interface FakeRow {
   author_name: string;
@@ -58,7 +59,7 @@ describe('InquiryRepository.createQuickQuote', () => {
     expect(id).toBe(1);
     expect(db.rows).toHaveLength(1);
     const row = db.rows[0];
-    expect(row.author_name).toBe('[빠른 견적]');
+    expect(row.author_name).toBe(QUICK_QUOTE_AUTHOR);
     expect(row.password_hash).toBeNull();
     expect(row.password_salt).toBeNull();
     expect(row.is_secret).toBe(1);
@@ -67,8 +68,8 @@ describe('InquiryRepository.createQuickQuote', () => {
   });
 });
 
-describe('InquiryRepository.listPublicPaginated', () => {
-  it('SQL excludes rows whose author_name equals "[빠른 견적]"', async () => {
+describe('InquiryRepository.listPaginated', () => {
+  it('SQL does not filter out quick quote rows by author_name', async () => {
     let countSql = '';
     let listSql = '';
     const db = {
@@ -90,8 +91,14 @@ describe('InquiryRepository.listPublicPaginated', () => {
       },
     };
     const repo = new InquiryRepository(db as unknown as D1Database);
-    await repo.listPublicPaginated(1, 10);
-    expect(countSql).toContain("author_name != '[빠른 견적]'");
-    expect(listSql).toContain("author_name != '[빠른 견적]'");
+    await repo.listPaginated(1, 10);
+    expect(countSql).not.toContain('author_name');
+    expect(listSql).not.toContain('author_name');
+  });
+
+  it('the quick-quote-only listPublicPaginated variant is removed', () => {
+    expect(
+      (InquiryRepository.prototype as unknown as Record<string, unknown>).listPublicPaginated,
+    ).toBeUndefined();
   });
 });

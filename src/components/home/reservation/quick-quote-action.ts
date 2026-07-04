@@ -9,6 +9,7 @@ import { RateLimiter } from '@/lib/inquiries/rate-limit';
 import { InquiryRepository } from '@/lib/inquiries/repository';
 import { sendNewInquiryNotification } from '@/lib/inquiries/notify';
 import { getDB, getEnv } from '@/lib/inquiries/cf';
+import { QUICK_QUOTE_AUTHOR } from '@/lib/quick-quote/constants';
 
 export interface QuickQuoteFormState {
   ok: boolean;
@@ -69,7 +70,7 @@ export async function createQuickQuoteAction(
   try {
     await sendNewInquiryNotification(env, {
       id,
-      authorName: '[빠른 견적]',
+      authorName: QUICK_QUOTE_AUTHOR,
       title,
       content,
     });

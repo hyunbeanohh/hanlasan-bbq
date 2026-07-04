@@ -1,6 +1,7 @@
 /// <reference types="@cloudflare/workers-types" />
 import type { Inquiry, InquiryRow } from './types';
 import { rowToInquiry } from './types';
+import { QUICK_QUOTE_AUTHOR } from '@/lib/quick-quote/constants';
 
 export interface CreateInquiryParams {
   authorName: string;
@@ -71,7 +72,7 @@ export class InquiryRepository {
           phone_enc, email_enc, title, content, is_secret, expires_at)
          VALUES (NULL, 0, ?, NULL, NULL, ?, ?, ?, ?, 1, ?)`,
       )
-      .bind('[빠른 견적]', p.phoneEnc, p.emailEnc, p.title, p.content, expiresAt)
+      .bind(QUICK_QUOTE_AUTHOR, p.phoneEnc, p.emailEnc, p.title, p.content, expiresAt)
       .run();
     return result.meta.last_row_id as number;
   }
@@ -118,48 +119,6 @@ export class InquiryRepository {
     const parents = await this.db
       .prepare(
         `SELECT * FROM inquiries WHERE parent_id IS NULL
-         ORDER BY created_at DESC LIMIT ? OFFSET ?`,
-      )
-      .bind(perPage, offset)
-      .all<InquiryRow>();
-    const parentList = (parents.results ?? []).map(rowToInquiry);
-    if (parentList.length === 0) return { items: [], total };
-
-    const ids = parentList.map((p) => p.id);
-    const placeholders = ids.map(() => '?').join(',');
-    const replies = await this.db
-      .prepare(
-        `SELECT * FROM inquiries WHERE parent_id IN (${placeholders}) ORDER BY created_at ASC`,
-      )
-      .bind(...ids)
-      .all<InquiryRow>();
-    const replyList = (replies.results ?? []).map(rowToInquiry);
-
-    const items: Inquiry[] = [];
-    for (const parent of parentList) {
-      items.push(parent);
-      for (const r of replyList) if (r.parentId === parent.id) items.push(r);
-    }
-    return { items, total };
-  }
-
-  async listPublicPaginated(
-    page: number,
-    perPage: number,
-  ): Promise<{ items: Inquiry[]; total: number }> {
-    const offset = (page - 1) * perPage;
-    const totalRow = await this.db
-      .prepare(
-        `SELECT COUNT(*) as c FROM inquiries
-         WHERE parent_id IS NULL AND author_name != '[빠른 견적]'`,
-      )
-      .first<{ c: number }>();
-    const total = totalRow?.c ?? 0;
-
-    const parents = await this.db
-      .prepare(
-        `SELECT * FROM inquiries
-         WHERE parent_id IS NULL AND author_name != '[빠른 견적]'
          ORDER BY created_at DESC LIMIT ? OFFSET ?`,
       )
       .bind(perPage, offset)

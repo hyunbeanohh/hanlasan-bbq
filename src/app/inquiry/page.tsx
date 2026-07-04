@@ -2,6 +2,10 @@ import Link from 'next/link';
 import { InquiryRepository } from '@/lib/inquiries/repository';
 import { getDB } from '@/lib/inquiries/cf';
 import Pagination from '@/components/inquiry/Pagination';
+import {
+  QUICK_QUOTE_AUTHOR,
+  QUICK_QUOTE_DISPLAY_AUTHOR,
+} from '@/lib/quick-quote/constants';
 
 export const metadata = { title: '예약 문의 | 한라산출장바베큐' };
 export const dynamic = 'force-dynamic';
@@ -16,7 +20,7 @@ export default async function InquiryListPage({
   const { page: pageParam } = await searchParams;
   const page = Math.max(1, Number(pageParam ?? '1') || 1);
   const repo = new InquiryRepository(getDB());
-  const { items, total } = await repo.listPublicPaginated(page, PER_PAGE);
+  const { items, total } = await repo.listPaginated(page, PER_PAGE);
 
   // 부모 글에만 번호 매김. 페이지 첫 부모 = total - (page-1)*PER_PAGE
   let runningParentIndex = 0;
@@ -52,6 +56,7 @@ export default async function InquiryListPage({
           )}
           {items.map((item) => {
             const isReply = item.parentId !== null;
+            const isQuickQuote = item.authorName === QUICK_QUOTE_AUTHOR;
             let displayNumber: number | string = '';
             if (!isReply) {
               const number = total - (page - 1) * PER_PAGE - runningParentIndex;
@@ -64,6 +69,11 @@ export default async function InquiryListPage({
                 <td className="py-3">
                   {isReply ? (
                     <span className="pl-6 text-fg-muted">↳ {item.title}</span>
+                  ) : isQuickQuote ? (
+                    <span>
+                      {item.title}
+                      {item.isSecret && <span className="ml-1" aria-label="비밀글">🔒</span>}
+                    </span>
                   ) : (
                     <Link href={`/inquiry/${item.id}`} className="hover:text-brand">
                       {item.title}
@@ -71,7 +81,13 @@ export default async function InquiryListPage({
                     </Link>
                   )}
                 </td>
-                <td className="py-3 text-fg-muted">{item.isAdmin ? '관리자' : item.authorName}</td>
+                <td className="py-3 text-fg-muted">
+                  {item.isAdmin
+                    ? '관리자'
+                    : isQuickQuote
+                      ? QUICK_QUOTE_DISPLAY_AUTHOR
+                      : item.authorName}
+                </td>
                 <td className="py-3 text-fg-muted">{item.createdAt.slice(0, 10)}</td>
               </tr>
             );
