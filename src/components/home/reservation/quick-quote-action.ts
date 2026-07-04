@@ -50,7 +50,7 @@ export async function createQuickQuoteAction(
   }
 
   const phoneEnc = await encryptPII(input.phone, env.PII_KEY);
-  const emailEnc = await encryptPII('', env.PII_KEY);
+  const emailEnc = await encryptPII(input.email, env.PII_KEY);
 
   const title = buildQuickQuoteTitle({
     headcount: input.headcount,
@@ -62,6 +62,7 @@ export async function createQuickQuoteAction(
     eventDate: input.eventDate,
     location: input.location,
     phone: input.phone,
+    email: input.email,
   });
 
   const repo = new InquiryRepository(getDB());

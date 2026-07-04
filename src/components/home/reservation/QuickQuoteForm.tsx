@@ -109,6 +109,14 @@ export default function QuickQuoteForm({ siteKey }: Props) {
         required
       />
 
+      <Field
+        label="이메일 (선택)"
+        name="email"
+        type="email"
+        placeholder="example@naver.com"
+        error={state.fieldErrors?.email}
+      />
+
       <label className="flex items-start gap-2 text-xs text-neutral-600 mt-1">
         <input type="checkbox" name="privacyConsent" value="on" required className="mt-0.5" />
         <span>
