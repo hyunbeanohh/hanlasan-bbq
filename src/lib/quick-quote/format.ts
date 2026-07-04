@@ -6,6 +6,7 @@ export interface QuickQuoteTitleInput {
 
 export interface QuickQuoteContentInput extends QuickQuoteTitleInput {
   phone: string;
+  email?: string;
 }
 
 const TITLE_MAX = 200;
@@ -20,10 +21,12 @@ export function buildQuickQuoteTitle(input: QuickQuoteTitleInput): string {
 }
 
 export function buildQuickQuoteContent(input: QuickQuoteContentInput): string {
-  return [
+  const lines = [
     `인원: ${input.headcount}명`,
     `희망 날짜: ${input.eventDate}`,
     `출장 장소: ${input.location.trim()}`,
     `연락처: ${input.phone}`,
-  ].join('\n');
+  ];
+  if (input.email) lines.push(`이메일: ${input.email}`);
+  return lines.join('\n');
 }

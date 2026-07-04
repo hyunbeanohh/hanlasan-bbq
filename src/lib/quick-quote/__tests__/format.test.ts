@@ -28,4 +28,30 @@ describe('buildQuickQuoteContent', () => {
       '인원: 10명\n희망 날짜: 2030-06-01\n출장 장소: 애월읍 곽지리\n연락처: 010-1234-5678',
     );
   });
+
+  it('appends email line when email is provided', () => {
+    const out = buildQuickQuoteContent({
+      headcount: 10,
+      eventDate: '2030-06-01',
+      location: '애월읍 곽지리',
+      phone: '010-1234-5678',
+      email: 'guest@naver.com',
+    });
+    expect(out).toBe(
+      '인원: 10명\n희망 날짜: 2030-06-01\n출장 장소: 애월읍 곽지리\n연락처: 010-1234-5678\n이메일: guest@naver.com',
+    );
+  });
+
+  it('omits email line when email is empty', () => {
+    const out = buildQuickQuoteContent({
+      headcount: 10,
+      eventDate: '2030-06-01',
+      location: '애월읍 곽지리',
+      phone: '010-1234-5678',
+      email: '',
+    });
+    expect(out).toBe(
+      '인원: 10명\n희망 날짜: 2030-06-01\n출장 장소: 애월읍 곽지리\n연락처: 010-1234-5678',
+    );
+  });
 });
