@@ -52,4 +52,31 @@ describe('quickQuoteSchema', () => {
   it('requires turnstileToken', () => {
     expect(quickQuoteSchema.safeParse({ ...valid, turnstileToken: '' }).success).toBe(false);
   });
+
+  it('accepts a valid email', () => {
+    const r = quickQuoteSchema.safeParse({ ...valid, email: 'guest@naver.com' });
+    expect(r.success).toBe(true);
+    if (r.success) expect(r.data.email).toBe('guest@naver.com');
+  });
+
+  it('accepts empty email (optional field)', () => {
+    const r = quickQuoteSchema.safeParse({ ...valid, email: '' });
+    expect(r.success).toBe(true);
+    if (r.success) expect(r.data.email).toBe('');
+  });
+
+  it('defaults email to empty string when key is missing', () => {
+    const r = quickQuoteSchema.safeParse(valid);
+    expect(r.success).toBe(true);
+    if (r.success) expect(r.data.email).toBe('');
+  });
+
+  it('rejects malformed email', () => {
+    expect(quickQuoteSchema.safeParse({ ...valid, email: 'not-an-email' }).success).toBe(false);
+  });
+
+  it('rejects email over 120 chars', () => {
+    const long = 'a'.repeat(115) + '@b.com';
+    expect(quickQuoteSchema.safeParse({ ...valid, email: long }).success).toBe(false);
+  });
 });

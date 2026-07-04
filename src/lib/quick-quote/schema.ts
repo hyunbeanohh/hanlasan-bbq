@@ -19,6 +19,10 @@ export const quickQuoteSchema = z.object({
     ),
   location: z.string().trim().min(2, '장소를 2자 이상 입력해주세요').max(80),
   phone: z.string().regex(phoneRegex, '연락처 형식: 010-0000-0000'),
+  email: z
+    .literal('')
+    .or(z.string().email('올바른 이메일 주소를 입력해주세요').max(120))
+    .default(''),
   privacyConsent: z.literal('on', { error: '개인정보 동의가 필요합니다' }),
   turnstileToken: z.string().min(1, '자동가입방지 검증이 필요합니다'),
 });
