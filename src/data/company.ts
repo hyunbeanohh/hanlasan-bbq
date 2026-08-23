@@ -20,28 +20,36 @@ export const CHEF = {
 
 export const DIFFERENTIATORS: Differentiator[] = [
   {
-    id: 'honest-quality',
-    icon: '🔥',
-    title: '정직한 직화 · 한결같은 품질',
-    description: '흔들림 없는 불 조절과 정직한 손길로 매번 같은 맛을 약속합니다. 30년 외길이 만들어 낸 집중력의 결과입니다.',
+    id: 'thirty-years',
+    metric: '30년',
+    metricLabel: '한 길',
+    title: '한 길만 걸어온 사람이 굽습니다',
+    description:
+      '군포 산본동에서 30년간 테니스를 가르쳐 온 지도자입니다. 몸을 다스리던 집중력이 그대로 그릴 앞으로 옮겨졌습니다.',
   },
   {
-    id: 'chef-onsite',
-    icon: '👨‍🍳',
-    title: '대표 직출장',
-    description: '대행사나 아르바이트가 아닌, 대표가 직접 현장에 출장합니다. 한 길을 걸어 온 집중력이 그대로 그릴 앞에 옮겨집니다.',
+    id: 'oak-two-hours',
+    metric: '2시간',
+    metricLabel: '참나무 훈연',
+    title: '급하게 굽지 않습니다',
+    description:
+      '참나무 장작으로 두 시간 넘게 천천히 훈연합니다. 시간을 줄이면 나지 않는 향이 있습니다.',
   },
   {
-    id: 'full-setup',
-    icon: '🏕️',
-    title: '풀 세팅 서비스',
-    description: '그릴·식기·테이블웨어·불 피우기까지 모든 장비와 세팅을 저희가 준비합니다.',
+    id: 'no-outsourcing',
+    metric: '0명',
+    metricLabel: '외주 · 알바',
+    title: '알바를 보내지 않습니다',
+    description:
+      '오남수 대표가 직접 옵니다. 세팅부터 조리, 그리고 잔반·그릴·쓰레기 정리까지 같은 사람이 합니다.',
   },
   {
-    id: 'cleanup',
-    icon: '✨',
-    title: '사후 정리까지 완벽하게',
-    description: '행사가 끝난 후 잔반 처리·그릴 정리·쓰레기 수거까지 현장을 깨끗이 마무리합니다.',
+    id: 'up-to-hundred',
+    metric: '100명',
+    metricLabel: '한 자리에서',
+    title: '장비를 전부 싣고 갑니다',
+    description:
+      '그릴·식기·테이블·불까지 저희가 준비합니다. 40명부터 100명까지가 표준 구성이고, 그 이상은 상담해 주세요.',
   },
 ];
 

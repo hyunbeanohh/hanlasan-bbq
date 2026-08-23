@@ -44,7 +44,10 @@ export type ProcessStep = {
 
 export type Differentiator = {
   id: string;
-  icon: string;
+  /** 아이콘 자리를 대신하는 검증 가능한 수치. 예: '30년', '0명' */
+  metric: string;
+  /** 수치가 무엇을 세는지 알려주는 짧은 라벨. 예: '한 길', '외주·알바' */
+  metricLabel: string;
   title: string;
   description: string;
 };
