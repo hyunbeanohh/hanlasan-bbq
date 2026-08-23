@@ -9,21 +9,54 @@ interface MenuCardProps {
   defaultOpen?: boolean;
 }
 
-function PricingTable({ tiers }: { tiers: PricingTier[] }) {
+function PricingTable({
+  tiers,
+  columns,
+}: {
+  tiers: PricingTier[];
+  columns?: readonly [string, string];
+}) {
   const composition = tiers.find((t) => t.contents)?.contents;
+  const twoColumn = Boolean(columns);
 
   return (
     <>
       <table className="w-full text-sm">
+        {columns && (
+          <thead>
+            <tr className="border-b border-border">
+              <th scope="col" className="py-2 text-left text-fg-muted text-xs font-semibold">
+                인원
+              </th>
+              <th
+                scope="col"
+                className="py-2 pl-3 text-right text-fg-muted text-xs font-semibold whitespace-nowrap"
+              >
+                {columns[0]}
+              </th>
+              <th
+                scope="col"
+                className="py-2 pl-3 text-right text-fg-muted text-xs font-semibold whitespace-nowrap"
+              >
+                {columns[1]}
+              </th>
+            </tr>
+          </thead>
+        )}
         <tbody className="divide-y divide-border">
           {tiers.map((tier) => (
             <tr key={tier.range}>
               <td className="py-2.5 text-white font-medium whitespace-nowrap">
                 {tier.range}
               </td>
-              <td className="py-2.5 text-right text-brand font-bold tabular-nums whitespace-nowrap">
+              <td className="py-2.5 pl-3 text-right text-brand font-bold tabular-nums whitespace-nowrap">
                 {tier.price}
               </td>
+              {twoColumn && (
+                <td className="py-2.5 pl-3 text-right text-brand font-bold tabular-nums whitespace-nowrap">
+                  {tier.priceAlt ?? '-'}
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
@@ -134,7 +167,7 @@ export default function MenuCard({ item, preload = false, defaultOpen = false }:
               <p className="text-fg-muted text-xs font-semibold uppercase tracking-wider mb-2">
                 인원별 가격
               </p>
-              <PricingTable tiers={item.pricingTiers} />
+              <PricingTable tiers={item.pricingTiers} columns={item.priceColumns} />
             </div>
           )}
 

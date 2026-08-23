@@ -7,7 +7,10 @@ export type ServiceFeature = {
 
 export type PricingTier = {
   range: string;
+  /** Primary price column. When `priceColumns` is set on the menu item, this is the first column. */
   price: string;
+  /** Second price column. Only used when the menu item defines `priceColumns`. */
+  priceAlt?: string;
   contents?: string;
 };
 
@@ -18,6 +21,8 @@ export type MenuItem = {
   priceText: string;
   description: string;
   imageSrc: string;
+  /** Headers for a two-column price table, e.g. ['수입산', '국내산']. Omit for a single price column. */
+  priceColumns?: readonly [string, string];
   pricingTiers?: PricingTier[];
   consultationOnly?: boolean;
 };
