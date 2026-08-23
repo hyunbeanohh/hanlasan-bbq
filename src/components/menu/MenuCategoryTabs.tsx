@@ -14,7 +14,7 @@ export default function MenuCategoryTabs() {
             key={item.id}
             item={item}
             preload={index === 0}
-            defaultOpen={index === 0}
+            defaultOpen
           />
         ))}
       </div>

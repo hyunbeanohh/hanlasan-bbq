@@ -139,7 +139,7 @@ export default function MenuCard({ item, preload = false, defaultOpen = false }:
 
       <div className="border-t border-border grid md:grid-cols-[1.3fr_1fr] gap-5 md:gap-6 p-4 sm:p-5 md:p-6">
         {/* Image */}
-        <div className="relative aspect-[16/9] rounded-xl overflow-hidden bg-surface-3">
+        <div className="relative aspect-[16/9] md:aspect-auto md:min-h-[240px] rounded-xl overflow-hidden bg-surface-3">
           {hasPhoto ? (
             <Image
               src={item.imageSrc}
