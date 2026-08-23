@@ -1,69 +1,27 @@
 const FEATURES = [
   {
-    id: 'fresh',
-    title: '신선한 재료',
-    description: '엄선한 식재료를 매일 새벽 직접 손질합니다. 맛의 차이는 신선함과 정직한 손길에서 시작됩니다.',
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="40"
-        height="40"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
-        <path d="M9 12l2 2 4-4" />
-      </svg>
-    ),
+    id: 'chef',
+    metric: '10년',
+    metricLabel: '그릴 앞에서',
+    title: '대표가 직접 굽습니다',
+    description:
+      '10년째 같은 자리입니다. 매일 새벽 직접 손질한 재료만 쓰고, 불 조절까지 대표가 책임집니다.',
   },
   {
-    id: 'chef',
-    title: '전문 셰프',
-    description: '30년 외길의 집중력으로 단련된 대표가 직접 출장하여 현장에서 직화로 구워드립니다.',
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="40"
-        height="40"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z" />
-        <line x1="6" x2="18" y1="17" y2="17" />
-      </svg>
-    ),
+    id: 'reply',
+    metric: '10분',
+    metricLabel: '평일 회신',
+    title: '견적을 오래 기다리지 않습니다',
+    description:
+      '날짜·장소·인원만 알려주시면 가능 여부와 견적을 바로 안내해 드립니다.',
   },
   {
     id: 'nationwide',
-    title: '전국 출장',
-    description: '전국 어디든 출장합니다. 단체 행사·기업 워크샵·가족 모임 모두 가능합니다.',
-    icon: (
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="40"
-        height="40"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-        <circle cx="12" cy="10" r="3" />
-      </svg>
-    ),
+    metric: '전국',
+    metricLabel: '출장 지역',
+    title: '장비를 싣고 어디든 갑니다',
+    description:
+      '단체 행사, 기업 워크샵, 가족 모임까지. 그릴과 세팅 일체를 챙겨 현장으로 갑니다.',
   },
 ];
 
@@ -71,25 +29,23 @@ export default function WhyUs() {
   return (
     <section className="relative py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        {/* Section header */}
-        <div className="text-center mb-14">
+        <div className="max-w-2xl mb-12 md:mb-14">
           <h2 className="text-3xl md:text-4xl font-bold text-fg">
             왜 우리를 선택해야 할까요?
           </h2>
         </div>
 
-        {/* 3-column icon feature grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-10">
           {FEATURES.map((feature) => (
-            <div
-              key={feature.id}
-              className="flex flex-col items-center text-center gap-5 p-8"
-            >
-              <div className="text-brand">{feature.icon}</div>
-              <div>
-                <h3 className="text-fg font-bold text-xl mb-3">{feature.title}</h3>
-                <p className="text-fg-muted text-sm leading-relaxed">{feature.description}</p>
-              </div>
+            <div key={feature.id} className="border-t border-border-strong pt-5">
+              <p className="flex items-baseline gap-2">
+                <span className="text-brand text-4xl md:text-[2.6rem] font-bold leading-none tabular-nums tracking-tight">
+                  {feature.metric}
+                </span>
+                <span className="text-fg-muted text-xs font-medium">{feature.metricLabel}</span>
+              </p>
+              <h3 className="text-fg font-bold text-base mt-5 mb-2">{feature.title}</h3>
+              <p className="text-fg-muted text-sm leading-relaxed">{feature.description}</p>
             </div>
           ))}
         </div>
