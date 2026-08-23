@@ -219,11 +219,25 @@ function TestimonialCard({
 
       <div className="flex items-center gap-3">
         <div
-          className="w-10 h-10 rounded-full shrink-0 flex items-center justify-center text-white font-bold text-xs"
-          style={{ background: 'linear-gradient(135deg, #ea580c, #c2410c)' }}
+          className="w-10 h-10 rounded-full shrink-0 flex items-center justify-center bg-brand-soft border border-brand/20 text-brand"
           aria-hidden="true"
         >
-          고{index + 1}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
         </div>
         <div>
           <p className="text-fg font-semibold text-sm">{t.name}</p>
