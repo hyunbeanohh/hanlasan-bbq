@@ -23,18 +23,18 @@ export async function createQuickQuoteAction(
   _prev: QuickQuoteFormState,
   formData: FormData,
 ): Promise<QuickQuoteFormState> {
-  const env = getEnv();
-  const raw = Object.fromEntries(formData);
+  const raw = { ...Object.fromEntries(formData), menus: formData.getAll('menus') };
   const parsed = quickQuoteSchema.safeParse(raw);
   if (!parsed.success) {
     const fieldErrors: Record<string, string[]> = {};
     for (const issue of parsed.error.issues) {
-      const path = issue.path.join('.');
+      const path = String(issue.path[0]);
       (fieldErrors[path] ??= []).push(issue.message);
     }
     return { ok: false, message: '입력값을 확인해주세요', fieldErrors };
   }
   const input = parsed.data;
+  const env = getEnv();
 
   const ip = (await headers()).get('cf-connecting-ip') ?? 'unknown';
 
@@ -58,6 +58,8 @@ export async function createQuickQuoteAction(
     location: input.location,
   });
   const content = buildQuickQuoteContent({
+    menus: input.menus,
+    meal: input.meal,
     headcount: input.headcount,
     eventDate: input.eventDate,
     location: input.location,

@@ -6,6 +6,7 @@ import TurnstileWidget from '@/components/inquiry/TurnstileWidget';
 import { trackNaverEvent } from '@/lib/analytics/naver';
 import { getUtm } from '@/lib/analytics/utm';
 import DatePickerField from './DatePickerField';
+import { QUICK_QUOTE_MENUS, QUICK_QUOTE_MEALS } from '@/lib/quick-quote/constants';
 import {
   createQuickQuoteAction,
   type QuickQuoteFormState,
@@ -24,7 +25,7 @@ function SubmitButton() {
       }
       className="bg-brand text-white h-11 rounded-lg font-bold text-[0.98rem] mt-1 disabled:opacity-50"
     >
-      {pending ? '전송 중…' : '견적 받기 →'}
+      {pending ? '전송 중…' : '이 구성으로 견적 요청하기 →'}
     </button>
   );
 }
@@ -36,6 +37,8 @@ interface Props {
 export default function QuickQuoteForm({ siteKey }: Props) {
   const [state, formAction] = useActionState(createQuickQuoteAction, INITIAL);
   const [token, setToken] = useState('');
+  const [menus, setMenus] = useState<string[]>([]);
+  const [meal, setMeal] = useState('');
 
   useEffect(() => {
     if (state.ok) {
@@ -68,11 +71,61 @@ export default function QuickQuoteForm({ siteKey }: Props) {
   return (
     <form
       action={formAction}
+      aria-label="빠른 견적 요청"
       className="bg-white text-neutral-900 rounded-xl p-5 shadow-md flex flex-col gap-3"
     >
-      <p className="text-xs font-bold tracking-wider uppercase text-brand">빠른 견적 요청 (1분)</p>
+      <div className="mb-1">
+        <p className="text-xs font-bold tracking-wider text-brand mb-2">빠른 견적 요청</p>
+        <p className="text-xl font-bold tracking-tight mb-1">우리 행사에 맞는 견적 받기</p>
+        <p className="text-xs text-neutral-500">원하는 메뉴와 행사 정보를 알려주세요.</p>
+      </div>
 
-      <div className="grid grid-cols-2 gap-2.5">
+      <fieldset className="min-w-0">
+        <legend className="text-sm font-bold mb-2">
+          어떤 바베큐를 원하시나요?
+          <span className="block text-xs font-normal text-neutral-500 mt-1">필수 · 여러 개 선택 가능</span>
+        </legend>
+        <div className="grid grid-cols-1 min-[420px]:grid-cols-3 gap-2">
+          {QUICK_QUOTE_MENUS.map((menu, index) => (
+            <label key={menu} className="flex items-center gap-2 min-h-12 rounded-lg border border-neutral-200 px-3 py-3 text-xs font-semibold cursor-pointer has-checked:border-brand has-checked:bg-orange-50 has-focus-visible:ring-2 has-focus-visible:ring-brand">
+              <input
+                type="checkbox"
+                name="menus"
+                value={menu}
+                checked={menus.includes(menu)}
+                required={index === 0 && menus.length === 0}
+                onChange={(event) => {
+                  const checked = event.target.checked;
+                  setMenus((current) => QUICK_QUOTE_MENUS.filter((item) => item === menu ? checked : current.includes(item)));
+                }}
+                aria-invalid={!!state.fieldErrors?.menus}
+                aria-describedby={state.fieldErrors?.menus ? 'quote-menus-error' : undefined}
+                className="size-4 shrink-0 accent-brand"
+              />
+              <span>{menu}</span>
+            </label>
+          ))}
+        </div>
+        {state.fieldErrors?.menus && <p id="quote-menus-error" role="alert" className="text-red-600 text-xs mt-1">{state.fieldErrors.menus[0]}</p>}
+      </fieldset>
+
+      <fieldset className="min-w-0 mt-1">
+        <legend className="text-sm font-bold mb-2">
+          식사도 함께 준비해 드릴까요?
+          <span className="block text-xs font-normal text-neutral-500 mt-1">필수 · 하나 선택</span>
+        </legend>
+        <div className="grid grid-cols-2 gap-2">
+          {QUICK_QUOTE_MEALS.map((option, index) => (
+            <label key={option} className="flex items-center gap-2 min-h-12 rounded-lg border border-neutral-200 px-3 py-3 text-sm font-semibold cursor-pointer has-checked:border-brand has-checked:bg-orange-50 has-focus-visible:ring-2 has-focus-visible:ring-brand">
+              <input type="radio" name="meal" value={option} required checked={meal === option} onChange={() => setMeal(option)} className="size-4 shrink-0 accent-brand" aria-describedby={state.fieldErrors?.meal ? 'quote-meal-error' : undefined} />
+              {index === 0 ? '네, 식사 포함' : '아니요, 미포함'}
+            </label>
+          ))}
+        </div>
+        {state.fieldErrors?.meal && <p id="quote-meal-error" role="alert" className="text-red-600 text-xs mt-1">{state.fieldErrors.meal[0]}</p>}
+      </fieldset>
+
+      <div className="grid grid-cols-2 gap-2.5 border-t border-neutral-200 pt-4 mt-1">
         <Field
           label="인원"
           name="headcount"
@@ -139,7 +192,12 @@ export default function QuickQuoteForm({ siteKey }: Props) {
         </p>
       )}
 
+      <div className="rounded-lg bg-neutral-50 px-3 py-2.5 text-xs leading-relaxed" aria-live="polite">
+        <p className="font-bold mb-1">선택한 구성</p>
+        <p className="text-neutral-600">{menus.length ? menus.join(' + ') : '메뉴 미선택'} · {meal || '식사 유무 미선택'}</p>
+      </div>
       <SubmitButton />
+      <p className="text-xs text-center text-neutral-500">메뉴·인원·장소 확인 후 견적을 안내해 드립니다.</p>
     </form>
   );
 }
