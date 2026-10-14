@@ -1,9 +1,15 @@
 import { z } from 'zod';
+import { QUICK_QUOTE_MENUS, QUICK_QUOTE_MEALS } from './constants';
 
 const phoneRegex = /^01[016789]-\d{3,4}-\d{4}$/;
 const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
 
 export const quickQuoteSchema = z.object({
+  menus: z.array(z.enum(QUICK_QUOTE_MENUS, { error: '메뉴를 확인해주세요' }))
+    .min(1, '바베큐 메뉴를 하나 이상 선택해주세요')
+    .max(3)
+    .transform((menus) => [...new Set(menus)]),
+  meal: z.enum(QUICK_QUOTE_MEALS, { error: '식사 포함 여부를 선택해주세요' }),
   headcount: z.coerce.number().int().min(1, '인원은 1명 이상').max(1000, '인원은 1000명 이하'),
   eventDate: z
     .string()

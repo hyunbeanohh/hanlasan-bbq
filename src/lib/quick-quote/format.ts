@@ -1,3 +1,5 @@
+import type { QuickQuoteInput } from './schema';
+
 export interface QuickQuoteTitleInput {
   headcount: number;
   eventDate: string;
@@ -5,6 +7,8 @@ export interface QuickQuoteTitleInput {
 }
 
 export interface QuickQuoteContentInput extends QuickQuoteTitleInput {
+  menus: QuickQuoteInput['menus'];
+  meal: QuickQuoteInput['meal'];
   phone: string;
   email?: string;
 }
@@ -22,6 +26,8 @@ export function buildQuickQuoteTitle(input: QuickQuoteTitleInput): string {
 
 export function buildQuickQuoteContent(input: QuickQuoteContentInput): string {
   const lines = [
+    `선택 메뉴: ${input.menus.join(' + ')}`,
+    `식사 여부: ${input.meal}`,
     `인원: ${input.headcount}명`,
     `희망 날짜: ${input.eventDate}`,
     `출장 장소: ${input.location.trim()}`,

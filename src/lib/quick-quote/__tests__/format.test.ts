@@ -17,20 +17,24 @@ describe('buildQuickQuoteTitle', () => {
 });
 
 describe('buildQuickQuoteContent', () => {
+  const selections = { menus: ['통돼지바베큐', '해물바베큐'], meal: '식사 미포함' } as const;
+  const prefix = '선택 메뉴: 통돼지바베큐 + 해물바베큐\n식사 여부: 식사 미포함\n';
   it('produces a readable multi-line summary', () => {
     const out = buildQuickQuoteContent({
+      menus: [...selections.menus], meal: selections.meal,
       headcount: 10,
       eventDate: '2030-06-01',
       location: '애월읍 곽지리',
       phone: '010-1234-5678',
     });
     expect(out).toBe(
-      '인원: 10명\n희망 날짜: 2030-06-01\n출장 장소: 애월읍 곽지리\n연락처: 010-1234-5678',
+      prefix + '인원: 10명\n희망 날짜: 2030-06-01\n출장 장소: 애월읍 곽지리\n연락처: 010-1234-5678',
     );
   });
 
   it('appends email line when email is provided', () => {
     const out = buildQuickQuoteContent({
+      menus: [...selections.menus], meal: selections.meal,
       headcount: 10,
       eventDate: '2030-06-01',
       location: '애월읍 곽지리',
@@ -38,12 +42,13 @@ describe('buildQuickQuoteContent', () => {
       email: 'guest@naver.com',
     });
     expect(out).toBe(
-      '인원: 10명\n희망 날짜: 2030-06-01\n출장 장소: 애월읍 곽지리\n연락처: 010-1234-5678\n이메일: guest@naver.com',
+      prefix + '인원: 10명\n희망 날짜: 2030-06-01\n출장 장소: 애월읍 곽지리\n연락처: 010-1234-5678\n이메일: guest@naver.com',
     );
   });
 
   it('omits email line when email is empty', () => {
     const out = buildQuickQuoteContent({
+      menus: [...selections.menus], meal: selections.meal,
       headcount: 10,
       eventDate: '2030-06-01',
       location: '애월읍 곽지리',
@@ -51,7 +56,7 @@ describe('buildQuickQuoteContent', () => {
       email: '',
     });
     expect(out).toBe(
-      '인원: 10명\n희망 날짜: 2030-06-01\n출장 장소: 애월읍 곽지리\n연락처: 010-1234-5678',
+      prefix + '인원: 10명\n희망 날짜: 2030-06-01\n출장 장소: 애월읍 곽지리\n연락처: 010-1234-5678',
     );
   });
 });

@@ -3,6 +3,8 @@ import { quickQuoteSchema } from '../schema';
 
 describe('quickQuoteSchema', () => {
   const valid = {
+    menus: ['통돼지바베큐', '해물바베큐'],
+    meal: '식사 포함',
     headcount: '10',
     eventDate: '2030-06-01',
     location: '애월읍 곽지리',
@@ -10,6 +12,21 @@ describe('quickQuoteSchema', () => {
     privacyConsent: 'on',
     turnstileToken: 'token-xyz',
   };
+
+  it('requires at least one supported menu and an explicit meal choice', () => {
+    for (const menus of [[], ['없는 메뉴'], undefined]) {
+      expect(quickQuoteSchema.safeParse({ ...valid, menus }).success).toBe(false);
+    }
+    for (const meal of ['', undefined, 'maybe']) {
+      expect(quickQuoteSchema.safeParse({ ...valid, meal }).success).toBe(false);
+    }
+  });
+
+  it('preserves multiple menus and accepts no meal', () => {
+    const result = quickQuoteSchema.parse({ ...valid, meal: '식사 미포함' });
+    expect(result.menus).toEqual(valid.menus);
+    expect(result.meal).toBe('식사 미포함');
+  });
 
   it('accepts valid input and coerces headcount to number', () => {
     const r = quickQuoteSchema.safeParse(valid);

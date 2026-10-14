@@ -14,7 +14,7 @@ export default function HeroCopy() {
         전국 출장바베큐
       </h1>
       <p className="text-white/85 text-base md:text-lg leading-relaxed mb-5 drop-shadow">
-        1분 안에 견적이 도착합니다. 인원·날짜·장소만 알려주세요.
+        원하는 메뉴와 행사 정보를 알려주세요. 맞춤 견적을 안내해 드립니다.
       </p>
       <HeroPhoneChip />
     </div>
