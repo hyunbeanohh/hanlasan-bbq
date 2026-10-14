@@ -1,50 +1,35 @@
 import Image from 'next/image';
-import { CHEF, STORY } from '@/data/company';
-
+import { CHEF } from '@/data/company';
 export default function ChefStory() {
   return (
-    <section className="py-20 md:py-24 bg-bg">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        {/* Brand Story section header */}
-        <div className="text-center mb-14">
-          <p className="text-brand text-xs font-semibold uppercase tracking-widest mb-3">
-            OUR STORY
-          </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-fg mb-3">
-            브랜드 스토리
-          </h2>
-          <div className="w-10 h-0.5 bg-brand mx-auto" aria-hidden="true" />
+    <section className="site-width page-content">
+      <div className="grid items-center gap-10 md:grid-cols-2 md:gap-20">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+          <Image
+            src={CHEF.imageSrc}
+            alt="한라산 출장 바베큐 오남수 대표"
+            fill
+            className="object-cover"
+            sizes="(max-width:767px) 100vw, 580px"
+            priority
+          />
         </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
-          {/* Chef portrait */}
-          <div className="relative aspect-[3/4] max-w-sm mx-auto lg:mx-0 w-full rounded-2xl overflow-hidden bg-surface border border-border">
-            <Image
-              src={CHEF.imageSrc}
-              alt={`${CHEF.name} - ${CHEF.role}`}
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 90vw, 384px"
-              priority
-            />
-          </div>
-
-          {/* Story text */}
-          <div>
-            <p className="text-brand font-semibold text-sm uppercase tracking-widest mb-4">
-              대표 인사말
+        <div>
+          <p className="text-brand mb-3 font-semibold">대표 인사말</p>
+          <h2 className="mb-6 text-3xl font-bold">반갑습니다. 오남수입니다.</h2>
+          <div className="text-fg-soft space-y-5 leading-8">
+            <p>
+              일손을 돕는 마음으로 시작한 바베큐가, 손님들의 즐거운 표정을 보며 오래 이어갈 일이
+              되었습니다.
             </p>
-            <h3 className="text-2xl md:text-3xl font-bold text-fg mb-2">
-              {CHEF.name}
-            </h3>
-            <p className="text-fg-muted text-base font-medium mb-6">{CHEF.role}</p>
-            <div className="space-y-4 text-fg-soft leading-relaxed">
-              {STORY.body.map((paragraph) => (
-                <p key={paragraph.slice(0, 24)}>{paragraph}</p>
-              ))}
-              <p>{CHEF.summary}</p>
-              <p>{CHEF.detail}</p>
-            </div>
+            <p>
+              메뉴 상담부터 행사 당일 준비까지 직접 살핍니다. 기업 행사, 동문회, 가족 모임에 맞는
+              음식과 구성을 함께 정하고 현장에서 바베큐를 준비합니다.
+            </p>
+            <p>
+              군포 산본동에서 30년간 테니스를 지도하며 쌓아온 성실함으로, 한 자리 한 자리 정성을
+              다하겠습니다.
+            </p>
           </div>
         </div>
       </div>

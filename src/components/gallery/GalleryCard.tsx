@@ -10,23 +10,15 @@ function formatDate(iso: string): string {
   return d.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
-function formatShortDate(iso: string): string {
-  const d = new Date(iso);
-  const y = d.getFullYear();
-  const m = String(d.getMonth() + 1).padStart(2, '0');
-  const day = String(d.getDate()).padStart(2, '0');
-  return `${y}-${m}-${day}`;
-}
-
 export default function GalleryCard({ post }: GalleryCardProps) {
   return (
-    <article className="group rounded-2xl overflow-hidden bg-surface border border-border hover:border-border-strong transition-colors flex flex-col">
+    <article className="group flex flex-col">
       {/* Thumbnail */}
       <a
         href={post.originalUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="relative aspect-[4/3] block overflow-hidden shrink-0"
+        className="relative block aspect-[4/3] shrink-0 overflow-hidden rounded-xl"
         aria-label={`${post.title} — 네이버 블로그에서 보기`}
         tabIndex={-1}
       >
@@ -35,42 +27,31 @@ export default function GalleryCard({ post }: GalleryCardProps) {
             src={post.thumbnailUrl}
             alt={post.title}
             fill
-            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
             unoptimized
             referrerPolicy="no-referrer"
           />
         ) : (
-          <div className="absolute inset-0 bg-surface-3 flex items-center justify-center">
+          <div className="bg-surface-3 absolute inset-0 flex items-center justify-center">
             <span className="text-fg-muted text-xs">사진 준비중</span>
           </div>
         )}
-        {/* Date stamp */}
-        <span className="absolute top-3 left-3 bg-bg/80 text-fg-soft text-xs font-medium px-2 py-1 rounded">
-          {formatShortDate(post.publishedAt)}
-        </span>
       </a>
 
       {/* Content */}
-      <div className="p-5 flex flex-col flex-1">
-        <time
-          dateTime={post.publishedAt}
-          className="text-xs text-fg-muted mb-2 block"
-        >
+      <div className="flex flex-1 flex-col py-5">
+        <time dateTime={post.publishedAt} className="text-fg-muted mb-2 block text-xs">
           {formatDate(post.publishedAt)}
         </time>
-        <h3 className="font-bold text-fg text-base mb-2 line-clamp-2 flex-1">
-          {post.title}
-        </h3>
+        <h3 className="text-fg mb-2 line-clamp-2 flex-1 text-base font-bold">{post.title}</h3>
         {post.summary && (
-          <p className="text-fg-muted text-sm leading-relaxed mb-4 line-clamp-2">
-            {post.summary}
-          </p>
+          <p className="text-fg-muted mb-4 line-clamp-2 text-sm leading-relaxed">{post.summary}</p>
         )}
         <a
           href={post.originalUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-brand text-sm font-semibold hover:underline"
+          className="text-brand inline-flex items-center gap-1.5 text-sm font-semibold hover:underline"
           aria-label={`${post.title} — 네이버 블로그에서 보기`}
         >
           블로그에서 보기

@@ -1,3 +1,4 @@
+import PageHeading from '@/components/layout/PageHeading';
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo/metadata';
 import BanquetMenuGrid from '@/components/banquet/BanquetMenuGrid';
@@ -15,60 +16,47 @@ export const metadata: Metadata = pageMetadata({
 export default function BanquetPage() {
   return (
     <>
-      <BreadcrumbJsonLd items={[{ name: '홈', path: '/' }, { name: '잔치 메뉴', path: '/banquet' }]} />
+      <BreadcrumbJsonLd
+        items={[
+          { name: '홈', path: '/' },
+          { name: '잔치 메뉴', path: '/banquet' },
+        ]}
+      />
 
       {/* Page hero — dark, /menu와 동일 톤 */}
-      <section className="relative overflow-hidden bg-surface-2 py-16 md:py-20 border-b border-border">
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{ background: 'radial-gradient(ellipse at 30% 50%, #ea580c, transparent 60%)' }}
-          aria-hidden="true"
-        />
-        <div className="relative z-10 mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-brand font-semibold text-xs uppercase tracking-widest mb-3">
-            BANQUET MENU
-          </p>
-          <h1 className="text-4xl md:text-5xl font-bold text-fg mb-4 leading-tight">
-            잔치 메뉴
-          </h1>
-          <p className="text-fg-soft text-lg max-w-2xl">
-            돌잔치·환갑·회갑·집들이까지 — 한라산출장바베큐가 차려드리는 가정 행사용 잔치 음식 메뉴입니다.
-          </p>
-        </div>
-      </section>
+      <PageHeading
+        title="잔치 메뉴"
+        description="바베큐와 함께 나누기 좋은 음식. 행사 인원과 취향에 맞춰 준비합니다."
+      />
 
       {/* Grid */}
-      <section className="py-16 md:py-20 bg-bg">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <section className="page-content">
+        <div className="site-width">
           <BanquetMenuGrid />
         </div>
       </section>
 
       {/* 단체 옵션 · 부대 가격표 */}
-      <section className="py-16 md:py-20 bg-surface border-t border-border">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <p className="text-brand font-semibold text-xs uppercase tracking-widest mb-3">
+      <section className="bg-bg border-border border-t py-12">
+        <div className="site-width">
+          <p className="text-brand mb-3 text-xs font-semibold tracking-widest uppercase">
             GROUP OPTIONS
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-fg mb-3 leading-tight">
+          <h2 className="text-fg mb-3 text-3xl leading-tight font-bold md:text-4xl">
             단체 옵션 · 부대 가격표
           </h2>
           <p className="text-fg-soft mb-8">
             테이블·천막·생맥주·1Kg 단위 단체 구성 등 잔치 행사용 부대 가격입니다.
           </p>
           <BanquetOptionsTable />
-          <p className="text-fg-soft text-sm mt-6">
-            ※ 물가 변동이 있을 수 있습니다.
-          </p>
+          <p className="text-fg-soft mt-6 text-sm">※ 물가 변동이 있을 수 있습니다.</p>
         </div>
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-14 bg-surface">
-        <div className="mx-auto max-w-2xl px-4 sm:px-6 text-center">
-          <p className="text-fg font-bold text-xl mb-2">
-            원하시는 잔치 상차림이 따로 있으신가요?
-          </p>
+      <section className="bg-surface py-14">
+        <div className="mx-auto max-w-2xl px-4 text-center sm:px-6">
+          <p className="text-fg mb-2 text-xl font-bold">원하시는 잔치 상차림이 따로 있으신가요?</p>
           <p className="text-fg-soft mb-8">
             인원수·구성·예산을 알려주시면 맞춤 잔치상을 제안해 드립니다.
           </p>
