@@ -21,7 +21,7 @@ export default function ProcessSteps() {
 
               {/* Content */}
               <div className={index < PROCESS_STEPS.length - 1 ? 'pb-10' : ''}>
-                <h3 className="text-fg mb-2 pt-2.5 text-xl font-bold">{step.title}</h3>
+                <h3 className="text-fg mb-2 flex min-h-10 items-center text-xl font-bold">{step.title}</h3>
                 <p className="text-fg-muted leading-relaxed">{step.description}</p>
               </div>
             </li>

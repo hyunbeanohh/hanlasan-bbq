@@ -92,7 +92,7 @@ export default async function InquiryListPage({
                 <td className="text-fg-muted py-3">{displayNumber}</td>
                 <td className="py-3">
                   {isReply ? (
-                    <span className="text-fg-muted pl-6">↳ {item.title}</span>
+                    <span className="text-fg-muted pl-6">↳ {item.title.replace(/^(?:\s*↳\s*)+/, '')}</span>
                   ) : isQuickQuote ? (
                     <span>
                       {item.title}

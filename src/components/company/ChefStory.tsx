@@ -4,10 +4,10 @@ export default function ChefStory() {
   return (
     <section className="site-width page-content">
       <div className="grid items-center gap-10 md:grid-cols-2 md:gap-20">
-        <div className="relative aspect-[4/3] overflow-hidden rounded-xl">
+        <div className="relative aspect-square overflow-hidden rounded-xl">
           <Image
             src={CHEF.imageSrc}
-            alt="한라산 출장 바베큐 오남수 대표"
+            alt="한라산 출장 바베큐 대표"
             fill
             className="object-cover"
             sizes="(max-width:767px) 100vw, 580px"
@@ -16,7 +16,7 @@ export default function ChefStory() {
         </div>
         <div>
           <p className="text-brand mb-3 font-semibold">대표 인사말</p>
-          <h2 className="mb-6 text-3xl font-bold">반갑습니다. 오남수입니다.</h2>
+          <h2 className="mb-6 text-3xl font-bold">반갑습니다. 한라산 출장 바베큐 대표입니다.</h2>
           <div className="text-fg-soft space-y-5 leading-8">
             <p>
               일손을 돕는 마음으로 시작한 바베큐가, 손님들의 즐거운 표정을 보며 오래 이어갈 일이

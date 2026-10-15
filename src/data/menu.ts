@@ -10,7 +10,7 @@ export const MENU_ITEMS: MenuItem[] = [
     categoryId: 'signature',
     name: '통삼겹바베큐',
     priceText: '40인분 700,000원~',
-    description: '두툼한 통삼겹살을 장작 훈연으로 천천히 구워 겉은 바삭, 속은 촉촉한 육즙과 깊은 풍미를 살린 시그니처 메뉴입니다.',
+    description: '두툼한 통삼겹살을 참숯 가마에서 2시간 이상 천천히 익혀 기름을 빼고, 참나무 훈연 향을 입힌 바베큐입니다. 현장에서 먹기 좋은 두께로 직접 썰어 부드러운 식감과 고소한 맛을 즐기실 수 있도록 준비합니다. 동문회와 워크샵 등 여러 행사에서 선보여 온 한라산의 대표 메뉴입니다.',
     imageSrc: '/images/menu/tongsamgyeop-v2.jpg',
     priceColumns: ['수입산', '국내산'],
     pricingTiers: [
@@ -28,8 +28,8 @@ export const MENU_ITEMS: MenuItem[] = [
     categoryId: 'signature',
     name: '통돼지바베큐',
     priceText: '40인분 800,000원~',
-    description: '엄선한 흑돼지를 통째로 직화에 구워 겉은 바삭, 속은 촉촉하게 즐기는 시그니처 메뉴입니다.',
-    imageSrc: '/images/menu/tong-dwaeji.jpg',
+    description: '돼지를 통째로 구워내는 모습부터 눈길을 끄는 바베큐입니다. 현장에서 구워지는 과정을 함께 즐길 수 있어 여럿이 모인 자리에 볼거리를 더합니다. 행사 인원과 식사 구성을 고려해 통삼겹살 바베큐와 함께 준비하는 구성도 상담해 드립니다.',
+    imageSrc: '/images/menu/tong-dwaeji-roast.png',
     pricingTiers: [
       { range: '40인분', price: '800,000원' },
       { range: '50인분', price: '850,000원' },
@@ -45,8 +45,8 @@ export const MENU_ITEMS: MenuItem[] = [
     categoryId: 'signature',
     name: '해물모듬 바베큐',
     priceText: '40인분 1,000,000원~',
-    description: '엄선한 해산물을 직화로 구워내는 풍성한 모듬 플래터입니다.',
-    imageSrc: '/images/menu/haemul-modum.jpg',
+    description: '신선한 전복과 새우에 두툼한 통삼겹살을 더해, 해산물과 고기를 함께 즐기는 바베큐입니다. 정성껏 손질한 재료를 참나무로 2시간 이상 천천히 훈연해 전복의 쫄깃함, 새우의 고소함, 통삼겹살의 촉촉한 육즙을 살렸습니다. 행사 현장에서 따뜻하게 준비해 드립니다.',
+    imageSrc: '/images/menu/haemul-modum-grill.png',
     pricingTiers: [
       { range: '40인분', price: '1,000,000원' },
       { range: '50인분', price: '1,250,000원' },

@@ -73,7 +73,6 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
       className="border-border flex flex-col gap-3 rounded-xl border bg-white p-5 text-neutral-900 sm:p-8"
     >
       <div className="mb-1">
-        <p className="text-brand mb-2 text-xs font-bold tracking-wider">빠른 견적 요청</p>
         <p className="mb-1 text-xl font-bold tracking-tight">우리 행사에 맞는 견적 받기</p>
         <p className="text-xs text-neutral-500">원하는 메뉴와 행사 정보를 알려주세요.</p>
       </div>
