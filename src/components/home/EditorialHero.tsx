@@ -4,6 +4,9 @@ import { useEffect, useState } from 'react';
 type Slide = { src: string; title: string };
 export default function EditorialHero({ slides }: { slides: Slide[] }) {
   const [index, setIndex] = useState(0);
+  const [failedSources, setFailedSources] = useState<string[]>([]);
+  const slide = slides[index];
+  const failed = failedSources.includes(slide.src);
   const [paused, setPaused] = useState(false);
   const [hover, setHover] = useState(false);
   useEffect(() => {
@@ -34,8 +37,13 @@ export default function EditorialHero({ slides }: { slides: Slide[] }) {
       }}
     >
       <Image
-        src={slides[index].src}
-        alt={slides[index].title}
+        key={slide.src}
+        src={failed ? '/images/menu/tongsamgyeop-v2.jpg' : slide.src}
+        alt={failed ? '통삼겹살 바베큐' : slide.title}
+        referrerPolicy="no-referrer"
+        onError={() => {
+          if (!failed) setFailedSources((sources) => [...sources, slide.src]);
+        }}
         fill
         priority
         unoptimized
@@ -44,13 +52,15 @@ export default function EditorialHero({ slides }: { slides: Slide[] }) {
       />
       <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-black/15" />
       <div className="relative px-6 pt-12 text-white sm:px-12 md:pt-16">
-        <p className="mb-5 text-sm text-white/80">기업 행사 · 동문회 · 가족 모임</p>
+        <p className="mb-5 text-sm text-white/80">기업 행사 · 워크샵 · 동문회 · 가족 모임</p>
         <h1 className="text-3xl leading-tight font-bold tracking-tight md:text-5xl">
           불 앞에서 준비한 맛, 행사 자리까지.
         </h1>
-        <p className="mt-6 text-lg">대표가 직접 굽고, 현장으로 찾아갑니다.</p>
+        <p className="mt-6 text-lg">대표가 직접 준비하는 출장 바베큐 케이터링.</p>
         <p className="mt-2 text-sm text-white/80">
-          통돼지 · 통삼겹살 · 해물 바베큐 · 전국 출장 상담
+          통돼지·통삼겹살·해물 바베큐를 현장에서 준비합니다.
+          <br />
+          식사 구성과 출장 가능 여부는 상담해 주세요.
         </p>
       </div>
       <div className="absolute inset-x-6 bottom-5 flex items-end justify-between gap-4 text-white sm:inset-x-12">

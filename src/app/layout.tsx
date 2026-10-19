@@ -19,13 +19,15 @@ export const metadata: Metadata = {
   description: SITE.description,
   keywords: ['출장바베큐', '전국 출장바베큐', '한라산출장바베큐', '프리미엄 출장바베큐', '기업 케이터링', '단체 회식 출장', '수도권 출장바베큐', '경기 출장바베큐', '안양 출장바베큐', '군포 출장바베큐'],
   verification: {
-    ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION && {
-      google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
-    }),
+    google: Array.from(new Set([
+      '8UqoT-zwjdeEHbXPsC2-o-TspK_hzlVf0JC8xUipgUI',
+      ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ?? '').split(',').map((v) => v.trim()).filter(Boolean),
+    ])),
     other: {
-      ...(process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION && {
-        'naver-site-verification': process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION.split(',').map((v) => v.trim()).filter(Boolean),
-      }),
+      'naver-site-verification': Array.from(new Set([
+        '99227420e0502b9b895b19faa1b73abd95b32c03',
+        ...(process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION ?? '').split(',').map((v) => v.trim()).filter(Boolean),
+      ])),
     },
   },
 };
