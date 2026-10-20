@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect, useActionState } from 'react';
+import { useState, useEffect, useActionState, useRef } from 'react';
+import { trackGoogleConversion } from '@/lib/analytics/google';
 import { useFormStatus } from 'react-dom';
 import TurnstileWidget from '@/components/inquiry/TurnstileWidget';
 import { trackNaverEvent } from '@/lib/analytics/naver';
@@ -37,9 +38,12 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
     initialMenu && QUICK_QUOTE_MENUS.some((menu) => menu === initialMenu) ? [initialMenu] : [],
   );
   const [meal, setMeal] = useState('');
+  const reportedSuccess = useRef(false);
 
   useEffect(() => {
-    if (state.ok) {
+    if (state.ok && !reportedSuccess.current) {
+      reportedSuccess.current = true;
+      trackGoogleConversion('generate_lead');
       trackNaverEvent({ event: 'quick_quote_success', ...getUtm() });
     }
   }, [state.ok]);

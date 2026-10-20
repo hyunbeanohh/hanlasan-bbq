@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer';
 import MobileCTABar from '@/components/layout/MobileCTABar';
 import LocalBusinessJsonLd from '@/components/seo/LocalBusinessJsonLd';
 import NaverAnalytics from '@/components/analytics/NaverAnalytics';
+import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
 import UtmCapture from '@/components/analytics/UtmCapture';
 import { Analytics as VercelAnalytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -53,6 +54,7 @@ export default function RootLayout({
         <Footer />
         <MobileCTABar />
         <NaverAnalytics accountId={process.env.NEXT_PUBLIC_NAVER_ANALYTICS_ID ?? ''} />
+        <GoogleAnalytics />
         <UtmCapture />
         <VercelAnalytics />
         <SpeedInsights />
