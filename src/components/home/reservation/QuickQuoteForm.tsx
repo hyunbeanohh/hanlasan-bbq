@@ -4,7 +4,7 @@ import { useState, useEffect, useActionState, useRef } from 'react';
 import { trackGoogleConversion } from '@/lib/analytics/google';
 import { useFormStatus } from 'react-dom';
 import TurnstileWidget from '@/components/inquiry/TurnstileWidget';
-import { trackNaverEvent } from '@/lib/analytics/naver';
+import { trackNaverConversion, trackNaverEvent } from '@/lib/analytics/naver';
 import { getUtm } from '@/lib/analytics/utm';
 import DatePickerField from './DatePickerField';
 import { QUICK_QUOTE_MENUS, QUICK_QUOTE_MEALS } from '@/lib/quick-quote/constants';
@@ -45,6 +45,7 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
       reportedSuccess.current = true;
       trackGoogleConversion('generate_lead');
       trackNaverEvent({ event: 'quick_quote_success', ...getUtm() });
+      trackNaverConversion('lead');
     }
   }, [state.ok]);
 
