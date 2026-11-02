@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer';
 import MobileCTABar from '@/components/layout/MobileCTABar';
 import LocalBusinessJsonLd from '@/components/seo/LocalBusinessJsonLd';
 import NaverAnalytics from '@/components/analytics/NaverAnalytics';
+import { NAVER_ANALYTICS_ID } from '@/lib/analytics/naver';
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
 import UtmCapture from '@/components/analytics/UtmCapture';
 import { Analytics as VercelAnalytics } from '@vercel/analytics/next';
@@ -53,7 +54,13 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <MobileCTABar />
-        <NaverAnalytics accountId={process.env.NEXT_PUBLIC_NAVER_ANALYTICS_ID ?? ''} />
+        <NaverAnalytics
+          accountId={
+            process.env.NODE_ENV === 'production'
+              ? process.env.NEXT_PUBLIC_NAVER_ANALYTICS_ID || NAVER_ANALYTICS_ID
+              : ''
+          }
+        />
         <GoogleAnalytics />
         <UtmCapture />
         <VercelAnalytics />
