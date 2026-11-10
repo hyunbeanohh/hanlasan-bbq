@@ -15,6 +15,12 @@ const config: NextConfig = {
       { protocol: 'https', hostname: 'images.unsplash.com' },
     ],
   },
+  async redirects() {
+    return [
+      // 예전 SNS 공유 이미지 주소(Search Console 404) -> 현재 정적 이미지
+      { source: '/opengraph-image', destination: '/opengraph-image.jpg', permanent: true },
+    ];
+  },
   async headers() {
     const isDev = process.env.NODE_ENV !== 'production';
     const scriptSrc = isDev
