@@ -1,5 +1,13 @@
 # Windows에서 Cloudflare 빌드와 배포
 
+> **2026-11-10부터 자동 배포 사용:** GitHub `main` 브랜치에 커밋(push)하면 Cloudflare Workers Builds가 자동으로 빌드·배포합니다.
+> - 빌드 명령: `npx --yes pnpm@10.20.0 exec opennextjs-cloudflare build`
+> - 배포 명령: `npx --yes pnpm@10.20.0 exec opennextjs-cloudflare deploy`
+> - 빌드 변수: `TURNSTILE_SITE_KEY`(공개 키), `NODE_VERSION=22`
+> - 진행 상황: Cloudflare 대시보드 > Workers & Pages > hanlasan-bbq > Deployments / Builds
+>
+> 아래 WSL 수동 배포 방법은 자동 배포가 실패했을 때의 대체 수단으로 남겨 둡니다.
+
 Windows의 OpenNext 심볼릭 링크 권한 오류를 피하기 위해 Ubuntu WSL의 Linux 파일시스템에서 빌드합니다. 원본 소스와 Windows 개발 서버는 유지됩니다.
 
 ## 준비
