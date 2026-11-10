@@ -66,7 +66,9 @@ pnpm dev                               # http://localhost:3000
 | 파일 | 역할 |
 |---|---|
 | `src/lib/constants.ts` | 사이트명, 전화·문자·이메일, 사업장 주소, 영업시간, 블로그 ID |
-| `src/app/page.tsx` | 메인 SEO 제목·설명 |
+| `src/app/page.tsx` | 메인 SEO 제목·설명, 섹션 순서(슬라이드, 견적 폼, 행사 기록, 대표 메뉴, FAQ) |
+| `src/lib/blog/display-title.ts` | 블로그 후기 제목 자동 정리("[태그] ○○에 행사를 다녀왔습니다" -> "○○ 행사"). 슬라이드, 메인 행사 기록, `/gallery`에 적용 |
+| `src/components/home/RecentEvents.tsx` | 메인 행사 기록 목록(모바일 가로형 압축 카드) |
 | `src/app/layout.tsx` | 공통 메타, 사이트 인증 태그(네이버·구글), 분석 스크립트 |
 | `src/components/home/reservation/QuickQuoteForm.tsx` | 빠른 견적 폼 (전화·문자 버튼, 보안 확인 실패 안내) |
 | `src/components/inquiry/TurnstileWidget.tsx` | Turnstile (`appearance: interaction-only`) |
