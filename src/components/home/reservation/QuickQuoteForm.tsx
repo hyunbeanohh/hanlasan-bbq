@@ -275,9 +275,10 @@ function ContactAlternatives({ message }: { message?: string }) {
       <div className="grid grid-cols-2 gap-2">
         <a
           href={CONTACT.phoneTel}
-          className="bg-brand flex min-h-11 items-center justify-center rounded-lg px-3 text-sm font-bold text-white"
+          className="bg-brand flex min-h-11 flex-col items-center justify-center rounded-lg px-3 py-1.5 text-sm font-bold text-white"
         >
-          전화 상담 {CONTACT.phone}
+          <span>전화 상담</span>
+          <span className="text-xs font-semibold whitespace-nowrap opacity-90">{CONTACT.phone}</span>
         </a>
         <a
           href={CONTACT.smsHref}
