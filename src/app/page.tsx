@@ -11,13 +11,13 @@ import { pageMetadata } from '@/lib/seo/metadata';
 
 export const revalidate = 3600;
 
-const homeTitle = '전국 출장 바베큐 · 통돼지·통삼겹살·해물 | 한라산출장바베큐';
+const homeTitle = '통돼지바베큐 출장 · 전국 출장바베큐 케이터링 | 한라산출장바베큐';
 
 export const metadata: Metadata = {
   ...pageMetadata({
     title: homeTitle,
     description:
-      '한라산출장바베큐가 전국 기업 행사·동문회·가족 모임에 찾아갑니다. 통돼지, 통삼겹살, 해물바베큐와 식사 포함 여부를 선택하고 행사 인원·날짜·장소에 맞는 견적을 문의하세요.',
+      '통돼지바베큐·통삼겹살 출장바베큐 전문. 참숯으로 행사장에서 직접 구워 드리고 반찬과 식기 세팅까지 준비합니다. 기업 워크숍, 행사 케이터링, 가족 잔치까지 전국 출장. 인원·날짜·장소만 알려주시면 견적을 안내합니다.',
     path: '/',
   }),
   title: { absolute: homeTitle },
