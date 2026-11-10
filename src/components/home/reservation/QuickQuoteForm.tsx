@@ -8,6 +8,7 @@ import { trackNaverConversion, trackNaverEvent } from '@/lib/analytics/naver';
 import { getUtm } from '@/lib/analytics/utm';
 import DatePickerField from './DatePickerField';
 import { QUICK_QUOTE_MENUS, QUICK_QUOTE_MEALS } from '@/lib/quick-quote/constants';
+import { CONTACT } from '@/lib/constants';
 import { createQuickQuoteAction, type QuickQuoteFormState } from './quick-quote-action';
 
 const INITIAL: QuickQuoteFormState = { ok: false };
@@ -39,6 +40,7 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
   );
   const [meal, setMeal] = useState('');
   const reportedSuccess = useRef(false);
+  const [verifyFailed, setVerifyFailed] = useState(false);
 
   useEffect(() => {
     if (state.ok && !reportedSuccess.current) {
@@ -81,6 +83,8 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
         <p className="mb-1 text-xl font-bold tracking-tight">우리 행사에 맞는 견적 받기</p>
         <p className="text-xs text-neutral-500">원하는 메뉴와 행사 정보를 알려주세요.</p>
       </div>
+
+      <ContactAlternatives />
 
       <fieldset className="min-w-0">
         <legend className="mb-2 text-sm font-bold">
@@ -224,12 +228,25 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
         </p>
       )}
       <input type="hidden" name="turnstileToken" value={token} />
-      <TurnstileWidget siteKey={siteKey} onToken={setToken} />
+      <TurnstileWidget
+        siteKey={siteKey}
+        onToken={(value) => {
+          setToken(value);
+          if (value) setVerifyFailed(false);
+        }}
+        onError={() => setVerifyFailed(true)}
+      />
+      {verifyFailed && (
+        <ContactAlternatives message="보안 확인이 원활하지 않습니다. 전화나 문자로 바로 문의해 주세요." />
+      )}
 
       {state.message && !state.ok && (
         <p className="text-sm text-red-600" aria-live="polite">
           {state.message}
         </p>
+      )}
+      {state.message && !state.ok && !state.fieldErrors && !verifyFailed && (
+        <ContactAlternatives message="접수가 어려우면 전화나 문자로 바로 문의해 주세요." />
       )}
 
       <div
@@ -246,6 +263,30 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
         메뉴·인원·장소 확인 후 견적을 안내해 드립니다.
       </p>
     </form>
+  );
+}
+
+function ContactAlternatives({ message }: { message?: string }) {
+  return (
+    <div className="rounded-lg border border-orange-200 bg-orange-50 px-3 py-3">
+      <p className="mb-2 text-sm font-semibold text-neutral-800">
+        {message ?? '전화나 문자가 더 편하신가요? 바로 상담해 드립니다.'}
+      </p>
+      <div className="grid grid-cols-2 gap-2">
+        <a
+          href={CONTACT.phoneTel}
+          className="bg-brand flex min-h-11 items-center justify-center rounded-lg px-3 text-sm font-bold text-white"
+        >
+          전화 상담 {CONTACT.phone}
+        </a>
+        <a
+          href={CONTACT.smsHref}
+          className="border-brand text-brand flex min-h-11 items-center justify-center rounded-lg border bg-white px-3 text-sm font-bold"
+        >
+          문자로 문의하기
+        </a>
+      </div>
+    </div>
   );
 }
 
