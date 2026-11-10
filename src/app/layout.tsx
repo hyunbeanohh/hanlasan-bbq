@@ -28,6 +28,8 @@ export const metadata: Metadata = {
     other: {
       'naver-site-verification': Array.from(new Set([
         '99227420e0502b9b895b19faa1b73abd95b32c03',
+        // ohnamsoo3822 계정 소유확인 (서치어드바이저)
+        'a7ad29381e7afec9e78571c846d6eda32e0eba43',
         ...(process.env.NEXT_PUBLIC_NAVER_SITE_VERIFICATION ?? '').split(',').map((v) => v.trim()).filter(Boolean),
       ])),
     },
