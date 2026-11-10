@@ -21,7 +21,8 @@ export default function LocalBusinessJsonLd() {
       '@type': 'PostalAddress',
       addressCountry: 'KR',
       addressRegion: '경기도',
-      streetAddress: CONTACT.address,
+      addressLocality: '안양시 만안구',
+      streetAddress: '박달로578번길 36, 1층',
     },
     areaServed: [
       { '@type': 'Country', name: '대한민국' },
