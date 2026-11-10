@@ -23,6 +23,7 @@ export default function Footer() {
             </nav>
             <div className="text-fg-muted space-y-2 text-sm">
               <p>사업자등록번호 {CONTACT.businessNumber}</p>
+              <p>주소 {CONTACT.address}</p>
               <a className="block" href={CONTACT.mailtoHref}>
                 {CONTACT.email}
               </a>
