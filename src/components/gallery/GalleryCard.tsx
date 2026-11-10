@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import type { GalleryPost } from '@/types';
+import { shortenBlogTitle } from '@/lib/blog/display-title';
 
 interface GalleryCardProps {
   post: GalleryPost;
@@ -11,6 +12,7 @@ function formatDate(iso: string): string {
 }
 
 export default function GalleryCard({ post }: GalleryCardProps) {
+  const title = shortenBlogTitle(post.title);
   return (
     <article className="group flex flex-col">
       {/* Thumbnail */}
@@ -19,13 +21,13 @@ export default function GalleryCard({ post }: GalleryCardProps) {
         target="_blank"
         rel="noopener noreferrer"
         className="relative block aspect-[4/3] shrink-0 overflow-hidden rounded-xl"
-        aria-label={`${post.title} — 네이버 블로그에서 보기`}
+        aria-label={`${title} — 네이버 블로그에서 보기`}
         tabIndex={-1}
       >
         {post.thumbnailUrl ? (
           <Image
             src={post.thumbnailUrl}
-            alt={post.title}
+            alt={title}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
             unoptimized
@@ -43,7 +45,7 @@ export default function GalleryCard({ post }: GalleryCardProps) {
         <time dateTime={post.publishedAt} className="text-fg-muted mb-2 block text-xs">
           {formatDate(post.publishedAt)}
         </time>
-        <h3 className="text-fg mb-2 line-clamp-2 flex-1 text-base font-bold">{post.title}</h3>
+        <h3 className="text-fg mb-2 line-clamp-2 flex-1 text-base font-bold">{title}</h3>
         {post.summary && (
           <p className="text-fg-muted mb-4 line-clamp-2 text-sm leading-relaxed">{post.summary}</p>
         )}
@@ -52,7 +54,7 @@ export default function GalleryCard({ post }: GalleryCardProps) {
           target="_blank"
           rel="noopener noreferrer"
           className="text-brand inline-flex items-center gap-1.5 text-sm font-semibold hover:underline"
-          aria-label={`${post.title} — 네이버 블로그에서 보기`}
+          aria-label={`${title} — 네이버 블로그에서 보기`}
         >
           블로그에서 보기
           <svg
