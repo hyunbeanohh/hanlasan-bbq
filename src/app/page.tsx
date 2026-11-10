@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import EditorialHero from '@/components/home/EditorialHero';
 import QuickQuoteForm from '@/components/home/reservation/QuickQuoteForm';
-import GalleryGrid from '@/components/gallery/GalleryGrid';
+import RecentEvents from '@/components/home/RecentEvents';
+import { shortenBlogTitle } from '@/lib/blog/display-title';
 import { MENU_ITEMS } from '@/data/menu';
 import { NAVER } from '@/lib/constants';
 import { fetchNaverBlogRss } from '@/lib/blog/naver-rss';
@@ -30,7 +31,7 @@ export default async function HomePage() {
     ...posts
       .filter((post) => post.thumbnailUrl)
       .slice(0, 9)
-      .map((post) => ({ src: post.thumbnailUrl!, title: post.title })),
+      .map((post) => ({ src: post.thumbnailUrl!, title: shortenBlogTitle(post.title) })),
   ];
   return (
     <>
@@ -41,6 +42,21 @@ export default async function HomePage() {
             행사에 맞는 바베큐 <span className="text-brand ml-2 text-lg">빠른 견적</span>
           </h2>
           <QuickQuoteForm siteKey={process.env.TURNSTILE_SITE_KEY ?? ''} />
+        </section>
+        <section className="border-border border-t py-12" id="records">
+          <h2 className="mb-3 text-[clamp(23px,3vw,32px)] font-bold">
+            이런 자리에서 함께했습니다.
+          </h2>
+          <p className="text-fg-muted">행사별 준비 모습은 블로그에서 확인하실 수 있습니다.</p>
+          <a
+            href={NAVER.blogHomeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 mb-8 inline-block text-sm underline underline-offset-4"
+          >
+            블로그로 바로가기 ↗
+          </a>
+          <RecentEvents posts={posts.slice(0, 3)} />
         </section>
         <section className="border-border border-t py-12">
           <div className="mb-8 flex items-center justify-between gap-4">
@@ -68,21 +84,6 @@ export default async function HomePage() {
               </article>
             ))}
           </div>
-        </section>
-        <section className="border-border border-t py-12" id="records">
-          <h2 className="mb-3 text-[clamp(23px,3vw,32px)] font-bold">
-            이런 자리에서 함께했습니다.
-          </h2>
-          <p className="text-fg-muted">행사별 준비 모습은 블로그에서 확인하실 수 있습니다.</p>
-          <a
-            href={NAVER.blogHomeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-3 mb-8 inline-block text-sm underline underline-offset-4"
-          >
-            블로그로 바로가기 ↗
-          </a>
-          <GalleryGrid posts={posts.slice(0, 3)} />
         </section>
         <section className="border-border border-t pt-10 pb-16">
           <h2 className="mb-8 text-3xl font-bold">자주하는 질문</h2>
