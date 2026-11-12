@@ -92,6 +92,7 @@ pnpm dev                               # http://localhost:3000
 
 - 하루 예산 30,000원(캠페인·그룹), 시간별 균등 배분
 - 소재 2개, 연결 URL에 UTM: `?utm_source=naver&utm_medium=cpc&utm_campaign=powerlink&utm_content=rsa_new` 또는 `rsa_original`
+- 텍스트 서브링크: '통돼지바베큐'(`/menu#sig-tong-dwaeji`, utm_content=sublink_menu), '빠른견적'(`/inquiry#quote`, utm_content=sublink_quote), '단체행사후기'(블로그). 이미지형 서브링크는 블로그 연결
 - 제외 검색어 약 600개(축제, 바베큐장 대여, 캠핑·펜션, 맛집류 등)
 - 2일마다 자동 점검 메일 발송(ohb4199@gmail.com)
 - 서비스 지역: 전국(원주, 광양 포함, 견적에 따라 다름)
