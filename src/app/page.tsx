@@ -9,6 +9,10 @@ import { fetchNaverBlogRss } from '@/lib/blog/naver-rss';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/seo/metadata';
+import { COMMON_FAQ } from '@/data/faq';
+import { getMenuPageByMenuId } from '@/data/menu-pages';
+import FaqList from '@/components/common/FaqList';
+import FaqJsonLd from '@/components/seo/FaqJsonLd';
 
 export const revalidate = 3600;
 
@@ -68,7 +72,7 @@ export default async function HomePage() {
           <div className="grid gap-8 md:grid-cols-3">
             {MENU_ITEMS.slice(0, 3).map((item) => (
               <article key={item.id}>
-                <Link href={`/menu#${item.id}`}>
+                <Link href={menuHref(item.id)}>
                   <div className="relative aspect-[3/2] overflow-hidden rounded-xl">
                     <Image
                       src={item.imageSrc}
@@ -87,38 +91,23 @@ export default async function HomePage() {
         </section>
         <section className="border-border border-t pt-10 pb-16">
           <h2 className="mb-8 text-3xl font-bold">자주하는 질문</h2>
-          {FAQ.map(([q, a]) => (
-            <details key={q} className="border-border group border-b py-5">
-              <summary className="flex cursor-pointer justify-between gap-4 font-semibold">
-                {q}
-                <span aria-hidden="true" className="group-open:rotate-45">
-                  +
-                </span>
-              </summary>
-              <p className="text-fg-soft pt-4 leading-7">{a}</p>
-            </details>
-          ))}
+          <FaqJsonLd items={COMMON_FAQ} />
+          <FaqList items={COMMON_FAQ} />
+          <p className="text-fg-soft mt-8 text-sm">
+            회사 워크숍이나 체육대회를 준비하신다면{' '}
+            <Link href="/catering" className="text-brand font-semibold underline underline-offset-4">
+              기업 행사 케이터링 안내
+            </Link>
+            를 확인해 보세요.
+          </p>
         </section>
       </div>
     </>
   );
 }
-const FAQ = [
-  [
-    '행사 당일 준비는 어떻게 진행되나요?',
-    '행사 시작 최소 2시간 전에 도착해 바베큐 준비와 자리 세팅을 진행합니다.',
-  ],
-  [
-    '메뉴 변경이나 맞춤 구성이 가능한가요?',
-    '네, 전화 상담을 통해 원하시는 메뉴와 구성을 협의한 후 진행합니다.',
-  ],
-  [
-    '출장 지역에 제한이 있나요?',
-    '지역 제한은 없습니다. 행사 인원과 메뉴를 고려해 진행 가능 여부를 상담 후 안내합니다.',
-  ],
-  [
-    '몇 명부터 이용할 수 있나요?',
-    '기본 30명 이상부터 가능합니다. 30명 미만도 메뉴와 구성에 따라 전화로 상담해 주세요.',
-  ],
-  ['얼마나 전에 예약해야 하나요?', '행사 최소 1주일 전에는 예약해 주세요.'],
-];
+
+/** 대표 메뉴 카드 링크: 상세 페이지가 있으면 상세로, 없으면 메뉴 페이지의 해당 위치로. */
+function menuHref(menuId: string): string {
+  const detail = getMenuPageByMenuId(menuId);
+  return detail ? `/menu/${detail.slug}` : `/menu#${menuId}`;
+}
