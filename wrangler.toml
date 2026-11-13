@@ -3,6 +3,16 @@ compatibility_date = "2025-12-01"
 compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
 main = ".open-next/worker.js"
 
+# 운영 주소는 커스텀 도메인만 쓴다 (workers.dev 운영 주소는 끔).
+# PR·브랜치 미리보기 주소(*-hanlasan-bbq.ohb4199.workers.dev)는 켠다. 미리보기는 middleware에서 noindex 처리.
+workers_dev = false
+preview_urls = true
+
+# 오류 원인 확인용 로그를 대시보드(Observability)에 저장한다.
+[observability]
+enabled = true
+head_sampling_rate = 1
+
 [assets]
 directory = ".open-next/assets"
 binding = "ASSETS"

@@ -13,7 +13,12 @@ const NON_CANONICAL_HOSTS = new Set([
 
 export function middleware(request: NextRequest) {
   const host = request.headers.get('host')?.toLowerCase() ?? '';
-  if (!NON_CANONICAL_HOSTS.has(host)) return NextResponse.next();
+  if (!NON_CANONICAL_HOSTS.has(host)) {
+    const res = NextResponse.next();
+    // PR·브랜치 미리보기 주소(*.workers.dev)는 검색엔진에 노출되지 않게 한다.
+    if (host.endsWith('.workers.dev')) res.headers.set('X-Robots-Tag', 'noindex, nofollow');
+    return res;
+  }
 
   const target = new URL(request.nextUrl.toString());
   target.host = CANONICAL_HOST;
