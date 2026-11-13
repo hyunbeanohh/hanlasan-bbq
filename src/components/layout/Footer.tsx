@@ -11,6 +11,7 @@ export default function Footer() {
               {[
                 ['/company', '회사소개'],
                 ['/menu', '출장 바베큐 메뉴'],
+                ['/catering', '기업 행사 케이터링'],
                 ['/banquet', '잔치 메뉴'],
                 ['/gallery', '행사 기록'],
                 ['/inquiry', '예약문의'],
