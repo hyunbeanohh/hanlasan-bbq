@@ -16,7 +16,6 @@ import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
 import FaqJsonLd from '@/components/seo/FaqJsonLd';
 
 export const revalidate = 3600;
-export const dynamicParams = false;
 
 type Props = { params: Promise<{ slug: string }> };
 
