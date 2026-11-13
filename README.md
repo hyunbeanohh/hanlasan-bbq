@@ -56,6 +56,8 @@ pnpm dev                               # http://localhost:3000
 |---|---|
 | `/` | 메인 (빠른 견적 폼 포함) |
 | `/company`, `/menu`, `/banquet`, `/gallery` | 회사소개, 메뉴, 잔치 메뉴, 행사 기록 |
+| `/menu/tong-dwaeji`, `/menu/tongsamgyeop`, `/menu/haemul` | 메뉴별 검색용 상세 페이지 (인원별 가격, 진행 순서, 최근 행사, FAQ, 구조화 데이터) |
+| `/catering` | 기업 행사 출장 바베큐 케이터링 안내 (워크숍, 체육대회, 야유회) |
 | `/inquiry` | 견적 폼 + 문의 게시판 목록 (`#quote` 앵커) |
 | `/inquiry/new`, `/inquiry/[id]` | 문의 게시판 작성/상세 (비밀번호, 비밀글) |
 | `/admin/inquiry` | 관리자 답변 |
@@ -66,7 +68,7 @@ pnpm dev                               # http://localhost:3000
 | 파일 | 역할 |
 |---|---|
 | `src/lib/constants.ts` | 사이트명, 전화·문자·이메일, 사업장 주소, 영업시간, 블로그 ID |
-| `src/app/page.tsx` | 메인 SEO 제목·설명, 섹션 순서(슬라이드, 견적 폼, 행사 기록, 대표 메뉴, FAQ) |
+| `src/app/page.tsx` | 메인 SEO 제목·설명, 섹션 순서(슬라이드, 견적 폼, 행사 기록, 대표 메뉴, FAQ). 대표 메뉴 카드는 메뉴 상세 페이지로 연결 |
 | `src/lib/blog/display-title.ts` | 블로그 후기 제목 자동 정리("[태그] ○○에 행사를 다녀왔습니다" -> "○○ 행사"). 슬라이드, 메인 행사 기록, `/gallery`에 적용 |
 | `src/components/home/RecentEvents.tsx` | 메인 행사 기록 목록(모바일 가로형 압축 카드) |
 | `src/app/layout.tsx` | 공통 메타, 사이트 인증 태그(네이버·구글), 분석 스크립트 |
@@ -75,6 +77,9 @@ pnpm dev                               # http://localhost:3000
 | `src/components/layout/MobileCTABar.tsx` | 모바일 하단 고정 바 (전화, 견적, 문자, 이메일) |
 | `src/components/analytics/*`, `src/lib/analytics/*` | GA4, 네이버 전환추적, UTM 저장 |
 | `src/components/seo/LocalBusinessJsonLd.tsx` | 업체 구조화 데이터 |
+| `src/data/menu-pages.ts` | 메뉴 상세 페이지 내용(검색 제목·설명, 소개, 메뉴별 FAQ). 가격은 `src/data/menu.ts`에서 가져옴. 새 상세 페이지는 여기에 추가하면 사이트맵·메뉴 카드 링크에 자동 반영 |
+| `src/data/faq.ts` | 공통 FAQ (메인, 메뉴 상세, `/catering`이 함께 사용) |
+| `src/components/seo/FaqJsonLd.tsx`, `src/components/common/FaqList.tsx` | FAQ 구조화 데이터와 접이식 목록 |
 | `next.config.ts` | CSP 헤더, 리디렉션 |
 
 ## 운영 현황 (2026-11-10 기준)
