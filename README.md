@@ -38,6 +38,11 @@ pnpm dev                               # http://localhost:3000
 | 롤백 | 같은 화면에서 이전 버전 선택 후 배포 |
 
 - 빌드는 보통 2분 안에 끝납니다. 실패하면 Deployments의 빌드 로그를 확인하세요.
+- **PR 미리보기 (2026-11-13)**: `main`이 아닌 브랜치에 push하거나 PR을 만들면 미리보기 빌드가 돌고, `*-hanlasan-bbq.ohb4199.workers.dev` 주소가 생깁니다. 결과는 PR의 Checks와 Cloudflare Deployments에 표시됩니다. 여러 파일을 바꿀 때는 브랜치 + PR로 올리고, 미리보기 주소에서 확인한 뒤 병합하세요.
+  - 미리보기 빌드 설정: Settings > Builds > Previews Base (빌드 변수 `NODE_VERSION=22`, `TURNSTILE_SITE_KEY` 운영과 동일)
+  - 미리보기는 운영과 같은 D1을 바인딩하지만, Turnstile이 운영 도메인에서만 통과되므로 견적·문의 글이 써지지 않습니다. 관리자 화면은 Access JWT 검증으로 막혀 있습니다. 미리보기 주소는 `X-Robots-Tag: noindex`로 검색에서 제외합니다(`src/middleware.ts`).
+- 빌드 제외 경로: `README.md`, `AGENTS.md`, `CLAUDE.md`, `docs/**`만 바뀐 커밋은 빌드하지 않습니다. 빌드 캐시 켜짐.
+- `wrangler.toml`: `workers_dev = false`(운영 workers.dev 주소 끔), `preview_urls = true`, `[observability]` 로그 저장(대시보드 > Observability에서 오류 확인).
 - 자동 배포가 안 될 때 수동 배포(WSL): [docs/windows-cloudflare-deployment.md](docs/windows-cloudflare-deployment.md)
   - `pnpm exec wrangler login` 후 `powershell -ExecutionPolicy Bypass -File scripts/cloudflare-wsl.ps1 -Mode check`, 이어서 `-Mode deploy`
   - Wrangler 로그인은 자주 만료됩니다. `Not logged in`이 나오면 다시 로그인하세요.
