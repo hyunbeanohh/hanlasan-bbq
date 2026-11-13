@@ -2,6 +2,7 @@ import Image from 'next/image';
 import type { MenuItem, PricingTier } from '@/types';
 import { CATEGORY_LABELS } from '@/data/menu';
 import { CONTACT } from '@/lib/constants';
+import { getMenuPageByMenuId } from '@/data/menu-pages';
 
 interface MenuCardProps {
   item: MenuItem;
@@ -9,7 +10,7 @@ interface MenuCardProps {
   defaultOpen?: boolean;
 }
 
-function PricingTable({
+export function PricingTable({
   tiers,
   columns,
 }: {
@@ -73,6 +74,7 @@ function PricingTable({
 }
 
 export default function MenuCard({ item, preload = false }: MenuCardProps) {
+  const detail = getMenuPageByMenuId(item.id);
   return (
     <article className="menu-entry" id={item.id}>
       <div className="menu-photo">
@@ -104,6 +106,14 @@ export default function MenuCard({ item, preload = false }: MenuCardProps) {
         >
           {item.consultationOnly ? '전화 상담하기' : '이 메뉴로 견적 문의'}
         </a>
+        {detail && (
+          <a
+            href={`/menu/${detail.slug}`}
+            className="text-fg-soft hover:text-brand mt-6 ml-4 inline-flex py-3 text-sm font-semibold underline underline-offset-4"
+          >
+            {item.name} 자세히 보기
+          </a>
+        )}
       </div>
     </article>
   );
