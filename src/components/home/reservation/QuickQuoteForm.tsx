@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useActionState, useRef } from 'react';
-import { trackGoogleConversion } from '@/lib/analytics/google';
+import { trackGoogleConversion, trackQuoteEvent } from '@/lib/analytics/google';
 import { useFormStatus } from 'react-dom';
 import TurnstileWidget from '@/components/inquiry/TurnstileWidget';
 import { trackNaverConversion, trackNaverEvent } from '@/lib/analytics/naver';
@@ -19,10 +19,9 @@ function SubmitButton() {
     <button
       type="submit"
       disabled={pending}
-      onClick={() => trackNaverEvent({ event: 'quick_quote_submit', ...getUtm() })}
-      className="bg-brand mt-1 h-11 rounded-lg text-[0.98rem] font-bold text-white disabled:opacity-50"
+      className="bg-brand mt-1 h-12 rounded-lg text-[0.98rem] font-bold text-white disabled:opacity-50"
     >
-      {pending ? '전송 중…' : '이 구성으로 견적 요청하기 →'}
+      {pending ? '전송 중…' : '견적 요청하기'}
     </button>
   );
 }
@@ -39,8 +38,10 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
     initialMenu && QUICK_QUOTE_MENUS.some((menu) => menu === initialMenu) ? [initialMenu] : [],
   );
   const [meal, setMeal] = useState('');
+  const [dateUndecided, setDateUndecided] = useState(false);
   const reportedSuccess = useRef(false);
   const [verifyFailed, setVerifyFailed] = useState(false);
+  const v = state.values ?? {};
 
   useEffect(() => {
     if (state.ok && !reportedSuccess.current) {
@@ -50,6 +51,17 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
       trackNaverConversion('lead');
     }
   }, [state.ok]);
+
+  // 서버에서 막힌 경우 이유를 기록한다 (입력 오류 칸 이름, 보안 확인, 한도).
+  useEffect(() => {
+    if (!state.ok && state.errorReason) {
+      trackQuoteEvent(
+        'quote_submit_error',
+        state.errorReason,
+        state.fieldErrors ? Object.keys(state.fieldErrors).join(',') : undefined,
+      );
+    }
+  }, [state]);
 
   if (state.ok) {
     return (
@@ -76,22 +88,31 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
   return (
     <form
       action={formAction}
+      onSubmit={() => {
+        trackQuoteEvent('quote_submit');
+        trackNaverEvent({ event: 'quick_quote_submit', ...getUtm() });
+      }}
+      onInvalidCapture={(event) => {
+        // 브라우저 기본 검사(필수 칸 비움 등)에 걸린 경우도 기록한다. 칸 이름만 보낸다.
+        const name = (event.target as HTMLInputElement).name;
+        trackQuoteEvent('quote_submit_error', 'field', name || undefined);
+      }}
       aria-label="빠른 견적 요청"
       className="border-border flex flex-col gap-3 rounded-xl border bg-white p-5 text-neutral-900 sm:p-8"
     >
       <div className="mb-1">
         <p className="mb-1 text-xl font-bold tracking-tight">우리 행사에 맞는 견적 받기</p>
-        <p className="text-xs text-neutral-500">원하는 메뉴와 행사 정보를 알려주세요.</p>
+        <p className="text-xs text-neutral-500">
+          날짜와 장소가 아직 정해지지 않았어도 괜찮습니다. 확인 후 연락드립니다.
+        </p>
       </div>
 
       <ContactAlternatives />
 
       <fieldset className="min-w-0">
-        <legend className="mb-2 text-sm font-bold">
-          어떤 바베큐를 원하시나요?
-          <span className="mt-1 block text-xs font-normal text-neutral-500">
-            필수 · 여러 개 선택 가능
-          </span>
+        <legend className="mb-2 flex w-full justify-between text-sm font-bold">
+          <span>어떤 바베큐를 원하시나요?</span>
+          <span className="text-brand text-xs font-semibold">필수, 여러 개 선택 가능</span>
         </legend>
         <div className="grid grid-cols-1 gap-2 min-[420px]:grid-cols-3">
           {QUICK_QUOTE_MENUS.map((menu, index) => (
@@ -129,9 +150,9 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
       </fieldset>
 
       <fieldset className="mt-1 min-w-0">
-        <legend className="mb-2 text-sm font-bold">
-          식사도 함께 준비해 드릴까요?
-          <span className="mt-1 block text-xs font-normal text-neutral-500">필수 · 하나 선택</span>
+        <legend className="mb-2 flex w-full justify-between text-sm font-bold">
+          <span>식사도 함께 준비해 드릴까요?</span>
+          <span className="text-brand text-xs font-semibold">필수</span>
         </legend>
         <div className="grid grid-cols-2 gap-2">
           {QUICK_QUOTE_MEALS.map((option, index) => (
@@ -160,73 +181,87 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
         )}
       </fieldset>
 
-      <fieldset
-        disabled={!menus.length || !meal}
-        className={menus.length > 0 && meal ? 'contents' : 'hidden'}
-      >
-        <div className="mt-1 grid grid-cols-2 gap-2.5 border-t border-neutral-200 pt-4">
-          <Field
-            label="인원"
-            name="headcount"
-            type="number"
-            inputMode="numeric"
-            placeholder="예) 30"
-            min={1}
-            max={1000}
-            error={state.fieldErrors?.headcount}
-            required
-          />
-          <DatePickerField
-            label="희망 날짜"
-            name="eventDate"
-            error={state.fieldErrors?.eventDate}
-            required
-          />
-        </div>
-
+      <div className="mt-1 grid grid-cols-2 gap-2.5 border-t border-neutral-200 pt-4">
         <Field
-          label="출장 장소"
-          name="location"
-          placeholder="예) 서울 강남구 역삼동"
-          error={state.fieldErrors?.location}
+          label="인원"
+          name="headcount"
+          type="number"
+          inputMode="numeric"
+          placeholder="예) 40"
+          min={1}
+          max={1000}
+          defaultValue={v.headcount}
+          error={state.fieldErrors?.headcount}
           required
         />
-
         <Field
           label="연락처"
           name="phone"
           type="tel"
-          placeholder="010-0000-0000"
+          inputMode="tel"
+          autoComplete="tel"
+          placeholder="01012345678"
+          defaultValue={v.phone}
           error={state.fieldErrors?.phone}
           required
         />
+      </div>
 
-        <Field
-          label="이메일 (선택)"
-          name="email"
-          type="email"
-          placeholder="example@naver.com"
-          error={state.fieldErrors?.email}
-        />
+      <div>
+        <div className="mb-1 flex justify-between text-sm font-semibold text-neutral-600">
+          <span>희망 날짜</span>
+          <span className="text-xs font-normal text-neutral-400">선택</span>
+        </div>
+        <div className="grid grid-cols-[1fr_auto] items-start gap-2">
+          <DatePickerField
+            label=""
+            name="eventDate"
+            disabled={dateUndecided}
+            defaultValue={v.eventDate}
+            error={state.fieldErrors?.eventDate}
+          />
+          <label className="has-checked:border-brand has-checked:text-brand flex h-10 cursor-pointer items-center gap-1.5 rounded-md border border-neutral-200 px-3 text-sm font-semibold whitespace-nowrap has-checked:bg-orange-50">
+            <input
+              type="checkbox"
+              checked={dateUndecided}
+              onChange={(event) => setDateUndecided(event.target.checked)}
+              className="accent-brand size-4"
+            />
+            아직 미정
+          </label>
+        </div>
+      </div>
 
-        <label className="mt-1 flex items-start gap-2 text-xs text-neutral-600">
-          <input type="checkbox" name="privacyConsent" value="on" required className="mt-0.5" />
-          <span>
-            개인정보 수집·이용 동의 (필수){' '}
-            <a href="/privacy" target="_blank" className="text-brand underline">
-              자세히
-            </a>
-          </span>
-        </label>
-        {state.fieldErrors?.privacyConsent && (
-          <p className="text-xs text-red-600">{state.fieldErrors.privacyConsent[0]}</p>
-        )}
-      </fieldset>
-      {(!menus.length || !meal) && (
-        <p className="text-fg-muted py-4 text-sm">
-          메뉴와 식사 여부를 선택하면 행사 정보 입력란이 나타납니다.
-        </p>
+      <Field
+        label="지역"
+        name="location"
+        placeholder="예) 경기 안산, 대부도"
+        defaultValue={v.location}
+        error={state.fieldErrors?.location}
+      />
+
+      <Field
+        label="이메일"
+        name="email"
+        type="email"
+        placeholder="example@naver.com"
+        defaultValue={v.email}
+        error={state.fieldErrors?.email}
+      />
+
+      <label className="mt-1 flex items-start gap-2 text-xs text-neutral-600">
+        <input type="checkbox" name="privacyConsent" value="on" required className="mt-0.5" />
+        <span>
+          개인정보 수집·이용 동의 (필수){' '}
+          <a href="/privacy" target="_blank" className="text-brand underline">
+            자세히
+          </a>
+        </span>
+      </label>
+      {state.fieldErrors?.privacyConsent && (
+        <p className="text-xs text-red-600">{state.fieldErrors.privacyConsent[0]}</p>
       )}
+
       <input type="hidden" name="turnstileToken" value={token} />
       <TurnstileWidget
         siteKey={siteKey}
@@ -234,7 +269,10 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
           setToken(value);
           if (value) setVerifyFailed(false);
         }}
-        onError={() => setVerifyFailed(true)}
+        onError={() => {
+          setVerifyFailed(true);
+          trackQuoteEvent('quote_submit_error', 'verify');
+        }}
       />
       {verifyFailed && (
         <ContactAlternatives message="보안 확인이 원활하지 않습니다. 전화나 문자로 바로 문의해 주세요." />
@@ -249,18 +287,9 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
         <ContactAlternatives message="접수가 어려우면 전화나 문자로 바로 문의해 주세요." />
       )}
 
-      <div
-        className="rounded-lg bg-neutral-50 px-3 py-2.5 text-xs leading-relaxed"
-        aria-live="polite"
-      >
-        <p className="mb-1 font-bold">선택한 구성</p>
-        <p className="text-neutral-600">
-          {menus.length ? menus.join(' + ') : '메뉴 미선택'} · {meal || '식사 유무 미선택'}
-        </p>
-      </div>
-      {menus.length > 0 && meal && <SubmitButton />}
+      <SubmitButton />
       <p className="text-center text-xs text-neutral-500">
-        메뉴·인원·장소 확인 후 견적을 안내해 드립니다.
+        메뉴와 인원을 확인한 후 견적을 안내해 드립니다.
       </p>
     </form>
   );
@@ -278,7 +307,9 @@ function ContactAlternatives({ message }: { message?: string }) {
           className="bg-brand flex min-h-11 flex-col items-center justify-center rounded-lg px-3 py-1.5 text-sm font-bold text-white"
         >
           <span>전화 상담</span>
-          <span className="text-xs font-semibold whitespace-nowrap opacity-90">{CONTACT.phone}</span>
+          <span className="text-xs font-semibold whitespace-nowrap opacity-90">
+            {CONTACT.phone}
+          </span>
         </a>
         <a
           href={CONTACT.smsHref}
@@ -301,6 +332,8 @@ function Field({
   inputMode,
   min,
   max,
+  defaultValue,
+  autoComplete,
 }: {
   label: string;
   name: string;
@@ -308,14 +341,22 @@ function Field({
   required?: boolean;
   placeholder?: string;
   error?: string[];
-  inputMode?: 'numeric' | 'text';
+  inputMode?: 'numeric' | 'text' | 'tel';
   min?: number;
   max?: number;
+  defaultValue?: string;
+  autoComplete?: string;
 }) {
   return (
     <div>
-      <label htmlFor={name} className="mb-1 block text-sm font-semibold text-neutral-500">
-        {label}
+      <label
+        htmlFor={name}
+        className="mb-1 flex justify-between text-sm font-semibold text-neutral-600"
+      >
+        <span>{label}</span>
+        <span className={required ? 'text-brand text-xs' : 'text-xs font-normal text-neutral-400'}>
+          {required ? '필수' : '선택'}
+        </span>
       </label>
       <input
         id={name}
@@ -326,6 +367,9 @@ function Field({
         inputMode={inputMode}
         min={min}
         max={max}
+        defaultValue={defaultValue}
+        autoComplete={autoComplete}
+        aria-invalid={!!error}
         className="focus:border-brand h-10 w-full [appearance:textfield] rounded-md border border-neutral-200 bg-neutral-50 px-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
       />
       {error && <p className="mt-1 text-[11px] text-red-600">{error[0]}</p>}
