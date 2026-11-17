@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import './pretendard.css';
 import './globals.css';
 import { SITE } from '@/lib/constants';
 import Header from '@/components/layout/Header';
@@ -9,6 +8,7 @@ import LocalBusinessJsonLd from '@/components/seo/LocalBusinessJsonLd';
 import NaverAnalytics from '@/components/analytics/NaverAnalytics';
 import { NAVER_ANALYTICS_ID } from '@/lib/analytics/naver';
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
+import FontLoader from '@/components/layout/FontLoader';
 import UtmCapture from '@/components/analytics/UtmCapture';
 import { Analytics as VercelAnalytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
@@ -45,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className="h-full scroll-smooth">
       <head>
-        {/* Pretendard 글꼴 파일(jsDelivr) 연결을 미리 열어 둔다. @font-face는 src/app/pretendard.css */}
+        {/* Pretendard 글꼴(jsDelivr)은 페이지 로드 뒤 FontLoader가 불러온다. 연결만 미리 열어 둔다. */}
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
       </head>
       <body className="min-h-full flex flex-col antialiased pb-[60px] md:pb-0">
@@ -62,6 +62,7 @@ export default function RootLayout({
           }
         />
         <GoogleAnalytics />
+        <FontLoader />
         <UtmCapture />
         <VercelAnalytics />
         <SpeedInsights />
