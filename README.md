@@ -82,7 +82,7 @@ pnpm dev                               # http://localhost:3000
 | `src/components/inquiry/TurnstileWidget.tsx` | Turnstile (`appearance: interaction-only`) |
 | `src/components/layout/MobileCTABar.tsx` | 모바일 하단 고정 바 (전화, 견적, 문자, 이메일) |
 | `src/components/analytics/*`, `src/lib/analytics/*` | GA4, 네이버 전환추적, UTM 저장 |
-| `src/components/seo/LocalBusinessJsonLd.tsx` | 업체 구조화 데이터 |
+| `src/components/seo/LocalBusinessJsonLd.tsx` | 업체 구조화 데이터 (지도 연결: `hasMap` 구글 지도, `sameAs` 블로그, 네이버 플레이스, 카카오맵, 구글 지도) |
 | `src/data/menu-pages.ts` | 메뉴 상세 페이지 내용(검색 제목·설명, 소개, 메뉴별 FAQ). 가격은 `src/data/menu.ts`에서 가져옴. 새 상세 페이지는 여기에 추가하면 사이트맵·메뉴 카드 링크에 자동 반영 |
 | `src/data/faq.ts` | 공통 FAQ (메인, 메뉴 상세, `/catering`이 함께 사용) |
 | `src/components/seo/FaqJsonLd.tsx`, `src/components/common/FaqList.tsx` | FAQ 구조화 데이터와 접이식 목록 |
@@ -95,15 +95,16 @@ pnpm dev                               # http://localhost:3000
 | 도구 | 상태 |
 |---|---|
 | GA4 | 측정 ID `G-F208LM9Z8K` (속성 a412415538p559491432). 주요 이벤트: `generate_lead`(견적 접수), `phone_click`(전화 클릭). Search Console 연결됨 |
-| 네이버 전환추적 | 공통키 `s_3cd13a72248` (`src/lib/analytics/naver.ts`). 전환: `lead`(견적 접수, 게시판 등록), `custom001`(전화 클릭). 수집 서버 `wcs.naver.com`은 CSP에 허용. NHN DATA 검수 대기(광고주센터 상태 '신청중') |
+| 네이버 전환추적 | 공통키 `s_3cd13a72248` (`src/lib/analytics/naver.ts`). 전환: `lead`(견적 접수, 게시판 등록), `custom001`(전화 클릭). 수집 서버 `wcs.naver.com`은 CSP에 허용. NHN DATA 검수 대기(광고주센터 상태 '신청중', 2026-11-17 검수 신청서 다시 제출) |
 | Google Search Console | URL 프리픽스 속성 `https://xn--oi2b40g9l97kpyk0jjr0ee5l.kr/` (ohb4199@gmail.com) |
 | 네이버 서치어드바이저 | 인증 태그 2개(`layout.tsx`): 기존 계정 + ohnamsoo3822(광고 계정). 사이트맵 `/sitemap.xml` 제출됨 |
 
 ### 네이버 검색광고 (계정 ohnamsoo3822, 캠페인 '한라산출장바베큐')
 
-- 하루 예산: 캠페인 30,000원. 광고그룹 '한라산출장바베큐_new' 30,000원, '한라산출장바베큐_연말행사' 10,000원(2026-11-17 추가, 캠페인 예산을 함께 씀)
+- 하루 예산: 캠페인 30,000원. 광고그룹 '한라산출장바베큐_new' 30,000원, '한라산출장바베큐_연말행사' 10,000원(2026-11-17 추가), '한라산출장바베큐_대부도안산' 5,000원(2026-11-17 추가, 시험용). 세 그룹이 캠페인 예산을 함께 씀
 - 기본 그룹 소재 2개, 연결 URL에 UTM: `?utm_source=naver&utm_medium=cpc&utm_campaign=powerlink&utm_content=rsa_new` 또는 `rsa_original`
 - 연말행사 그룹: 송년회·연말·종무식·시무식 케이터링 키워드 15개, 소재 1개(연결 `/catering`, `utm_content=yearend`). 연말 이후 끄기
+- 대부도안산 그룹(시험): 대부도·안산 단체 펜션, 워크숍, MT, 야유회, 통돼지바베큐 키워드 7개, 확장검색 끔, 소재 1개(연결 메인, `utm_content=daebudo_ansan`). 대부도출장바베큐, 대부도출장뷔페, 안산출장바베큐는 기본 그룹에 그대로 둠
 - 텍스트 서브링크: '통돼지바베큐'(`/menu#sig-tong-dwaeji`, utm_content=sublink_menu), '빠른견적'(`/inquiry#quote`, utm_content=sublink_quote), '단체행사후기'(블로그). 이미지형 서브링크는 블로그 연결
 - 제외 검색어 838개(축제, 바베큐장 대여, 캠핑·펜션, 맛집류, 당일바베큐 등)
 - 꺼 둔 키워드: 클릭 없는 지역+바베큐 16개, 야외바베큐, 바베큐파티, 바베큐그릴대여, 출장뷔페 등(2026-11-17)
