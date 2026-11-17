@@ -21,7 +21,15 @@ export interface QuickQuoteFormState {
   values?: Record<string, string>;
 }
 
-const KEEP_FIELDS = ['headcount', 'eventDate', 'location', 'phone', 'email'] as const;
+const KEEP_FIELDS = [
+  'headcount',
+  'eventDate',
+  'dateUndecided',
+  'eventPeriod',
+  'location',
+  'phone',
+  'email',
+] as const;
 
 function keepValues(formData: FormData): Record<string, string> {
   const out: Record<string, string> = {};
@@ -86,6 +94,7 @@ export async function createQuickQuoteAction(
   const title = buildQuickQuoteTitle({
     headcount: input.headcount,
     eventDate: input.eventDate,
+    eventPeriod: input.eventPeriod,
     location: input.location,
   });
   const content = buildQuickQuoteContent({
@@ -93,6 +102,7 @@ export async function createQuickQuoteAction(
     meal: input.meal,
     headcount: input.headcount,
     eventDate: input.eventDate,
+    eventPeriod: input.eventPeriod,
     location: input.location,
     phone: input.phone,
     email: input.email,
