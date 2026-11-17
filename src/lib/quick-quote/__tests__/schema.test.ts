@@ -61,22 +61,10 @@ describe('quickQuoteSchema', () => {
     expect(quickQuoteSchema.safeParse({ ...valid, location: '부산' }).success).toBe(true);
   });
 
-  it('requires a date unless marked undecided with a rough period', () => {
-    const noDate = quickQuoteSchema.safeParse({ ...valid, eventDate: '' });
-    expect(noDate.success).toBe(false);
-    if (!noDate.success) expect(noDate.error.issues[0].path[0]).toBe('eventDate');
-
-    const noPeriod = quickQuoteSchema.safeParse({ ...valid, eventDate: '', dateUndecided: 'on' });
-    expect(noPeriod.success).toBe(false);
-    if (!noPeriod.success) expect(noPeriod.error.issues[0].path[0]).toBe('eventPeriod');
-
-    const ok = quickQuoteSchema.safeParse({
-      ...valid,
-      eventDate: '',
-      dateUndecided: 'on',
-      eventPeriod: '12월 중순',
-    });
-    expect(ok.success).toBe(true);
+  it('requires an event date', () => {
+    for (const eventDate of ['', undefined]) {
+      expect(quickQuoteSchema.safeParse({ ...valid, eventDate }).success).toBe(false);
+    }
   });
 
   it('normalizes phone numbers typed without hyphens', () => {
