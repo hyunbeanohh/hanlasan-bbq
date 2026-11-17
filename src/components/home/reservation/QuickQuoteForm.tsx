@@ -38,7 +38,8 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
     initialMenu && QUICK_QUOTE_MENUS.some((menu) => menu === initialMenu) ? [initialMenu] : [],
   );
   const [meal, setMeal] = useState('');
-  const [dateUndecided, setDateUndecided] = useState(false);
+  const [dateUndecided, setDateUndecided] = useState(state.values?.dateUndecided === 'on');
+  const [dateMissing, setDateMissing] = useState(false);
   const reportedSuccess = useRef(false);
   const [verifyFailed, setVerifyFailed] = useState(false);
   const v = state.values ?? {};
@@ -88,7 +89,16 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
   return (
     <form
       action={formAction}
-      onSubmit={() => {
+      onSubmit={(event) => {
+        const form = event.currentTarget;
+        const dateValue = (form.elements.namedItem('eventDate') as HTMLInputElement | null)?.value;
+        if (!dateUndecided && !dateValue) {
+          event.preventDefault();
+          setDateMissing(true);
+          trackQuoteEvent('quote_submit_error', 'field', 'eventDate');
+          return;
+        }
+        setDateMissing(false);
         trackQuoteEvent('quote_submit');
         trackNaverEvent({ event: 'quick_quote_submit', ...getUtm() });
       }}
@@ -103,7 +113,7 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
       <div className="mb-1">
         <p className="mb-1 text-xl font-bold tracking-tight">우리 행사에 맞는 견적 받기</p>
         <p className="text-xs text-neutral-500">
-          날짜와 장소가 아직 정해지지 않았어도 괜찮습니다. 확인 후 연락드립니다.
+          날짜가 아직 정해지지 않았다면 대략적인 시기만 알려주세요. 확인 후 연락드립니다.
         </p>
       </div>
 
@@ -210,7 +220,7 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
       <div>
         <div className="mb-1 flex justify-between text-sm font-semibold text-neutral-600">
           <span>희망 날짜</span>
-          <span className="text-xs font-normal text-neutral-400">선택</span>
+          <span className="text-brand text-xs">필수</span>
         </div>
         <div className="grid grid-cols-[1fr_auto] items-start gap-2">
           <DatePickerField
@@ -218,18 +228,38 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
             name="eventDate"
             disabled={dateUndecided}
             defaultValue={v.eventDate}
-            error={state.fieldErrors?.eventDate}
+            error={
+              state.fieldErrors?.eventDate ??
+              (dateMissing ? ["희망 날짜를 고르거나 '아직 미정'을 선택해주세요"] : undefined)
+            }
           />
           <label className="has-checked:border-brand has-checked:text-brand flex h-10 cursor-pointer items-center gap-1.5 rounded-md border border-neutral-200 px-3 text-sm font-semibold whitespace-nowrap has-checked:bg-orange-50">
             <input
               type="checkbox"
+              name="dateUndecided"
+              value="on"
               checked={dateUndecided}
-              onChange={(event) => setDateUndecided(event.target.checked)}
+              onChange={(event) => {
+                setDateUndecided(event.target.checked);
+                setDateMissing(false);
+              }}
               className="accent-brand size-4"
             />
             아직 미정
           </label>
         </div>
+        {dateUndecided && (
+          <div className="mt-2">
+            <Field
+              label="대략 언제쯤인가요?"
+              name="eventPeriod"
+              placeholder="예) 12월 중순, 내년 3월"
+              defaultValue={v.eventPeriod}
+              error={state.fieldErrors?.eventPeriod}
+              required
+            />
+          </div>
+        )}
       </div>
 
       <Field
@@ -238,6 +268,7 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
         placeholder="예) 경기 안산, 대부도"
         defaultValue={v.location}
         error={state.fieldErrors?.location}
+        required
       />
 
       <Field
