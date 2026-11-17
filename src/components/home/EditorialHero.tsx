@@ -46,6 +46,7 @@ export default function EditorialHero({ slides }: { slides: Slide[] }) {
         }}
         fill
         priority
+        fetchPriority="high"
         unoptimized
         className="object-cover"
         sizes="100vw"
