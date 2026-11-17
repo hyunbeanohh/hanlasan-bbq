@@ -77,7 +77,8 @@ pnpm dev                               # http://localhost:3000
 | `src/lib/blog/display-title.ts` | 블로그 후기 제목 자동 정리("[태그] ○○에 행사를 다녀왔습니다" -> "○○ 행사"). 슬라이드, 메인 행사 기록, `/gallery`에 적용 |
 | `src/components/home/RecentEvents.tsx` | 메인 행사 기록 목록(모바일 가로형 압축 카드) |
 | `src/app/layout.tsx` | 공통 메타, 사이트 인증 태그(네이버·구글), 분석 스크립트 |
-| `src/components/home/reservation/QuickQuoteForm.tsx` | 빠른 견적 폼 (전화·문자 버튼, 보안 확인 실패 안내) |
+| `src/components/home/reservation/QuickQuoteForm.tsx` | 빠른 견적 폼 (전화·문자 버튼, 보안 확인 실패 안내). 필수: 메뉴, 식사, 인원, 연락처, 동의. 날짜('아직 미정')와 지역은 선택. 제출 실패 시 입력값 유지. GA4 `quote_submit`, `quote_submit_error`(error_reason: field, verify, limit) 기록 |
+| `src/lib/quick-quote/schema.ts` | 견적 입력 검증. 휴대폰 번호는 하이픈 없이 입력해도 010-0000-0000으로 맞춤 |
 | `src/components/inquiry/TurnstileWidget.tsx` | Turnstile (`appearance: interaction-only`) |
 | `src/components/layout/MobileCTABar.tsx` | 모바일 하단 고정 바 (전화, 견적, 문자, 이메일) |
 | `src/components/analytics/*`, `src/lib/analytics/*` | GA4, 네이버 전환추적, UTM 저장 |
