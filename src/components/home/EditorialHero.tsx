@@ -38,7 +38,7 @@ export default function EditorialHero({ slides }: { slides: Slide[] }) {
     >
       <Image
         key={slide.src}
-        src={failed ? '/images/menu/tongsamgyeop-v2.jpg' : slide.src}
+        src={failed ? '/images/menu/tongsamgyeop-v2.webp' : slide.src}
         alt={failed ? '통삼겹살 바베큐' : slide.title}
         referrerPolicy="no-referrer"
         onError={() => {
@@ -46,17 +46,21 @@ export default function EditorialHero({ slides }: { slides: Slide[] }) {
         }}
         fill
         priority
+        fetchPriority="high"
         unoptimized
         className="object-cover"
         sizes="100vw"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-black/15" />
       <div className="relative px-6 pt-12 text-white sm:px-12 md:pt-16">
-        <p className="mb-5 text-sm text-white/80">기업 행사 · 워크샵 · 동문회 · 가족 모임</p>
-        <h1 className="text-3xl leading-tight font-bold tracking-tight md:text-5xl">
-          불 앞에서 준비한 맛, 행사 자리까지.
+        <h1 className="mb-5 text-sm font-normal text-white/80">
+          통돼지바베큐 출장 · 통삼겹살 바베큐 케이터링
         </h1>
+        <p className="text-3xl leading-tight font-bold tracking-tight md:text-5xl">
+          불 앞에서 준비한 맛, 행사 자리까지.
+        </p>
         <p className="mt-6 text-lg">대표가 직접 준비하는 출장 바베큐 케이터링.</p>
+        <p className="mt-1 text-sm text-white/80">기업 행사 · 워크샵 · 동문회 · 가족 모임</p>
         <p className="mt-2 text-sm text-white/80">
           통돼지·통삼겹살·해물 바베큐를 현장에서 준비합니다.
           <br />

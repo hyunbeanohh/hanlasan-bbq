@@ -1,0 +1,10 @@
+# Cloudflare Workers 정적 파일 캐시 설정
+# 파일 이름에 해시가 붙는 빌드 결과물은 1년, 사진은 30일 동안 브라우저에 저장한다.
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/favicon.ico
+  Cache-Control: public, max-age=604800

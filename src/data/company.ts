@@ -15,7 +15,7 @@ export const CHEF = {
     '한 길을 올곧게 걸어온 인생이 만든 집중력. 군포시 산본동에서 30년간 테니스를 가르쳐 온 지도자이자, 20년 역사의 안양 원 테니스클럽 창단멤버 겸 고문입니다. 몸과 마음을 다스리는 수련의 길을 걸어 온 30년의 저력이 그대로 바베큐 그릴 앞에 옮겨졌습니다.',
   detail:
     '10년 전, 일손을 돕는다는 생각으로 시작했던 바베큐. 시간이 흐르며 맛을 즐기는 사람들의 표정에 빠져들었고, 더 깊은 연구를 시작했습니다. 정직하게 다듬은 재료, 흔들림 없는 불 조절, 그리고 한 길을 걸어 온 사람만이 만들 수 있는 한결같은 품질 — "정직하고 믿을 수 있는 품질과 맛"이 한라산출장바베큐의 약속입니다.',
-  imageSrc: '/images/company/chef-onamsu.jpg',
+  imageSrc: '/images/company/chef-onamsu.webp',
 };
 
 export const DIFFERENTIATORS: Differentiator[] = [

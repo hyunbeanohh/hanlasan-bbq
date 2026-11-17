@@ -6,7 +6,7 @@ import CallButton from '@/components/cta/CallButton';
 import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
 
 export const metadata: Metadata = pageMetadata({
-  title: '메뉴소개',
+  title: '출장 바베큐 메뉴와 가격 (통돼지, 통삼겹살, 해물)',
   description:
     '한라산출장바베큐 메뉴 안내. 통돼지, 통삼겹살, 해물, 훈제오리까지 — 참나무 숯불 훈연으로 완성하는 프리미엄 출장 바베큐 메뉴.',
   path: '/menu',

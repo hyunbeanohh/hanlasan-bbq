@@ -70,7 +70,7 @@ export default function Header() {
             className="text-fg hover:text-brand flex shrink-0 items-center gap-2 text-lg font-bold tracking-tight transition-colors"
           >
             <Image
-              src="/images/logo.png"
+              src="/images/logo.webp"
               alt=""
               width={36}
               height={36}

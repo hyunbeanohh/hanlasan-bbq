@@ -9,7 +9,7 @@ import SmsButton from '@/components/cta/SmsButton';
 import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
 
 export const metadata: Metadata = pageMetadata({
-  title: '회사소개',
+  title: '회사소개 (대표가 직접 굽는 출장 바베큐)',
   description:
     '한라산출장바베큐 회사소개. 대표가 직접 준비하는 출장 바베큐 케이터링. 대표가 직접 현장에 찾아갑니다.',
   path: '/company',

@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/banquet`, lastModified: now, changeFrequency: 'weekly',  priority: 0.8 },
     { url: `${base}/gallery`, lastModified: now, changeFrequency: 'weekly',  priority: 0.7 },
     { url: `${base}/catering`, lastModified: now, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${base}/inquiry`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     ...MENU_PAGES.map((p) => ({
       url: `${base}/menu/${p.slug}`,
       lastModified: now,

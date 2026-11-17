@@ -1,7 +1,7 @@
 import { getEnv } from '@/lib/inquiries/cf';
 import InquiryForm from './InquiryForm';
 
-export const metadata = { title: '예약 문의 작성 | 한라산출장바베큐' };
+export const metadata = { title: '예약 문의 작성', robots: { index: false, follow: true } };
 export const dynamic = 'force-dynamic';
 
 export default function NewInquiryPage() {

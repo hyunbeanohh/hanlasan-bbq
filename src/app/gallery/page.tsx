@@ -10,7 +10,7 @@ import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
 export const revalidate = 3600;
 
 export const metadata: Metadata = pageMetadata({
-  title: '갤러리',
+  title: '출장 바베큐 행사 사진 (워크숍, 축제, 결혼식)',
   description: '한라산출장바베큐 행사 사진과 후기. 실제 행사 준비 모습을 확인하세요.',
   path: '/gallery',
 });
