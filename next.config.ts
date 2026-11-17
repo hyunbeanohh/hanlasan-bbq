@@ -5,10 +5,6 @@ initOpenNextCloudflareForDev();
 
 const config: NextConfig = {
   trailingSlash: false,
-  experimental: {
-    // CSS(약 14KB)를 HTML 안에 넣어 별도 CSS 파일을 기다리지 않고 첫 화면을 그린다.
-    inlineCss: true,
-  },
   images: {
     // Cloudflare(OpenNext)에서는 /_next/image가 원본을 그대로 보내고 캐시도 없어서 끈다.
     // 사진은 public/images에 WebP로 미리 줄여 둔 파일을 직접 쓴다.
