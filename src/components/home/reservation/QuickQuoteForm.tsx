@@ -47,10 +47,19 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
   const v = state.values ?? {};
 
   useEffect(() => {
-    if (waitingToken && token) {
+    if (!waitingToken) return;
+    if (token) {
       setWaitingToken(false);
       formRef.current?.requestSubmit();
+      return;
     }
+    // 15초 안에 보안 확인이 끝나지 않으면 전화·문자 안내로 넘긴다.
+    const timer = setTimeout(() => {
+      setWaitingToken(false);
+      setVerifyFailed(true);
+      trackQuoteEvent('quote_submit_error', 'verify');
+    }, 15000);
+    return () => clearTimeout(timer);
   }, [waitingToken, token]);
 
   useEffect(() => {
