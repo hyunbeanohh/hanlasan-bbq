@@ -90,7 +90,8 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
       action={formAction}
       onSubmit={(event) => {
         const form = event.currentTarget;
-        const dateValue = (form.elements.namedItem('eventDate') as HTMLInputElement | null)?.value;
+        // 날짜 칸은 버튼(id)과 숨은 입력(name)이 같은 이름이라 FormData로 실제 값을 읽는다.
+        const dateValue = new FormData(form).get('eventDate');
         if (!dateValue) {
           event.preventDefault();
           setDateMissing(true);
