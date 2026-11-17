@@ -10,8 +10,6 @@ import { NAVER_ANALYTICS_ID } from '@/lib/analytics/naver';
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics';
 import FontLoader from '@/components/layout/FontLoader';
 import UtmCapture from '@/components/analytics/UtmCapture';
-import { Analytics as VercelAnalytics } from '@vercel/analytics/next';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.canonicalOriginDisplay),
@@ -64,8 +62,6 @@ export default function RootLayout({
         <GoogleAnalytics />
         <FontLoader />
         <UtmCapture />
-        <VercelAnalytics />
-        <SpeedInsights />
       </body>
     </html>
   );
