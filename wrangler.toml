@@ -26,6 +26,12 @@ binding = "DB"
 database_name = "hanlasan-bbq"
 database_id = "3893e279-deda-493d-8c95-8c087dc3377b"
 
+# Next.js 페이지 캐시(OpenNext incremental cache). 완성된 페이지를 저장해 두고 재사용해
+# 요청마다 다시 그리지 않는다(무료 요금제 CPU 10ms 한도 초과 Error 1102 방지).
+[[kv_namespaces]]
+binding = "NEXT_INC_CACHE_KV"
+id = "0a10a2b4e64d4c77bee0558f6b3f7850"
+
 [[routes]]
 pattern = "xn--oi2b40g9l97kpyk0jjr0ee5l.kr"
 custom_domain = true
