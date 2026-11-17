@@ -76,7 +76,7 @@ export default function DatePickerField({
         aria-expanded={open}
         className="w-full bg-neutral-50 border border-neutral-200 rounded-md h-10 px-3 text-sm text-left focus:outline-none focus:border-brand flex items-center justify-between gap-2 disabled:opacity-50"
       >
-        <span className={date && !disabled ? 'text-neutral-900' : 'text-neutral-400'}>
+        <span className={date && !disabled ? 'text-neutral-900' : 'text-neutral-500'}>
           {disabled ? '날짜 미정' : date ? formatYMD(date) : '날짜 고르기'}
         </span>
         <svg

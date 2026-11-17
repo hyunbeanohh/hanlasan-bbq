@@ -1,12 +1,37 @@
 'use client';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { preload } from 'react-dom';
 type Slide = { src: string; title: string };
+
+const FALLBACK_SRC = '/images/menu/tongsamgyeop-v2.webp';
+/**
+ * 사이트에 있는 대표 사진은 화면 폭에 맞는 크기를 골라 받도록 크기별 WebP를 둔다.
+ * (images.unoptimized라 next/image가 srcset을 만들지 않아 직접 지정한다.)
+ */
+const LOCAL_SRCSET: Record<string, string> = {
+  [FALLBACK_SRC]:
+    '/images/menu/tongsamgyeop-v2-480.webp 480w, /images/menu/tongsamgyeop-v2-750.webp 750w, /images/menu/tongsamgyeop-v2.webp 900w',
+};
+const HERO_SIZES = '(max-width: 767px) calc(100vw - 32px), min(1440px, calc(100vw - 80px))';
+
 export default function EditorialHero({ slides }: { slides: Slide[] }) {
   const [index, setIndex] = useState(0);
   const [failedSources, setFailedSources] = useState<string[]>([]);
   const slide = slides[index];
   const failed = failedSources.includes(slide.src);
+  const imageSrc = failed ? FALLBACK_SRC : slide.src;
+  const srcSet = LOCAL_SRCSET[imageSrc];
+  // 첫 슬라이드(첫 화면 가장 큰 사진)를 HTML 머리에서 바로 받기 시작한다.
+  const firstSrcSet = LOCAL_SRCSET[slides[0]?.src];
+  if (firstSrcSet) {
+    preload(slides[0].src, {
+      as: 'image',
+      imageSrcSet: firstSrcSet,
+      imageSizes: HERO_SIZES,
+      fetchPriority: 'high',
+    });
+  }
   const [paused, setPaused] = useState(false);
   const [hover, setHover] = useState(false);
   useEffect(() => {
@@ -36,21 +61,33 @@ export default function EditorialHero({ slides }: { slides: Slide[] }) {
         if (!event.currentTarget.contains(event.relatedTarget)) setHover(false);
       }}
     >
-      <Image
-        key={slide.src}
-        src={failed ? '/images/menu/tongsamgyeop-v2.webp' : slide.src}
-        alt={failed ? '통삼겹살 바베큐' : slide.title}
-        referrerPolicy="no-referrer"
-        onError={() => {
-          if (!failed) setFailedSources((sources) => [...sources, slide.src]);
-        }}
-        fill
-        priority
-        fetchPriority="high"
-        unoptimized
-        className="object-cover"
-        sizes="100vw"
-      />
+      {srcSet ? (
+        // eslint-disable-next-line @next/next/no-img-element -- 크기별 WebP(srcset)를 직접 쓴다
+        <img
+          key={imageSrc}
+          src={imageSrc}
+          srcSet={srcSet}
+          sizes={HERO_SIZES}
+          alt={failed ? '통삼겹살 바베큐' : slide.title}
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      ) : (
+        <Image
+          key={slide.src}
+          src={imageSrc}
+          alt={slide.title}
+          referrerPolicy="no-referrer"
+          onError={() => {
+            if (!failed) setFailedSources((sources) => [...sources, slide.src]);
+          }}
+          fill
+          unoptimized
+          className="object-cover"
+          sizes="100vw"
+        />
+      )}
       <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/35 to-black/15" />
       <div className="relative px-6 pt-12 text-white sm:px-12 md:pt-16">
         <h1 className="mb-5 text-sm font-normal text-white/80">

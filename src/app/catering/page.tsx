@@ -136,7 +136,7 @@ export default async function CateringPage() {
                     <span className="bg-surface-3 relative block aspect-[3/2] overflow-hidden rounded-xl">
                       <Image
                         src={item.imageSrc}
-                        alt={item.name}
+                        alt={`${item.name} 출장 바베큐 사진`}
                         fill
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
                         sizes="(max-width:767px) 100vw, 400px"

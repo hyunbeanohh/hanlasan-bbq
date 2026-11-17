@@ -76,7 +76,7 @@ export default async function HomePage() {
                   <div className="relative aspect-[3/2] overflow-hidden rounded-xl">
                     <Image
                       src={item.imageSrc}
-                      alt={item.name}
+                      alt={`${item.name} 출장 바베큐 사진`}
                       fill
                       className="object-cover"
                       sizes="(max-width:767px) 100vw,400px"
