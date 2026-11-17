@@ -50,7 +50,14 @@ export default function LocalBusinessJsonLd() {
         closes: '20:00',
       },
     ],
-    sameAs: [`https://blog.naver.com/ohnamsoo3822`],
+    // 지도 등록 정보. 같은 업체로 묶이도록 지도 주소를 함께 적는다.
+    hasMap: 'https://maps.google.com/?cid=4153469789500803710',
+    sameAs: [
+      'https://blog.naver.com/ohnamsoo3822',
+      'https://map.naver.com/p/entry/place/1682876082',
+      'https://place.map.kakao.com/1758764126',
+      'https://maps.google.com/?cid=4153469789500803710',
+    ],
     paymentAccepted: ['Cash', 'CreditCard', 'BankTransfer'],
   };
 
