@@ -54,12 +54,36 @@ describe('quickQuoteSchema', () => {
     expect(quickQuoteSchema.safeParse({ ...valid, eventDate: '2000-01-01' }).success).toBe(false);
   });
 
-  it('rejects short location', () => {
-    expect(quickQuoteSchema.safeParse({ ...valid, location: 'a' }).success).toBe(false);
+  it('accepts empty or short location (optional region)', () => {
+    expect(quickQuoteSchema.safeParse({ ...valid, location: '' }).success).toBe(true);
+    expect(quickQuoteSchema.safeParse({ ...valid, location: '부산' }).success).toBe(true);
+    const r = quickQuoteSchema.safeParse({ ...valid, location: undefined });
+    expect(r.success).toBe(true);
+    if (r.success) expect(r.data.location).toBe('');
   });
 
-  it('rejects invalid phone format', () => {
-    expect(quickQuoteSchema.safeParse({ ...valid, phone: '01012345678' }).success).toBe(false);
+  it('accepts an undecided (empty) event date', () => {
+    const r = quickQuoteSchema.safeParse({ ...valid, eventDate: '' });
+    expect(r.success).toBe(true);
+    if (r.success) expect(r.data.eventDate).toBe('');
+  });
+
+  it('normalizes phone numbers typed without hyphens', () => {
+    for (const [input, out] of [
+      ['01012345678', '010-1234-5678'],
+      ['010 1234 5678', '010-1234-5678'],
+      ['0111234567', '011-123-4567'],
+    ]) {
+      const r = quickQuoteSchema.safeParse({ ...valid, phone: input });
+      expect(r.success).toBe(true);
+      if (r.success) expect(r.data.phone).toBe(out);
+    }
+  });
+
+  it('rejects invalid phone numbers', () => {
+    for (const phone of ['0212345678', '010-12-34', 'abc', '']) {
+      expect(quickQuoteSchema.safeParse({ ...valid, phone }).success).toBe(false);
+    }
   });
 
   it('requires privacyConsent', () => {
