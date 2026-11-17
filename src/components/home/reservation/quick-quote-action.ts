@@ -15,6 +15,21 @@ export interface QuickQuoteFormState {
   ok: boolean;
   message?: string;
   fieldErrors?: Record<string, string[]>;
+  /** 실패 이유 (GA4 측정용 고정 코드) */
+  errorReason?: 'field' | 'verify' | 'limit' | 'server';
+  /** 실패했을 때 다시 채워 줄 입력값 (화면 표시용, 저장하지 않음) */
+  values?: Record<string, string>;
+}
+
+const KEEP_FIELDS = ['headcount', 'eventDate', 'location', 'phone', 'email'] as const;
+
+function keepValues(formData: FormData): Record<string, string> {
+  const out: Record<string, string> = {};
+  for (const key of KEEP_FIELDS) {
+    const v = formData.get(key);
+    if (typeof v === 'string') out[key] = v.slice(0, 120);
+  }
+  return out;
 }
 
 const QUICK_QUOTE_DAILY_LIMIT = 15;
@@ -31,7 +46,13 @@ export async function createQuickQuoteAction(
       const path = String(issue.path[0]);
       (fieldErrors[path] ??= []).push(issue.message);
     }
-    return { ok: false, message: '입력값을 확인해주세요', fieldErrors };
+    return {
+      ok: false,
+      message: '입력값을 확인해주세요',
+      fieldErrors,
+      errorReason: 'field',
+      values: keepValues(formData),
+    };
   }
   const input = parsed.data;
   const env = getEnv();
@@ -41,12 +62,22 @@ export async function createQuickQuoteAction(
   const limiter = new RateLimiter(getDB());
   const allowed = await limiter.check(ip, 'quick-quote', QUICK_QUOTE_DAILY_LIMIT, 86_400);
   if (!allowed) {
-    return { ok: false, message: '오늘 견적 요청 한도를 초과했습니다. 전화로 문의해 주세요.' };
+    return {
+      ok: false,
+      message: '오늘 견적 요청 한도를 초과했습니다. 전화로 문의해 주세요.',
+      errorReason: 'limit',
+      values: keepValues(formData),
+    };
   }
 
   const turnstile = await verifyTurnstile(input.turnstileToken, env.TURNSTILE_SECRET, ip);
   if (!turnstile.success) {
-    return { ok: false, message: '자동가입방지 검증에 실패했습니다. 다시 시도해 주세요.' };
+    return {
+      ok: false,
+      message: '자동가입방지 검증에 실패했습니다. 다시 시도해 주세요.',
+      errorReason: 'verify',
+      values: keepValues(formData),
+    };
   }
 
   const phoneEnc = await encryptPII(input.phone, env.PII_KEY);

@@ -10,6 +10,16 @@ interface Props {
   label: string;
   required?: boolean;
   error?: string[];
+  /** true면 날짜를 비우고 선택을 막는다 ('아직 미정') */
+  disabled?: boolean;
+  /** 제출 실패 후 다시 채울 값 (YYYY-MM-DD) */
+  defaultValue?: string;
+}
+
+function parseYMD(s?: string): Date | undefined {
+  if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return undefined;
+  const d = new Date(s + 'T00:00:00');
+  return isNaN(d.getTime()) ? undefined : d;
 }
 
 function formatYMD(d: Date): string {
@@ -19,8 +29,15 @@ function formatYMD(d: Date): string {
   return `${y}-${m}-${day}`;
 }
 
-export default function DatePickerField({ name, label, required, error }: Props) {
-  const [date, setDate] = useState<Date | undefined>(undefined);
+export default function DatePickerField({
+  name,
+  label,
+  required,
+  error,
+  disabled,
+  defaultValue,
+}: Props) {
+  const [date, setDate] = useState<Date | undefined>(() => parseYMD(defaultValue));
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -45,19 +62,22 @@ export default function DatePickerField({ name, label, required, error }: Props)
 
   return (
     <div ref={ref} className="relative">
-      <label htmlFor={name} className="block text-[11px] font-bold text-neutral-500 mb-1">
-        {label}
-      </label>
+      {label && (
+        <label htmlFor={name} className="block text-[11px] font-bold text-neutral-500 mb-1">
+          {label}
+        </label>
+      )}
       <button
         id={name}
         type="button"
+        disabled={disabled}
         onClick={() => setOpen((o) => !o)}
         aria-haspopup="dialog"
         aria-expanded={open}
-        className="w-full bg-neutral-50 border border-neutral-200 rounded-md h-10 px-3 text-sm text-left focus:outline-none focus:border-brand flex items-center justify-between gap-2"
+        className="w-full bg-neutral-50 border border-neutral-200 rounded-md h-10 px-3 text-sm text-left focus:outline-none focus:border-brand flex items-center justify-between gap-2 disabled:opacity-50"
       >
-        <span className={date ? 'text-neutral-900' : 'text-neutral-400'}>
-          {date ? formatYMD(date) : 'YYYY-MM-DD'}
+        <span className={date && !disabled ? 'text-neutral-900' : 'text-neutral-400'}>
+          {disabled ? '날짜 미정' : date ? formatYMD(date) : '날짜 고르기'}
         </span>
         <svg
           width="16"
@@ -78,10 +98,10 @@ export default function DatePickerField({ name, label, required, error }: Props)
       <input
         type="hidden"
         name={name}
-        value={date ? formatYMD(date) : ''}
-        required={required}
+        value={date && !disabled ? formatYMD(date) : ''}
+        required={required && !disabled}
       />
-      {open && (
+      {open && !disabled && (
         <div
           role="dialog"
           aria-label="날짜 선택"

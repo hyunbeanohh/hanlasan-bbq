@@ -40,6 +40,8 @@ describe('quick quote submission', () => {
     const response = await createQuickQuoteAction({ ok: false }, data);
     expect(response.ok).toBe(false);
     expect(response.fieldErrors?.[field]).toBeDefined();
+    expect(response.errorReason).toBe('field');
+    expect(response.values?.phone).toBe('010-1234-5678');
     expect(mocks.create).not.toHaveBeenCalled();
     expect(mocks.notify).not.toHaveBeenCalled();
   });
