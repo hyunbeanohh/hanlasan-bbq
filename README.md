@@ -98,13 +98,15 @@ pnpm dev                               # http://localhost:3000
 | Google Search Console | URL 프리픽스 속성 `https://xn--oi2b40g9l97kpyk0jjr0ee5l.kr/` (ohb4199@gmail.com) |
 | 네이버 서치어드바이저 | 인증 태그 2개(`layout.tsx`): 기존 계정 + ohnamsoo3822(광고 계정). 사이트맵 `/sitemap.xml` 제출됨 |
 
-### 네이버 검색광고 (계정 ohnamsoo3822, 광고그룹 '한라산출장바베큐_new')
+### 네이버 검색광고 (계정 ohnamsoo3822, 캠페인 '한라산출장바베큐')
 
-- 하루 예산 30,000원(캠페인·그룹), 시간별 균등 배분
-- 소재 2개, 연결 URL에 UTM: `?utm_source=naver&utm_medium=cpc&utm_campaign=powerlink&utm_content=rsa_new` 또는 `rsa_original`
+- 하루 예산: 캠페인 30,000원. 광고그룹 '한라산출장바베큐_new' 30,000원, '한라산출장바베큐_연말행사' 10,000원(2026-11-17 추가, 캠페인 예산을 함께 씀)
+- 기본 그룹 소재 2개, 연결 URL에 UTM: `?utm_source=naver&utm_medium=cpc&utm_campaign=powerlink&utm_content=rsa_new` 또는 `rsa_original`
+- 연말행사 그룹: 송년회·연말·종무식·시무식 케이터링 키워드 15개, 소재 1개(연결 `/catering`, `utm_content=yearend`). 연말 이후 끄기
 - 텍스트 서브링크: '통돼지바베큐'(`/menu#sig-tong-dwaeji`, utm_content=sublink_menu), '빠른견적'(`/inquiry#quote`, utm_content=sublink_quote), '단체행사후기'(블로그). 이미지형 서브링크는 블로그 연결
-- 제외 검색어 약 600개(축제, 바베큐장 대여, 캠핑·펜션, 맛집류 등)
-- 2일마다 자동 점검 메일 발송(ohb4199@gmail.com)
+- 제외 검색어 838개(축제, 바베큐장 대여, 캠핑·펜션, 맛집류, 당일바베큐 등)
+- 꺼 둔 키워드: 클릭 없는 지역+바베큐 16개, 야외바베큐, 바베큐파티, 바베큐그릴대여, 출장뷔페 등(2026-11-17)
+- 매일 오전 8시 30분 자동 점검 메일 발송(ohb4199@gmail.com)
 - 서비스 지역: 전국(원주, 광양 포함, 견적에 따라 다름)
 
 ## 문서
