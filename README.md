@@ -88,6 +88,16 @@ pnpm dev                               # http://localhost:3000
 | `src/components/seo/FaqJsonLd.tsx`, `src/components/common/FaqList.tsx` | FAQ 구조화 데이터와 접이식 목록 |
 | `next.config.ts` | CSP 헤더, 리디렉션 |
 
+## 성능·검색 설정 (2026-11-17)
+
+- 이미지: Cloudflare(OpenNext)에서는 `/_next/image`가 원본을 그대로 보내고 캐시도 없어서 `next.config.ts`에서 `images.unoptimized: true`로 껐다. 화면용 사진은 `public/images/**`에 WebP로 줄여 둔 파일(가로 최대 1200px)을 쓴다. 새 사진을 넣을 때도 WebP로 줄여서 올린다. SNS 공유·구조화 데이터용 원본(JPG/PNG)은 메뉴 데이터의 `shareImageSrc`에 둔다.
+- 캐시: `public/_headers`에서 `/_next/static/*` 1년, `/images/*` 30일, `/favicon.ico` 7일.
+- 폰트: Pretendard는 동적 서브셋 CSS(`pretendardvariable-dynamic-subset.min.css`)로 필요한 글자만 받는다(전체 파일은 2MB).
+- `public/favicon.ico`: 네이버 검색 결과 사이트 아이콘. 없으면 네이버 수집에서 404로 잡힌다.
+- 검색 제외: `/inquiry/new`, `/inquiry/[id]`(비밀글 포함)는 `noindex`. `/inquiry`는 대표 주소(canonical)와 설명을 두고 사이트맵에 포함.
+- 메인 H1: "통돼지바베큐 출장 · 통삼겹살 바베큐 케이터링" (문구 "불 앞에서 준비한 맛, 행사 자리까지."는 큰 글씨 부제).
+- 2026-11-17 측정(PageSpeed 모바일, 메인): 성능 72 → 73, LCP 16.6초 → 7.0초, 첫 화면 전송량 8.2MB → 약 1.2MB, 검색엔진 최적화 92 → 100.
+
 ## 운영 현황 (2026-11-10 기준)
 
 ### 분석·측정
