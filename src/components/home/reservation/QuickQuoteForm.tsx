@@ -41,7 +41,17 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
   const [dateMissing, setDateMissing] = useState(false);
   const reportedSuccess = useRef(false);
   const [verifyFailed, setVerifyFailed] = useState(false);
+  // 보안 확인 토큰이 오기 전에 제출을 누른 경우, 토큰이 오면 자동으로 다시 제출한다.
+  const [waitingToken, setWaitingToken] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
   const v = state.values ?? {};
+
+  useEffect(() => {
+    if (waitingToken && token) {
+      setWaitingToken(false);
+      formRef.current?.requestSubmit();
+    }
+  }, [waitingToken, token]);
 
   useEffect(() => {
     if (state.ok && !reportedSuccess.current) {
@@ -87,6 +97,7 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
 
   return (
     <form
+      ref={formRef}
       action={formAction}
       onSubmit={(event) => {
         const form = event.currentTarget;
@@ -99,6 +110,12 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
           return;
         }
         setDateMissing(false);
+        if (siteKey && !token && !verifyFailed) {
+          // 보안 확인이 아직 끝나지 않았다. 토큰이 오면 위 effect가 다시 제출한다.
+          event.preventDefault();
+          setWaitingToken(true);
+          return;
+        }
         trackQuoteEvent('quote_submit');
         trackNaverEvent({ event: 'quick_quote_submit', ...getUtm() });
       }}
@@ -267,15 +284,22 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
       <input type="hidden" name="turnstileToken" value={token} />
       <TurnstileWidget
         siteKey={siteKey}
+        lazy
         onToken={(value) => {
           setToken(value);
           if (value) setVerifyFailed(false);
         }}
         onError={() => {
+          setWaitingToken(false);
           setVerifyFailed(true);
           trackQuoteEvent('quote_submit_error', 'verify');
         }}
       />
+      {waitingToken && !verifyFailed && (
+        <p className="text-sm text-neutral-600" aria-live="polite">
+          보안 확인 중입니다. 끝나면 자동으로 접수됩니다.
+        </p>
+      )}
       {verifyFailed && (
         <ContactAlternatives message="보안 확인이 원활하지 않습니다. 전화나 문자로 바로 문의해 주세요." />
       )}

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import './pretendard.css';
 import './globals.css';
 import { SITE } from '@/lib/constants';
 import Header from '@/components/layout/Header';
@@ -44,11 +45,8 @@ export default function RootLayout({
   return (
     <html lang="ko" className="h-full scroll-smooth">
       <head>
+        {/* Pretendard 글꼴 파일(jsDelivr) 연결을 미리 열어 둔다. @font-face는 src/app/pretendard.css */}
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
-        />
       </head>
       <body className="min-h-full flex flex-col antialiased pb-[60px] md:pb-0">
         <LocalBusinessJsonLd />
