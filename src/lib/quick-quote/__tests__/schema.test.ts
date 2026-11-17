@@ -54,18 +54,29 @@ describe('quickQuoteSchema', () => {
     expect(quickQuoteSchema.safeParse({ ...valid, eventDate: '2000-01-01' }).success).toBe(false);
   });
 
-  it('accepts empty or short location (optional region)', () => {
-    expect(quickQuoteSchema.safeParse({ ...valid, location: '' }).success).toBe(true);
+  it('requires a region of at least 2 characters', () => {
+    for (const location of ['', ' ', 'a', undefined]) {
+      expect(quickQuoteSchema.safeParse({ ...valid, location }).success).toBe(false);
+    }
     expect(quickQuoteSchema.safeParse({ ...valid, location: '부산' }).success).toBe(true);
-    const r = quickQuoteSchema.safeParse({ ...valid, location: undefined });
-    expect(r.success).toBe(true);
-    if (r.success) expect(r.data.location).toBe('');
   });
 
-  it('accepts an undecided (empty) event date', () => {
-    const r = quickQuoteSchema.safeParse({ ...valid, eventDate: '' });
-    expect(r.success).toBe(true);
-    if (r.success) expect(r.data.eventDate).toBe('');
+  it('requires a date unless marked undecided with a rough period', () => {
+    const noDate = quickQuoteSchema.safeParse({ ...valid, eventDate: '' });
+    expect(noDate.success).toBe(false);
+    if (!noDate.success) expect(noDate.error.issues[0].path[0]).toBe('eventDate');
+
+    const noPeriod = quickQuoteSchema.safeParse({ ...valid, eventDate: '', dateUndecided: 'on' });
+    expect(noPeriod.success).toBe(false);
+    if (!noPeriod.success) expect(noPeriod.error.issues[0].path[0]).toBe('eventPeriod');
+
+    const ok = quickQuoteSchema.safeParse({
+      ...valid,
+      eventDate: '',
+      dateUndecided: 'on',
+      eventPeriod: '12월 중순',
+    });
+    expect(ok.success).toBe(true);
   });
 
   it('normalizes phone numbers typed without hyphens', () => {
