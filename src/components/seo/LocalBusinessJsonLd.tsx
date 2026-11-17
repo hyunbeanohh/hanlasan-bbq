@@ -9,7 +9,8 @@ export default function LocalBusinessJsonLd() {
     '@type': ['LocalBusiness', 'FoodEstablishment'],
     '@id': `${url}#business`,
     name: SITE.name,
-    alternateName: SITE.nameEn,
+    // 사업자등록증·구글·카카오 지도에 등록된 상호도 같은 업체로 묶이도록 함께 적는다.
+    alternateName: [SITE.nameEn, '한라산통돼지출장바베큐'],
     url,
     telephone: CONTACT.phone,
     email: CONTACT.email,
