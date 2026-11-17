@@ -20,21 +20,26 @@ describe('buildQuickQuoteTitle', () => {
   });
 });
 
-describe('undecided date and region', () => {
-  it('marks missing date and region in title and content', () => {
-    expect(buildQuickQuoteTitle({ headcount: 40, eventDate: '', location: '' })).toBe(
-      '[빠른 견적] 40명 · 날짜 미정 · 지역 미정',
-    );
+describe('undecided date', () => {
+  it('shows the rough period in title and content', () => {
+    expect(
+      buildQuickQuoteTitle({
+        headcount: 40,
+        eventDate: '',
+        eventPeriod: '12월 중순',
+        location: '안산',
+      }),
+    ).toBe('[빠른 견적] 40명 · 12월 중순(미정) · 안산');
     const out = buildQuickQuoteContent({
       menus: ['통돼지바베큐'],
       meal: '식사 포함',
       headcount: 40,
       eventDate: '',
-      location: '  ',
+      eventPeriod: '12월 중순',
+      location: '안산',
       phone: '010-1234-5678',
     });
-    expect(out).toContain('희망 날짜: 미정 (상담 필요)');
-    expect(out).toContain('출장 장소: 미정 (상담 필요)');
+    expect(out).toContain('희망 날짜: 미정 (대략 12월 중순)');
   });
 });
 
