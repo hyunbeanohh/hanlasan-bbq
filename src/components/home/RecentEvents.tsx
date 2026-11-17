@@ -32,7 +32,7 @@ export default function RecentEvents({ posts }: { posts: GalleryPost[] }) {
                 {post.thumbnailUrl ? (
                   <Image
                     src={post.thumbnailUrl}
-                    alt={title}
+                    alt={`${title} 현장 사진`}
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                     sizes="(max-width:639px) 112px, 400px"

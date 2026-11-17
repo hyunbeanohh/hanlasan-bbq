@@ -22,13 +22,13 @@ const withoutImage: BanquetMenuItem = {
 describe('BanquetMenuCard', () => {
   it('renders the photo when imageSrc is provided', () => {
     render(<BanquetMenuCard item={withImage} />);
-    const img = screen.getByAltText('잡채');
+    const img = screen.getByAltText('잡채 사진');
     expect(img).toBeInTheDocument();
   });
 
   it('renders fallback placeholder when imageSrc is missing', () => {
     render(<BanquetMenuCard item={withoutImage} />);
     expect(screen.getByText('사진 준비중')).toBeInTheDocument();
-    expect(screen.queryByAltText('김치찌개')).not.toBeInTheDocument();
+    expect(screen.queryByAltText('김치찌개 사진')).not.toBeInTheDocument();
   });
 });

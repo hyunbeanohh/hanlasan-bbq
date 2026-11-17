@@ -342,7 +342,7 @@ function ContactAlternatives({ message }: { message?: string }) {
           className="bg-brand flex min-h-11 flex-col items-center justify-center rounded-lg px-3 py-1.5 text-sm font-bold text-white"
         >
           <span>전화 상담</span>
-          <span className="text-xs font-semibold whitespace-nowrap opacity-90">
+          <span className="text-xs font-semibold whitespace-nowrap">
             {CONTACT.phone}
           </span>
         </a>
@@ -389,7 +389,7 @@ function Field({
         className="mb-1 flex justify-between text-sm font-semibold text-neutral-600"
       >
         <span>{label}</span>
-        <span className={required ? 'text-brand text-xs' : 'text-xs font-normal text-neutral-400'}>
+        <span className={required ? 'text-brand text-xs' : 'text-xs font-normal text-neutral-500'}>
           {required ? '필수' : '선택'}
         </span>
       </label>

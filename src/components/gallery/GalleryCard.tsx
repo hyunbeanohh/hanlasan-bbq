@@ -27,7 +27,7 @@ export default function GalleryCard({ post }: GalleryCardProps) {
         {post.thumbnailUrl ? (
           <Image
             src={post.thumbnailUrl}
-            alt={title}
+            alt={`${title} 현장 사진`}
             fill
             className="object-cover transition-transform duration-300 group-hover:scale-105"
             unoptimized

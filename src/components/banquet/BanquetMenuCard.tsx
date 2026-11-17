@@ -13,7 +13,7 @@ export default function BanquetMenuCard({
         {item.imageSrc ? (
           <Image
             src={item.imageSrc}
-            alt={item.name}
+            alt={`${item.name} 사진`}
             fill
             className="object-cover"
             sizes="(max-width:767px) 50vw, 400px"

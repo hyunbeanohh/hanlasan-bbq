@@ -80,7 +80,7 @@ export default function MenuCard({ item, preload = false }: MenuCardProps) {
       <div className="menu-photo">
         <Image
           src={item.imageSrc}
-          alt={item.name}
+          alt={`${item.name} 출장 바베큐 사진`}
           fill
           className="object-cover"
           sizes="(max-width:767px) 100vw, 580px"
