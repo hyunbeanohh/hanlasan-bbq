@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   const posts = await fetchNaverBlogRss(NAVER.blogId).catch(() => []);
   const slides = [
-    { src: '/images/menu/tongsamgyeop-v2.jpg', title: '통삼겹살 바베큐' },
+    { src: '/images/menu/tongsamgyeop-v2.webp', title: '통삼겹살 바베큐' },
     ...posts
       .filter((post) => post.thumbnailUrl)
       .slice(0, 9)

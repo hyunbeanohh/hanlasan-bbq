@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: page.metaTitle,
     description: page.metaDescription,
     path: `/menu/${page.slug}`,
-    ogImage: item.imageSrc,
+    ogImage: item.shareImageSrc ?? item.imageSrc,
   });
 }
 
@@ -72,7 +72,7 @@ export default async function MenuDetailPage({ params }: Props) {
     serviceType: '출장 바베큐 케이터링',
     description: page.metaDescription,
     url: pageUrl,
-    image: `${SITE.canonicalOriginDisplay}${item.imageSrc}`,
+    image: `${SITE.canonicalOriginDisplay}${item.shareImageSrc ?? item.imageSrc}`,
     areaServed: { '@type': 'Country', name: '대한민국' },
     provider: { '@id': `${SITE.canonicalOriginDisplay}#business` },
     ...(range

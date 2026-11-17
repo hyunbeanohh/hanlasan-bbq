@@ -6,6 +6,9 @@ initOpenNextCloudflareForDev();
 const config: NextConfig = {
   trailingSlash: false,
   images: {
+    // Cloudflare(OpenNext)에서는 /_next/image가 원본을 그대로 보내고 캐시도 없어서 끈다.
+    // 사진은 public/images에 WebP로 미리 줄여 둔 파일을 직접 쓴다.
+    unoptimized: true,
     remotePatterns: [
       { protocol: 'https', hostname: 'postfiles.pstatic.net' },
       { protocol: 'https', hostname: 'blogfiles.naver.net' },

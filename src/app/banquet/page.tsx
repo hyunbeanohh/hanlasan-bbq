@@ -7,7 +7,7 @@ import CallButton from '@/components/cta/CallButton';
 import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd';
 
 export const metadata: Metadata = pageMetadata({
-  title: '잔치 메뉴',
+  title: '잔치 음식 출장 메뉴 (돌잔치, 환갑, 집들이)',
   description:
     '한라산출장바베큐 잔치 메뉴 안내 — 잡채·전·무침·찌개·김치까지, 돌잔치·환갑·회갑·집들이 등 가정 행사용 출장 음식 메뉴를 한자리에서 확인하세요.',
   path: '/banquet',

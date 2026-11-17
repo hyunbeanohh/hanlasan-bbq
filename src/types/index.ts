@@ -20,7 +20,10 @@ export type MenuItem = {
   name: string;
   priceText: string;
   description: string;
+  /** 화면 표시용 이미지 (WebP) */
   imageSrc: string;
+  /** SNS 공유·구조화 데이터용 원본 이미지 (JPG/PNG). 없으면 imageSrc 사용 */
+  shareImageSrc?: string;
   /** Headers for a two-column price table, e.g. ['수입산', '국내산']. Omit for a single price column. */
   priceColumns?: readonly [string, string];
   pricingTiers?: PricingTier[];

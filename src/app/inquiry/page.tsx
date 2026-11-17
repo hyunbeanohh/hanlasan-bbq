@@ -1,3 +1,5 @@
+import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo/metadata';
 import QuickQuoteForm from '@/components/home/reservation/QuickQuoteForm';
 import { getEnv } from '@/lib/inquiries/cf';
 import { CONTACT } from '@/lib/constants';
@@ -7,7 +9,12 @@ import { getDB } from '@/lib/inquiries/cf';
 import Pagination from '@/components/inquiry/Pagination';
 import { QUICK_QUOTE_AUTHOR, QUICK_QUOTE_DISPLAY_AUTHOR } from '@/lib/quick-quote/constants';
 
-export const metadata = { title: '예약 문의' };
+export const metadata: Metadata = pageMetadata({
+  title: '예약 문의 (출장 바베큐 빠른 견적)',
+  description:
+    '출장 바베큐 빠른 견적과 예약 문의. 메뉴, 인원, 날짜, 지역을 남겨 주시면 견적을 안내합니다. 전화 상담 010-7332-4199, 매일 09:00~20:00.',
+  path: '/inquiry',
+});
 export const dynamic = 'force-dynamic';
 
 const PER_PAGE = 10;

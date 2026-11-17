@@ -256,7 +256,7 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
         <span>
           개인정보 수집·이용 동의 (필수){' '}
           <a href="/privacy" target="_blank" className="text-brand underline">
-            자세히
+            개인정보처리방침 보기
           </a>
         </span>
       </label>

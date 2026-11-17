@@ -8,6 +8,8 @@ import { getDB, getEnv } from '@/lib/inquiries/cf';
 import PasswordPrompt from './PasswordPrompt';
 
 export const dynamic = 'force-dynamic';
+// 개별 문의 글(비밀글 포함)은 검색 결과에 내보내지 않는다.
+export const metadata = { title: '예약 문의', robots: { index: false, follow: true } };
 
 export default async function InquiryDetailPage({
   params,
