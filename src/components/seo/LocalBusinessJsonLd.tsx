@@ -14,7 +14,8 @@ export default function LocalBusinessJsonLd() {
     telephone: CONTACT.phone,
     email: CONTACT.email,
     description: SITE.description,
-    image: `${url}/images/og/default.svg`,
+    image: [`${url}/opengraph-image.jpg`, `${url}/images/menu/tongsamgyeop-v2.jpg`],
+    logo: `${url}/images/logo.png`,
     priceRange: '₩₩',
     servesCuisine: ['Korean BBQ', 'Catering'],
     address: {
@@ -24,12 +25,22 @@ export default function LocalBusinessJsonLd() {
       addressLocality: '안양시 만안구',
       streetAddress: '박달로578번길 36, 1층',
     },
+    // 전국 출장. 실제 견적·행사가 있었던 지역을 함께 적는다.
     areaServed: [
       { '@type': 'Country', name: '대한민국' },
-      { '@type': 'AdministrativeArea', name: '수도권' },
-      { '@type': 'City', name: '군포시' },
-      { '@type': 'City', name: '안양시' },
-      { '@type': 'City', name: '서울특별시' },
+      ...[
+        '서울특별시',
+        '경기도',
+        '인천광역시',
+        '안양시',
+        '안산시',
+        '대부도',
+        '의정부시',
+        '대전광역시',
+        '경주시',
+        '부안군',
+        '원주시',
+      ].map((name) => ({ '@type': 'AdministrativeArea', name })),
     ],
     openingHoursSpecification: [
       {
