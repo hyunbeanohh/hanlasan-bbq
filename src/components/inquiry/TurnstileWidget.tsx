@@ -27,6 +27,7 @@ interface Props {
 export default function TurnstileWidget({ siteKey, onToken, onError, lazy = false }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const widgetId = useRef<string | null>(null);
+  const retries = useRef(0);
   // 부모가 매 렌더마다 새 콜백을 넘겨도 위젯을 다시 그리지 않도록 최신 콜백만 ref로 보관한다.
   const onTokenRef = useRef(onToken);
   const onErrorRef = useRef(onError);
@@ -44,6 +45,13 @@ export default function TurnstileWidget({ siteKey, onToken, onError, lazy = fals
         callback: (token: string) => onTokenRef.current(token),
         'error-callback': () => {
           onTokenRef.current('');
+          // 일시적인 오류일 수 있어 한 번은 자동으로 다시 시도하고, 그래도 실패하면 알린다.
+          if (retries.current < 1 && widgetId.current && window.turnstile) {
+            retries.current += 1;
+            const id = widgetId.current;
+            setTimeout(() => window.turnstile?.reset(id), 1500);
+            return;
+          }
           onErrorRef.current?.();
         },
         'expired-callback': () => onTokenRef.current(''),

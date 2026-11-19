@@ -53,12 +53,12 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
       formRef.current?.requestSubmit();
       return;
     }
-    // 15초 안에 보안 확인이 끝나지 않으면 전화·문자 안내로 넘긴다.
+    // 30초 안에 보안 확인이 끝나지 않으면 전화·문자 안내로 넘긴다(확인 칸을 눌러야 하는 경우를 감안).
     const timer = setTimeout(() => {
       setWaitingToken(false);
       setVerifyFailed(true);
       trackQuoteEvent('quote_submit_error', 'verify');
-    }, 15000);
+    }, 30000);
     return () => clearTimeout(timer);
   }, [waitingToken, token]);
 
@@ -306,7 +306,7 @@ export default function QuickQuoteForm({ siteKey, initialMenu }: Props) {
       />
       {waitingToken && !verifyFailed && (
         <p className="text-sm text-neutral-600" aria-live="polite">
-          보안 확인 중입니다. 끝나면 자동으로 접수됩니다.
+          보안 확인 중입니다. 확인 칸이 나타나면 눌러 주세요. 끝나면 자동으로 접수됩니다.
         </p>
       )}
       {verifyFailed && (
