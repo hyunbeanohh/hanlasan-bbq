@@ -111,7 +111,7 @@ pnpm dev                               # http://localhost:3000
 | 도구 | 상태 |
 |---|---|
 | GA4 | 측정 ID `G-F208LM9Z8K` (속성 a412415538p559491432). 주요 이벤트: `generate_lead`(견적 접수), `phone_click`(전화 클릭). Search Console 연결됨 |
-| 네이버 전환추적 | 공통키 `s_3cd13a72248` (`src/lib/analytics/naver.ts`). 전환: `lead`(견적 접수, 게시판 등록), `custom001`(전화 클릭). 수집 서버 `wcs.naver.com`은 CSP에 허용. NHN DATA 검수 대기(광고주센터 상태 '신청중', 2026-11-17 검수 신청서 다시 제출) |
+| 네이버 전환추적 | 공통키 `s_3cd13a72248` (`src/lib/analytics/naver.ts`). 전환: `lead`(견적 접수, 게시판 등록), `custom001`(전화 클릭). 수집 서버 `wcs.naver.com`은 CSP에 허용. NHN DATA 스크립트 검수 완료(2026-11-19, 신청완료=글 등록 완료, 사용자정의001=전화 클릭 모두 정상). 광고센터 승인 후 다음 날부터 전환 데이터 확인 가능 |
 | Google Search Console | URL 프리픽스 속성 `https://xn--oi2b40g9l97kpyk0jjr0ee5l.kr/` (ohb4199@gmail.com) |
 | 네이버 서치어드바이저 | 인증 태그 2개(`layout.tsx`): 기존 계정 + ohnamsoo3822(광고 계정). 사이트맵 `/sitemap.xml` 제출됨 |
 
